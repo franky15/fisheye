@@ -1,17 +1,63 @@
 function photographerTemplate(data) {
-    const { name, portrait } = data;
 
-    const picture = `assets/photographers/${portrait}`;
+
+    const { id, name, portrait, city, country, tagline, price } = data;
+
+    //console.log(  "city : "+ city  +  "  * country : " + country  +  " * tagline : "+ tagline  + "  * price : "+ price  )
+
+
+    const picture = `./assets/photographers/${portrait}`;
 
     function getUserCardDOM() {
         const article = document.createElement( 'article' );
         const img = document.createElement( 'img' );
         img.setAttribute("src", picture)
+        img.alt = ""
+        img.setAttribute('class', 'cercle')
+        
+
         const h2 = document.createElement( 'h2' );
         h2.textContent = name;
-        article.appendChild(img);
-        article.appendChild(h2);
+       // article.appendChild(img);
+       // article.appendChild(h2);
+
+        const linkImg =  document.createElement( 'a' );
+        linkImg.href = `/Front-End-Fisheye/${id}`
+        linkImg.setAttribute("class", "linkPicture")
+
+        linkImg.appendChild(img);
+        linkImg.appendChild(h2);
+        article.appendChild(linkImg);
+
+        const countryElement = document.createElement( 'p' );
+        const  countryHtmle = `<span style="color: #901C1C; font-weight: bold;" >
+                                ${country}
+                             </span> `
+        
+        countryElement.innerHTML = countryHtmle 
+        article.appendChild(countryElement );
+
+        const taglineElement = document.createElement( 'p' );
+        taglineElement .textContent = tagline;
+        article.appendChild(taglineElement );
+
+        const wrapper = document.createElement('div')
+        const priceHtml = `
+            <span style=" font-size: 9px; texte-Aline: center; font-weight: bold;" >
+                ${price}/jour
+            </span>
+        
+        `
+        wrapper.innerHTML = priceHtml;
+        article.appendChild( wrapper );
+        
+
         return (article);
     }
+
+
+
+
     return { name, picture, getUserCardDOM }
 }
+

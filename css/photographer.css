@@ -74,3 +74,18 @@ form input {
     border: none;
     border-radius: 5px;
 }
+
+
+/******  mon apport  *******/
+.cercle{
+
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;    
+            
+}
+
+.linkPicture{
+
+    text-decoration: none;
+}
