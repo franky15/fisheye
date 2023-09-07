@@ -186,49 +186,88 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
   
    // const articleElement  = document.querySelector(".articlePortfolio")
     const articleElement  = document.querySelector(".articleContainer")
-   
-    const articleItem = `
 
-    <article class="articlePortfolio">
+
+
+    console.log(ProjetPhotographCurrent.length)
+
+    let articleItem 
+
+    for(let i = 0; i < ProjetPhotographCurrent.length; i++){
+
+         articleItem = `
+
+        <article class="articlePortfolioitem"> 
+        
+            <div class="articlePortfolio__item">
     
-        <div class="articlePortfolio__item">
-
-            <div class="articlePortfolio__item--img">
-                Contenu du premier bloc - Enfant 1
+                <div class="articlePortfolio__item--img">
+                   
+                    <img src="./assets/photographersMedia/${ProjetPhotographCurrent[i].image} " alt=" " class="photographerImg" >
+                   
+                </div>
+                <div class="articlePortfolio__item--description description">
+                <p class="description__titre" > ${ProjetPhotographCurrent[i].title}  </p>
+    
+                <p class="description__numLike"> 
+                    ${ProjetPhotographCurrent[i].likes}  <span class="description__Like">
+                        <i class="fa-solid fa-heart"></i>
+                        
+                            </span>
+                
+                </p>
+                </div>
             </div>
-            <div class="articlePortfolio__item--description description">
-            <p class="description__titre" > titre projet </p>
+    
+         </article> 
+    
+        `
+  
+        
+        articleElement.innerHTML += articleItem;
+    }
 
-            <p class="description__numLike"> 
-                    12 <span class="description__Like">
-                    <i class="fa-solid fa-heart"></i>
-                    
-                        </span>
-            
-            </p>
-            </div>
-        </div>
+    /*************** gestion des likes et du total des likes   *********************/
 
-    </article>
+    //récupération du photographe encour
+    const photographerCurrent = photographers.find( item => item.id === parseInt(idPhotographer) )
 
+    //récupération de la liste des likes du photographe encours
+    const listeLikes = ProjetPhotographCurrent.map( item => item.likes)
+    console.log("**** listeLikes ")
+    console.log(listeLikes )
+
+    //addition des likes du photographe encours
+    const totalLikes = listeLikes.reduce( (acc, current)=> {
+
+        return acc + current;
+    }, 0)
+
+    console.log("**** totalLikes")
+    console.log(totalLikes)
+
+    console.log("**** photographerCurrent")
+    console.log(photographerCurrent.price)
+
+    //récupération de l'élément
+    let priceLikeTotal1 = document.querySelector(".priceLikeTotal")
+
+    let priceLikeTotalBlock = `
+    
+        <p class="priceLikeTotal__like"> 
+        
+            ${totalLikes} 
+            <span class="priceLikeTotal__like--like"> <i class="fa-solid fa-heart"></i>  </span>
+                        
+        </p>
+        <p class="priceLikeTotal__like price">  ${photographerCurrent.price}€ / jour  </p>
+    
     `
 
-    var articles = "";
+    //insertion de l'html dans l'élément ciblé
+    priceLikeTotal1.innerHTML = priceLikeTotalBlock 
 
-    //articleElement.innerHTML = articleItem
-
-    // Boucle à 4 tours
-for (let i = 0; i < ProjetPhotographCurrent.length; i++) {
-
-    console.log("****** dans la boucle")
-    // Générez un élément article pour chaque tour de boucle
-
-      articleElement.innerHTML = articleItem
-    
-
-    
-  }
-
+     /*************** gestion des likes et du total des likes   *********************/
    
 
 }
