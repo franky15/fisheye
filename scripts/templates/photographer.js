@@ -10,6 +10,7 @@ function photographerTemplate(data) {
 
     function getUserCardDOM() {
         const article = document.createElement( 'article' );
+        article.setAttribute('class', 'article')
         const img = document.createElement( 'img' );
         img.setAttribute("src", picture)
         img.alt = ""
@@ -22,7 +23,10 @@ function photographerTemplate(data) {
        // article.appendChild(h2);
 
         const linkImg =  document.createElement( 'a' );
-        linkImg.href = `/Front-End-Fisheye/${id}`
+        //linkImg.href = `/Front-End-Fisheye/${id}`
+        linkImg.href = `../Front-End-Fisheye/photographer.html?${id}`
+      
+
         linkImg.setAttribute("class", "linkPicture")
 
         linkImg.appendChild(img);
@@ -30,6 +34,8 @@ function photographerTemplate(data) {
         article.appendChild(linkImg);
 
         const countryElement = document.createElement( 'p' );
+        countryElement.setAttribute('class', 'countryElement')
+
         const  countryHtmle = `<span style="color: #901C1C; font-weight: bold;" >
                                 ${country}
                              </span> `
@@ -38,12 +44,15 @@ function photographerTemplate(data) {
         article.appendChild(countryElement );
 
         const taglineElement = document.createElement( 'p' );
-        taglineElement .textContent = tagline;
+        taglineElement.setAttribute('class', 'taglineElement')
+        taglineElement.textContent = tagline;
         article.appendChild(taglineElement );
 
         const wrapper = document.createElement('div')
+        wrapper.setAttribute('class', 'wrapper')
         const priceHtml = `
-            <span style=" font-size: 9px; texte-Aline: center; font-weight: bold;" >
+            <span style=" font-size: 12px; texte-Aline: center; font-weight: bold; color: background: #757575;
+            " >
                 ${price}/jour
             </span>
         

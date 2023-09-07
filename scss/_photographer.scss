@@ -1,0 +1,82 @@
+
+
+header{
+
+    width: 90%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #901C1C;
+    margin-bottom: 50px;
+
+    //border: solid black;
+
+    .logo{
+
+        width: 200px;
+        height: 50px;
+       
+
+    }
+
+}
+.photographer_section{
+
+   
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+   //border: solid black;
+
+    
+}
+
+article{
+
+    width: 32.7%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 100px;
+   
+    //border: solid red;
+
+    .cercle{
+
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;    
+                
+    }
+    
+    .linkPicture{
+    
+        text-decoration: none;
+        color: $colorsecond;
+
+        h2{
+            text-align: center;
+            margin-bottom: -10px;
+            
+        }
+       
+    }
+
+    .countryElement {
+
+        color: $colorsecond;
+        
+    }
+
+    .taglineElement{
+
+        margin-top: -10px;
+    }
+
+    .wrapper{
+
+        margin-top: -10px;
+    }
+}

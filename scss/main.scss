@@ -1,15 +1,7 @@
 //importation de tous les styles
 
-//@import "./onePhotographerPage"
+@import "./mixin";
+@import "./variables";
+@import "./onePhotographerPage";
+@import "./photographer"
 
-.descripElement{
-
-    border: solid red;
-    background-color: red;
-}
-
-main {
-
-    border: solid red;
-    background-color: red;
-}

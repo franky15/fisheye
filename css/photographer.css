@@ -1,3 +1,6 @@
+
+/*
+
 #contact_modal {
     display: none;
 }
@@ -6,6 +9,8 @@
     background-color: #FAFAFA;
     height: 300px;
     margin: 0 100px;
+
+    
 }
 
 .contact_button {
@@ -31,6 +36,9 @@
     justify-content: space-between;
     padding: 35px;
     margin: auto;
+
+   
+   
 }
 
 .modal header {
@@ -47,6 +55,7 @@
     font-weight: normal;
     text-align: center;
 }
+
 
 form {
     display: flex;
@@ -75,17 +84,11 @@ form input {
     border-radius: 5px;
 }
 
+*/
 
-/******  mon apport  *******/
-.cercle{
 
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;    
-            
-}
 
-.linkPicture{
 
-    text-decoration: none;
-}
+
+
+

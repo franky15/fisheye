@@ -1,11 +1,153 @@
-.descripElement{
 
-    border: solid red;
-    background-color: red;
+
+.photograph-header{
+
+    
+    height: 313px;
+   // margin-top: 133px;
+    
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #FAFAFA; 
+     border: solid;
+    
+
 }
 
-main {
+.countryTitle {
 
+    order: 0;
+    
     border: solid red;
-    background-color: red;
+
+    .nameElement{
+
+        font-size: 36px;
+        font-weight: 400;
+        line-height: 47px;
+        letter-spacing: 0em;
+        text-align: center;
+        color: $colorsecond;
+        border: solid yellow;
+    }
+    .countryBlock{
+
+        
+        border: solid blue;
+
+        .countryElement{
+
+            font-size: 24px;
+            font-weight: 400;
+            line-height: 31px;
+            letter-spacing: 0em;
+            text-align: left;
+            color:  $colorPrimairy;;
+
+        }
+        .descripElement{
+
+            font-size: 18px;
+            font-weight: 400;
+            line-height: 23px;
+            letter-spacing: 0em;
+            text-align: left;
+
+            color: $colorBlackthird;
+        }
+
+    }
 }
+
+.imgBlock{
+
+    order: 2;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+
+    img{
+
+    
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+    }
+}
+
+.contact_button{
+
+   
+    order: 1;
+   @include boutons();
+    
+}
+
+.articlePortfolio__item{
+
+    width: 350px;
+    height: 351px;
+    top: 547px;
+    left: 100px;
+
+
+    border: solid blue;
+
+    &--img{
+
+       
+        height: 85%; //300px
+        border-radius: 5px;
+
+        border: solid red;
+    }
+
+    &--description{
+
+        height: 11%; //51px
+        display: flex;
+        justify-content: space-between;
+        align-items: center;      
+        color: $colorPrimairy;
+
+        border: solid yellow;
+
+        .description__titre{
+
+            
+            width: 85%;
+            height: 49px; 
+            display: flex;
+            align-items: center;
+            font-size: 24px;
+            font-weight: 400;
+            //text-align: left;
+
+            border: solid pink;
+
+        }
+        .description__numLike{
+
+            width: 15%;
+            height: 49px; 
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 24px;
+            font-weight: 500;
+           
+            border: solid black;
+
+            span{
+
+                .fa-heart{
+                   margin-left: 10px;
+                }
+            }
+        }
+    }
+}
+
+
+
