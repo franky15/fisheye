@@ -1,5 +1,11 @@
 
+main{
 
+    box-sizing: border-box;
+    position: relative;
+
+    
+}
 .photograph-header{
 
     width: 90%;
@@ -63,11 +69,14 @@
 
 .imgBlock{
 
-    order: 2;
+    order: 2; //détermination de la position dans le parent
     width: 200px;
     height: 200px;
     border-radius: 50%;
 
+    //border: solid black;
+
+    /*
     img{
 
     
@@ -75,6 +84,7 @@
         height: 200px;
         border-radius: 50%;
     }
+    */
 }
 
 .contact_button{
@@ -120,7 +130,8 @@
    width: 90%;
    margin: auto;
    height: 351px;
-  
+  display: flex;
+  flex-direction: column;
 
 
     border: solid red;
@@ -129,32 +140,37 @@
 
        
         height: 85%; //300px
-        border-radius: 5px;
+        border-radius: 5px 5px 0 0;
 
-       // border: solid red;
+        //border: solid green;
 
+        /*
         .photographerImg{
 
             width: 100%;
             height: 100%;
             border-radius: 5px 5px 0 0;
+            //background-size: cover;
         }
+        */
     }
 
     &--description{
 
+        width: 100%;
         height: 11%; //51px
         display: flex;
         justify-content: space-between;
         align-items: center;      
         color: $colorPrimairy;
 
+        
         border: solid yellow;
 
         .description__titre{
 
             
-            width: 85%;
+            width: 78%;
             height: 49px; 
             display: flex;
             align-items: center;
@@ -167,25 +183,109 @@
         }
         .description__numLike{
 
-            width: 15%;
+            width: 22%;
             height: 49px; 
             display: flex;
             justify-content: space-between;
             align-items: center;
             font-size: 24px;
             font-weight: 500;
+            position: relative;
            
-            border: solid black;
+            border: solid green;
 
-            span{
+            
 
-                .fa-heart{
-                   margin-left: 10px;
-                }
-            }
+           
+            
         }
+
+        
     }
+
+    
 }
+
+/******* coeur de chaque media ici car bug lorsque je le met dans un selecteur parent*********/
+
+.fa-heart{
+                     
+     font-size: 34px;
+     font-weight: 500;          
+     color: $colorPrimairy;
+    cursor: pointer;
+}
+
+.numberLikes{
+
+    width: 40%;
+    
+    border: solid;
+}
+.heartLikeMedia{
+
+    width: 60%;
+   text-align: right;
+    border: solid blue;
+
+    
+    
+}
+
+  
+.totalBlock{
+
+    width:  375px;//20%;
+    height: 60px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    background-color: $colorBlockTotal;
+    font-size: 34px;
+    font-weight: 500;
+
+   // border: solid red;
+
+    .priceLikeTotal__like{
+
+        width: 50%;
+        display: flex;
+        justify-content: center;
+        //border: solid yellow;
+    
+    
+        i{
+            color: black;
+            margin-left: 10px;
+        }
+
+    }
+
+}
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+
+
+
 
 
 
