@@ -11,13 +11,110 @@ main{
     width: 90%;
     margin: auto;
     height: 313px;
-   margin-bottom: 20px;
+    margin-bottom: 20px;
     
     display: flex;
     justify-content: space-between;
     align-items: center;
     background-color: #FAFAFA; 
+    position: relative;
+
      border: solid;
+
+     #formulaireContact{
+
+       // border: solid red;
+        width:30%;
+        //height: 750px;
+        height: auto;
+        //margin: auto;
+        position: absolute;
+        top: 50%; /* Centre verticalement en utilisant la moitié de la hauteur du parent */
+        left: 35%;
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        // justify-content: center;
+        background-color: #DB8876;
+        border-radius: 5px;
+       
+
+        .titreContact{
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 68px;
+         
+            border: solid;
+
+            .titreContact__image{
+
+                width: 20%;
+                display: flex;
+                justify-content: end;
+                font-size: 30px;
+                color: white;
+                border: solid blue;
+            }
+
+            .titreContact__itre{
+              
+                width: 80%;
+                font-size: 50px;
+                font-weight: 400;
+               
+                border: solid red;
+            }
+
+        }
+        .tailleContainer{
+
+            width: 90%;
+            margin: auto;
+           
+        }
+
+        input{
+
+            height: 50px;
+            border-radius: 5px;
+            position: relative;
+           // top: -25px;
+           margin-left: 20px;
+
+          
+        }
+        textarea{
+
+            border-radius: 5px;
+            height: 100px;
+           
+        }
+       
+        label{
+
+            font-size: 26px;
+            font-weight: 400;
+            opacity: 0.7;
+            position: relative;
+            //top: 10px;
+          
+            border: solid yellow;
+        }
+        .inputbtn{
+
+            width: 170px;
+            height: 50px;
+            color: white;
+            border-radius: 5px;
+            margin-left: 20px;
+            margin-top: 10px;
+            margin-bottom: 20px;
+            background-color: $colorPrimairy;
+        }
+
+    }
     
 
 }
@@ -105,17 +202,21 @@ main{
 
 .articleContainer{
 
+    
+    /*
     width: 90%;
     margin: auto;
-    display: flex;
+     display: flex;
+     justify-content: space-between;
+     flex-wrap: wrap;
     margin-top: 20px;
-    justify-content: space-between;
-    flex-wrap: wrap;
+  
     border: solid black;
+    */
 
 }
 
-.articlePortfolioitem{
+.articlePortfolioitem{ 
 
     width: 32%;
     height: 351px;
@@ -266,6 +367,11 @@ main{
     }
 
 }
+
+
+    
+
+
 
 
 

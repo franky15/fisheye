@@ -26,7 +26,7 @@
     <main id="main">
       
       <div class="photograph-header">
-        <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
+        <button class="contact_button" >Contactez-moi</button>
       </div>
 
       <form class="form">
@@ -36,9 +36,24 @@
 					
       </form>
 
-      <div class="articleContainer"  display ="block" ></div>
-      <div class="articleContainer2"  display ="block" ></div>
-      <div class="priceLikeTotal"></div>
+     
+      <div class="articleContainerParent"  style="display: block;">
+        <div class="articleContainer" style="display: flex; justify-content: space-between; flex-wrap: wrap; width: 90%; margin: auto; border: solid black;  " ></div>
+      </div>
+
+      <div class="populariteParent"  style="display: none;">
+        <div class="populariteParent__article" style="display: flex; justify-content: space-between; flex-wrap: wrap; width: 90%; margin: auto; border: solid black;  " ></div>
+      </div>
+
+      <div class="titreParent"  style="display: none;">
+        <div class="titreParent__article" style="display: flex; justify-content: space-between; flex-wrap: wrap; width: 90%; margin: auto; border: solid black;  " ></div>
+      </div>
+
+      <div class="dateParent"  style="display: none;">
+        <div class="dateParent__article" style="display: flex; justify-content: space-between; flex-wrap: wrap; width: 90%; margin: auto; border: solid black;  " ></div>
+      </div>
+     
+      <div class="priceLikeTotal"></div>  
 
 
     </main>
