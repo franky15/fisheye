@@ -24,7 +24,7 @@ function photographerTemplate(data) {
 
         const linkImg =  document.createElement( 'a' );
         //linkImg.href = `/Front-End-Fisheye/${id}`
-        linkImg.href = `../Front-End-Fisheye/photographer.html?${id}`
+        linkImg.href = `./photographer.html?${id}`
       
 
         linkImg.setAttribute("class", "linkPicture")
