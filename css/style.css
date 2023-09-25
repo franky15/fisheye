@@ -1,4 +1,3 @@
-@charset "UTF-8";
 main {
   box-sizing: border-box;
   position: relative;
@@ -15,70 +14,110 @@ main {
   background-color: #FAFAFA;
   position: relative;
   border: solid;
-}
-.photograph-header #formulaireContact {
-  width: 30%;
-  height: auto;
-  position: absolute;
-  top: 50%; /* Centre verticalement en utilisant la moitié de la hauteur du parent */
-  left: 35%;
-  z-index: 1;
-  display: flex;
-  flex-direction: column;
-  background-color: #DB8876;
-  border-radius: 5px;
-}
-.photograph-header #formulaireContact .titreContact {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 68px;
-  border: solid;
-}
-.photograph-header #formulaireContact .titreContact .titreContact__image {
-  width: 20%;
-  display: flex;
-  justify-content: end;
-  font-size: 30px;
-  color: white;
-  border: solid blue;
-}
-.photograph-header #formulaireContact .titreContact .titreContact__itre {
-  width: 80%;
-  font-size: 50px;
-  font-weight: 400;
-  border: solid red;
-}
-.photograph-header #formulaireContact .tailleContainer {
-  width: 90%;
-  margin: auto;
-}
-.photograph-header #formulaireContact input {
-  height: 50px;
-  border-radius: 5px;
-  position: relative;
-  margin-left: 20px;
-}
-.photograph-header #formulaireContact textarea {
-  border-radius: 5px;
-  height: 100px;
-}
-.photograph-header #formulaireContact label {
-  font-size: 26px;
-  font-weight: 400;
-  opacity: 0.7;
-  position: relative;
-  border: solid yellow;
-}
-.photograph-header #formulaireContact .inputbtn {
-  width: 170px;
-  height: 50px;
-  color: white;
-  border-radius: 5px;
-  margin-left: 20px;
-  margin-top: 10px;
-  margin-bottom: 20px;
-  background-color: #901C1C;
+  /*
+  .containerFormulaireContact{
+
+     position: relative;
+     border: solid red;
+
+
+     #formulaireContact{
+
+         // border: solid red;
+          width:30%;
+          //height: 750px;
+          height: auto;
+          //margin: auto;
+          position: absolute;
+          top: 50%; 
+          left: 35%;
+          z-index: 1;
+          display: flex;
+          flex-direction: column;
+          // justify-content: center;
+          background-color: #DB8876;
+          border-radius: 5px;
+
+
+          .titreContact{
+
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              height: 68px;
+
+              border: solid;
+
+              .titreContact__image{
+
+                  width: 20%;
+                  display: flex;
+                  justify-content: end;
+                  font-size: 30px;
+                  color: white;
+                  border: solid blue;
+              }
+
+              .titreContact__itre{
+
+                  width: 80%;
+                  font-size: 50px;
+                  font-weight: 400;
+
+                  border: solid red;
+              }
+
+          }
+          .tailleContainer{
+
+              width: 90%;
+              margin: auto;
+
+          }
+
+          input{
+
+              height: 50px;
+              border-radius: 5px;
+              position: relative;
+             // top: -25px;
+             margin-left: 20px;
+
+
+          }
+          textarea{
+
+              border-radius: 5px;
+              height: 100px;
+
+          }
+
+          label{
+
+              font-size: 26px;
+              font-weight: 400;
+              opacity: 0.7;
+              position: relative;
+              //top: 10px;
+
+              border: solid yellow;
+          }
+          .inputbtn{
+
+              width: 170px;
+              height: 50px;
+              color: white;
+              border-radius: 5px;
+              margin-left: 20px;
+              margin-top: 10px;
+              margin-bottom: 20px;
+              background-color: $colorPrimairy;
+          }
+
+      }
+
+  }
+  */
 }
 
 .countryTitle {
@@ -262,6 +301,81 @@ main {
 .totalBlock .priceLikeTotal__like i {
   color: black;
   margin-left: 10px;
+}
+
+.containerFormulaireContact {
+  width: 40%;
+  height: 750px;
+  margin: auto;
+  position: relative;
+  border: solid red;
+}
+.containerFormulaireContact #formulaireContact {
+  width: 95%;
+  margin: auto;
+  height: auto;
+  /*
+  position: absolute;
+  top: 50%; 
+  left: 50%;
+  z-index: 1;
+  */
+  display: flex;
+  flex-direction: column;
+  background-color: #DB8876;
+  border-radius: 5px;
+}
+.containerFormulaireContact #formulaireContact .titreContact {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 68px;
+  border: solid;
+}
+.containerFormulaireContact #formulaireContact .titreContact .titreContact__image {
+  width: 20%;
+  display: flex;
+  justify-content: end;
+  font-size: 30px;
+  color: white;
+  border: solid blue;
+}
+.containerFormulaireContact #formulaireContact .titreContact .titreContact__itre {
+  width: 80%;
+  font-size: 50px;
+  font-weight: 400;
+  border: solid red;
+}
+.containerFormulaireContact #formulaireContact .tailleContainer {
+  width: 90%;
+  margin: auto;
+}
+.containerFormulaireContact #formulaireContact input {
+  height: 50px;
+  border-radius: 5px;
+  position: relative;
+  margin-left: 20px;
+}
+.containerFormulaireContact #formulaireContact textarea {
+  border-radius: 5px;
+  height: 100px;
+}
+.containerFormulaireContact #formulaireContact label {
+  font-size: 26px;
+  font-weight: 400;
+  opacity: 0.7;
+  position: relative;
+  border: solid yellow;
+}
+.containerFormulaireContact #formulaireContact .inputbtn {
+  width: 170px;
+  height: 50px;
+  color: white;
+  border-radius: 5px;
+  margin-left: 20px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  background-color: #901C1C;
 }
 
 header {

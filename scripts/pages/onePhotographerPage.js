@@ -1764,7 +1764,7 @@ initonePhotographerDataTemplate();
 let contact_button = document.querySelector(".contact_button")
 
 let photographHeader = document.querySelector(".photograph-header")
-
+let containerFormulaireContact1 = document.querySelector(".containerFormulaireContact")
 
  // Création du formulaire.
  const formulaireContact = `
@@ -1796,10 +1796,11 @@ let photographHeader = document.querySelector(".photograph-header")
 
   // Ajout du formulaire au conteneur sélectionné.
  // photographHeader.innerHTML = formulaireContact;
+ containerFormulaireContact1.innerHTML = formulaireContact
   
 
 //récupération du formulaire
-let formulaireContact1 = document.querySelector("#formulaireContact")
+//let formulaireContact1 = document.querySelector("#formulaireContact")
 
  //récupération de l'image croix 
  let imageCroix = document.querySelector(".fa-x")
@@ -1807,7 +1808,8 @@ let formulaireContact1 = document.querySelector("#formulaireContact")
  //insertion de l'evennement 
  imageCroix.addEventListener("click", () =>{
 
-    formulaireContact1.style.display = "none";
+    //formulaireContact1.style.display = "none";
+    containerFormulaireContact1.style.display = "none";
 
  })
 
@@ -1817,7 +1819,7 @@ contact_button.addEventListener( "click", () =>{
 
     console.log("bienvenue dans le formulaire")
 
-    formulaireContact1.style.display = "block";
+    containerFormulaireContact1.style.display = "block";
    
 
 })

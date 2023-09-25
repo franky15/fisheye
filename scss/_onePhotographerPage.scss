@@ -21,100 +21,110 @@ main{
 
      border: solid;
 
-     #formulaireContact{
+     /*
+     .containerFormulaireContact{
 
-       // border: solid red;
-        width:30%;
-        //height: 750px;
-        height: auto;
-        //margin: auto;
-        position: absolute;
-        top: 50%; /* Centre verticalement en utilisant la moitié de la hauteur du parent */
-        left: 35%;
-        z-index: 1;
-        display: flex;
-        flex-direction: column;
-        // justify-content: center;
-        background-color: #DB8876;
-        border-radius: 5px;
-       
+        position: relative;
+        border: solid red;
 
-        .titreContact{
 
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            height: 68px;
-         
-            border: solid;
+        #formulaireContact{
 
-            .titreContact__image{
-
-                width: 20%;
-                display: flex;
-                justify-content: end;
-                font-size: 30px;
-                color: white;
-                border: solid blue;
-            }
-
-            .titreContact__itre{
+            // border: solid red;
+             width:30%;
+             //height: 750px;
+             height: auto;
+             //margin: auto;
+             position: absolute;
+             top: 50%; 
+             left: 35%;
+             z-index: 1;
+             display: flex;
+             flex-direction: column;
+             // justify-content: center;
+             background-color: #DB8876;
+             border-radius: 5px;
+            
+     
+             .titreContact{
+     
+                 display: flex;
+                 justify-content: space-between;
+                 align-items: center;
+                 height: 68px;
               
-                width: 80%;
-                font-size: 50px;
-                font-weight: 400;
+                 border: solid;
+     
+                 .titreContact__image{
+     
+                     width: 20%;
+                     display: flex;
+                     justify-content: end;
+                     font-size: 30px;
+                     color: white;
+                     border: solid blue;
+                 }
+     
+                 .titreContact__itre{
+                   
+                     width: 80%;
+                     font-size: 50px;
+                     font-weight: 400;
+                    
+                     border: solid red;
+                 }
+     
+             }
+             .tailleContainer{
+     
+                 width: 90%;
+                 margin: auto;
+                
+             }
+     
+             input{
+     
+                 height: 50px;
+                 border-radius: 5px;
+                 position: relative;
+                // top: -25px;
+                margin-left: 20px;
+     
                
-                border: solid red;
-            }
+             }
+             textarea{
+     
+                 border-radius: 5px;
+                 height: 100px;
+                
+             }
+            
+             label{
+     
+                 font-size: 26px;
+                 font-weight: 400;
+                 opacity: 0.7;
+                 position: relative;
+                 //top: 10px;
+               
+                 border: solid yellow;
+             }
+             .inputbtn{
+     
+                 width: 170px;
+                 height: 50px;
+                 color: white;
+                 border-radius: 5px;
+                 margin-left: 20px;
+                 margin-top: 10px;
+                 margin-bottom: 20px;
+                 background-color: $colorPrimairy;
+             }
+     
+         }
 
-        }
-        .tailleContainer{
-
-            width: 90%;
-            margin: auto;
-           
-        }
-
-        input{
-
-            height: 50px;
-            border-radius: 5px;
-            position: relative;
-           // top: -25px;
-           margin-left: 20px;
-
-          
-        }
-        textarea{
-
-            border-radius: 5px;
-            height: 100px;
-           
-        }
-       
-        label{
-
-            font-size: 26px;
-            font-weight: 400;
-            opacity: 0.7;
-            position: relative;
-            //top: 10px;
-          
-            border: solid yellow;
-        }
-        .inputbtn{
-
-            width: 170px;
-            height: 50px;
-            color: white;
-            border-radius: 5px;
-            margin-left: 20px;
-            margin-top: 10px;
-            margin-bottom: 20px;
-            background-color: $colorPrimairy;
-        }
-
-    }
+     }
+     */
     
 
 }
@@ -368,6 +378,116 @@ main{
 
 }
 
+
+//style du conatainer
+.containerFormulaireContact{
+
+    width: 40%;
+    height: 750px;
+    margin: auto;
+    position: relative;
+    border: solid red;
+
+
+    #formulaireContact{
+
+        // border: solid red;
+         width: 95%;
+         margin: auto;
+         //height: 750px;
+         height: auto;
+         //margin: auto;
+         /*
+         position: absolute;
+         top: 50%; 
+         left: 50%;
+         z-index: 1;
+         */
+         display: flex;
+         flex-direction: column;
+         // justify-content: center;
+         background-color: #DB8876;
+         border-radius: 5px;
+        
+ 
+         .titreContact{
+ 
+             display: flex;
+             justify-content: space-between;
+             align-items: center;
+             height: 68px;
+          
+             border: solid;
+ 
+             .titreContact__image{
+ 
+                 width: 20%;
+                 display: flex;
+                 justify-content: end;
+                 font-size: 30px;
+                 color: white;
+                 border: solid blue;
+             }
+ 
+             .titreContact__itre{
+               
+                 width: 80%;
+                 font-size: 50px;
+                 font-weight: 400;
+                
+                 border: solid red;
+             }
+ 
+         }
+         .tailleContainer{
+ 
+             width: 90%;
+             margin: auto;
+            
+         }
+ 
+         input{
+ 
+             height: 50px;
+             border-radius: 5px;
+             position: relative;
+            // top: -25px;
+            margin-left: 20px;
+ 
+           
+         }
+         textarea{
+ 
+             border-radius: 5px;
+             height: 100px;
+            
+         }
+        
+         label{
+ 
+             font-size: 26px;
+             font-weight: 400;
+             opacity: 0.7;
+             position: relative;
+             //top: 10px;
+           
+             border: solid yellow;
+         }
+         .inputbtn{
+ 
+             width: 170px;
+             height: 50px;
+             color: white;
+             border-radius: 5px;
+             margin-left: 20px;
+             margin-top: 10px;
+             margin-bottom: 20px;
+             background-color: $colorPrimairy;
+         }
+ 
+     }
+
+ }
 
     
 
