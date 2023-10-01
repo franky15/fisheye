@@ -20,44 +20,63 @@
 
   </head>
   <body>
-    <header>
-      <img src="assets/images/logo.png" class="logo" />
+    <header class="header">
+
+      <a href="/Front-End-Fisheye/index.html" >  <img src="assets/images/logo.png" class="logo" /></a>
+
     </header>
     <main id="main">
       
-      <div class="photograph-header">
-        <button class="contact_button" >Contactez-moi</button>
-      </div>
-      <div class="containerFormulaireContact">
+      <section class="sectionProfile" >
 
-      </div>
+        <div class="photograph-header">
+          <button class="contact_button" >Contactez-moi</button>
+        </div>
 
-      <form class="form">
-					
-        
+        <div class="containerFormulaireContact" style="display: none;">
+
+        </div>
+
+      </section>
+
+      <section class="containerLightbox" style="display: none;">
+
+
+      </section>
+
+
+     
+      
+      <section  class="sectionMain">
+
+        <div class="formFilterContainer">
+
+          <div class="form formFilter">
+            
           
-					
-      </form>
-
+          </div>
+  
+        </div>
      
-      <div class="articleContainerParent"  style="display: block;">
-        <div class="articleContainer" style="display: flex; justify-content: space-between; flex-wrap: wrap; width: 90%; margin: auto; border: solid black;  " ></div>
-      </div>
+        <div class="articleContainerParent"  style="display: block;">
+          <div class="articleContainer" style="display: flex; justify-content: space-between; flex-wrap: wrap; width: 90%; margin: auto;  " ></div>
+        </div>
 
-      <div class="populariteParent"  style="display: none;">
-        <div class="populariteParent__article" style="display: flex; justify-content: space-between; flex-wrap: wrap; width: 90%; margin: auto; border: solid black;  " ></div>
-      </div>
+        <div class="populariteParent"  style="display: none;">
+          <div class="populariteParent__article" style="display: flex; justify-content: space-between; flex-wrap: wrap; width: 90%; margin: auto;  " ></div>
+        </div>
 
-      <div class="titreParent"  style="display: none;">
-        <div class="titreParent__article" style="display: flex; justify-content: space-between; flex-wrap: wrap; width: 90%; margin: auto; border: solid black;  " ></div>
-      </div>
+        <div class="titreParent"  style="display: none;">
+          <div class="titreParent__article" style="display: flex; justify-content: space-between; flex-wrap: wrap; width: 90%; margin: auto;   " ></div>
+        </div>
 
-      <div class="dateParent"  style="display: none;">
-        <div class="dateParent__article" style="display: flex; justify-content: space-between; flex-wrap: wrap; width: 90%; margin: auto; border: solid black;  " ></div>
-      </div>
-     
-      <div class="priceLikeTotal"></div>  
+        <div class="dateParent"  style="display: none;">
+          <div class="dateParent__article" style="display: flex; justify-content: space-between; flex-wrap: wrap; width: 90%; margin: auto;  " ></div>
+        </div>
+      
+        <div class="priceLikeTotal"></div>  
 
+    </section>
 
     </main>
     <div id="contact_modal">
@@ -83,8 +102,8 @@
 				
 			</div>
 		</div>
-    <!--<script src="scripts/pages/photographer.js"></script> -->
-    <script src="scripts/utils/contactForm.js"></script>
+   
+   <!-- <script src="scripts/utils/contactForm.js"></script>-->
 
       <script src="scripts/pages/onePhotographerPage.js"></script>
   </body>

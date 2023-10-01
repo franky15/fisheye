@@ -23,7 +23,8 @@ function photographerTemplate(data) {
        // article.appendChild(h2);
 
         const linkImg =  document.createElement( 'a' );
-        //linkImg.href = `/Front-End-Fisheye/${id}`
+      
+       // linkImg.href = `../Front-End-Fisheye/photographer.html?${id}`
         linkImg.href = `./photographer.html?${id}`
       
 

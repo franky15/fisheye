@@ -2,7 +2,7 @@
 
 
 //gestion de onePhotographerTemplate.js
-
+let nomForm
 async function onePhotographerData(){
 
     let photographers
@@ -51,6 +51,7 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
 
     console.log("***** bienvenue dans onePhotographerDataTemplate() *****")
 
+   
     ///////////////////////////////////////
 
     // récupération de l'URL complète de la page
@@ -81,6 +82,7 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
 
     console.log(  "city : "+ city  +  "  * country : " + country  +  " * tagline : "+ tagline  + "  * price : "+ price  )
 
+    nomForm=name
     //récupération des objets du portfolio du photographe en cours
     let ProjetPhotographCurrent = photographersMedia.filter( item => item.photographerId === parseInt(idPhotographer) )
 
@@ -90,7 +92,37 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
     console.log( ProjetPhotographCurrent);
    
 
+    /////////////////////////////:
+
+    console.log("** localStorage.length")
+    console.log(localStorage.length)
+
+    //saugarde de la listes des medias d'origine dans le localstaorage si le localstorage est vide
+
+    if(localStorage.length === 0){
+
+        console.log("bienvenue dans la condition localStorage.length ===0")
+
+        //conversion de la liste en chaine json
+        const listeMediaOriginJson = JSON.stringify(ProjetPhotographCurrent);
+
+         //stockage dans le localstorage
+        localStorage.setItem("listeMediaOriginJson", listeMediaOriginJson);
+
+
+    }
     
+    //récupération de laliste des media d'origine du localstorage
+    const listeMediaOriginJson = localStorage.getItem("listeMediaOriginJson");
+
+    //conversion en données normales utilisables
+    const listeMediaOriginLocalstorage = JSON.parse(listeMediaOriginJson);
+
+    console.log("*** listeMediaOriginLocalstorage")
+    console.log(listeMediaOriginLocalstorage)
+   
+
+    ///////////////////////////////
 
 
     /*****************partie du pays et tu titre********************** */
@@ -162,56 +194,7 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
 
       //////////////////
 
-    /***************** gestion  et création du formulaire  du trie ********************** */
-    
-    // récupération du formulaire ///////////////
-    let formElement = document.querySelector(".form");
-
-    // Création du label ///////////////
-    let labelElement = document.createElement("label");
-    labelElement.textContent = "Trier par";
-
-    // Association du label à l'élément select ///////////////
-    labelElement.setAttribute("for", "mySelect");
-
-    // Création d'un élément select ///////////////
-    let selectElement = document.createElement("select");
-
-    // Ajout d'une classe et d'un id ///////////////
-    selectElement.classList.add("inputSelect");
-    selectElement.id = "mySelect"; 
-
-    // Création de trois options et ajout dans l'élément select ///////////////
-    
-    let option0 = document.createElement("option");
-    option0.setAttribute("selected", "selected");
-    option0.textContent = "    ";
-    selectElement.appendChild(option0);
-
-
-    let option1 = document.createElement("option");
-    // option1.setAttribute("selected", "selected");
-    option1.textContent = "Popularité";
-    selectElement.appendChild(option1);
-
-    let option2 = document.createElement("option");
-    option2.textContent = "Date";
-    selectElement.appendChild(option2);
-
-    let option3 = document.createElement("option");
-    option3.textContent = "Titre";
-    selectElement.appendChild(option3);
-
-    // Styles CSS pour personnaliser la flèche du sélecteur
-
-
-    // Ajout de l'élément select et du label au formulaire ///////////////
-    formElement.appendChild(labelElement);
-    formElement.appendChild(selectElement);
-
-  
-  
-
+   
 
     /***************** gestion  du portfolio ********************** */
 
@@ -270,91 +253,7 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
         console.log("typeof selectValueLocalStorage : " + typeof selectValueLocalStorage )
        // console.log(selectValueLocalStorage.selectValue)
         
-       //fonction de l'affichage des médias innitiaux (non filtrés)
-       const listeArticleNormalFunction = () => {
-
-            if(!selectValueLocalStorage){ //selectValue
-
-                console.log("***** bienvenue dans le if de ShowNormalOrderPopularite ")
-                //console.log(selectValueLocalStorage.selectValue)
-
-                 ///////////////
-                 //masquage des autres block des médias 
-                 populariteParent.style.display = "none"
-                 titreParent.style.display = "none"
-                 dateParent.style.display = "none"
-                 
-                 //démasquage du block des medias d'origine
-                 articleContainerParent.style.display = "block"
-
-                ///////////////
-
-
-                for(let i = 0; i < ProjetPhotographCurrent.length; i++){
-
-                    articleItem = `
-
-                    <article class="articlePortfolioitem" > 
-                    
-                        <div class="articlePortfolio__item">
-                
-                            <div class="articlePortfolio__item--img imgVideo${ProjetPhotographCurrent[i].id}"
-                            
-                                style=" background-image: url('./assets/photographersMedia/${ProjetPhotographCurrent[i].image}');
-                                background-repeat: no-repeat; background-position: center center; background-size: cover; "> 
-                            
-                            </div>
-                            
-                            <!--
-
-                            <div class="articlePortfolio__item--img imgVideo${ProjetPhotographCurrent[i].id}">
-                                
-                                <img src="./assets/photographersMedia/${ProjetPhotographCurrent[i].image}" alt=" " class="photographerImg" >
-                            
-                            </div>
-
-                            -->
-
-                            <div class="articlePortfolio__item--description description">
-                                <p class="description__titre" > ${ProjetPhotographCurrent[i].title}  </p>
-                    
-                                <div class="description__numLike"> 
-
-                                        <!-- replace(/\s+/g, '') expression régulière permettant de supprimer les espaces dans toute la chaine -->
-                                <div class= "numberLikes ${ProjetPhotographCurrent[i].title.replace(/\s+/g, '')}" id= "${ProjetPhotographCurrent[i].title.replace(/\s+/g, '')}" > ${ProjetPhotographCurrent[i].likes}  </div> 
-                                        
-                                    <i class="fa-solid fa-heart   heartLikeMedia" data-idMediaCurrent =${ProjetPhotographCurrent[i].id} id= "${ProjetPhotographCurrent[i].title.replace(/\s+/g, '')}"></i>
-
-                                
-                                
-                                </div>
-                                
-                            </div>
-
-                        </div>
-                
-                    </article> 
-                
-                    `
-                
-                
-
-                    articleElement.innerHTML += articleItem;
-
-                    
-
-
-                
-                }
-
-                console.log("***** selectValueLocalStorage")
-                console.log(selectValueLocalStorage)
-
-            } 
-
-        }
-
-        listeArticleNormalFunction()
+      
         
         /************************************************************* */
         //récupère l'article ou le media du localstorage puis l'insèrre dans la nouvelle liste et enfin range les media ordre croissant
@@ -639,6 +538,248 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
 
         //éxécution de la fonction listeFilterUpdateFunction
         listeFilterUpdateFunction()
+
+
+
+
+        //////////////////////////////////////////////////////////////////////////
+
+
+
+
+             /***************** gestion  et création du formulaire  du trie ********************** */
+    
+                // récupération du formulaire ///////////////
+                let formElement = document.querySelector(".form");
+
+
+                //deuxième formulaire de type select
+            const deuxiemeForm = `
+            
+            <div class="filterTitre" style=" display: block;">
+                Trier par
+            </div>
+
+            <div class="filterTitre2"  style=" display: none;">
+                Trier par 
+            </div>
+
+            <div id="deuxiemeFormulaire" >
+                
+                
+                <button  class="optionPopularite" id="optionPopularite"  style="display: block;"> <span>Popularité11</span> <span class="arrowDown"> <i class="fa-solid fa-angle-down"></i> </span> </button>
+                
+                <button   class="optionPopularite  optionDate" id="optionDate" style="display: none;"> <span>Date</span>  <span class="arrowDown"> <i class="fa-solid fa-angle-down"></i> </span> </button>
+
+                <button  class="optionPopularite optionTitre" id="optionTitre" style="display: none;">  <span>Titre</span> <span class="arrowDown"> <i class="fa-solid fa-angle-down"></i> </span> </button>
+
+                
+
+                <select id="triDateTitre"  class="select2"  name="triDateTitre"  style="display: none;" size="3" >
+
+                    
+                    <option   value="Popularite" class="optionBar populariteElement"   style="display: block;" >Popularité  </option>
+                    <option value="Date" class="optionBar dateElement"  style="display: block;" >Date</option>
+                    <option value="Titre"   class="titreElement" style="display: block;">Titre</option>
+                    
+
+                </select>
+                <div class="arrowUp" style="display:none"> <i class="fa-solid fa-angle-up"></i> </div>
+
+            </div>
+            `;
+
+
+
+            //Ajout du formulaire dans au formulaire parent 
+            formElement.innerHTML = deuxiemeForm
+            
+            //récupération des élément
+            const filterTitre = document.querySelector(".filterTitre")
+            const filterTitre2 = document.querySelector(".filterTitre2")
+            const optionPopularite = document.querySelector("#optionPopularite")
+            const arrowUp = document.querySelector(".arrowUp")
+            const select2 = document.querySelector(".select2")
+            const optionDate = document.querySelector("#optionDate")
+            const optionTitre = document.querySelector("#optionTitre")
+
+            
+            //insersion des évennements pour l'affichage du filtre à trois valeurs
+
+                //gestion de l'affichage des autres valeurs si on sélectionne une valeur dans les filtre
+                let listesOptionElement = [ optionPopularite, optionDate, optionTitre ]
+
+                for(let i=0; i<listesOptionElement.length; i++){
+
+                    let itemOption = listesOptionElement[i]
+
+                    console.log("**itemOption")
+                    console.log(itemOption)
+
+                   // itemOption.style.display = "block"
+
+                    itemOption.addEventListener("click", ()=>{
+
+                    console.log("bienvenue à l'évennement triDateTitre ")
+            
+                    
+                    filterTitre2.style.display = "block"
+                    select2.style.display = "block"
+                    arrowUp.style.display = "block"
+            
+                    itemOption.style.display = "none"
+                    filterTitre.style.display = "none"
+            
+                    
+                })
+
+                }
+
+            
+                
+            //fermeture du filtre quand on a perdu le focus
+            select2.addEventListener("blur", () => {
+                
+                console.log("****bienvenue dans l'evennement blur")
+
+                select2.style.display = "none";
+                arrowUp.style.display = "none";
+                filterTitre2.style.display = "none";
+
+                // optionPopularite.style.display = "block"
+               filterTitre.style.display = "block"
+            });
+            
+            
+
+            //gestion de la modification du size du filtre après avoir choisi valeur dans le filtre
+            select2.addEventListener("change", function() {
+
+                console.log("*** bienvenue dans l'evennement change du filtre pour modifier le size " );
+
+
+                // Code à exécuter lorsque l'option est sélectionnée
+                const selectedValueoption = select2.value; // Obtenez la valeur de l'option sélectionnée
+                console.log("Option sélectionnée : " + selectedValueoption);
+                
+                
+                // Exécutez d'autres actions en fonction de la sélection
+                if (selectedValueoption === "Popularite") {
+                
+                    console.log("bienvenue à l'évennement Popularite ")
+
+                    select2.style.display = "none";
+                    optionPopularite.style.display = "block";
+
+                        /////////////////////////////////////////////:
+
+                        // Récupération de la valeur sélectionnée
+                        let selectValue = select2.value;
+
+                        console.log("***** selectValue ")
+                        console.log(selectValue)
+
+
+                        console.log("typeof selectValue : " + typeof selectValue )
+
+                        //ajout dans le local storage
+                        localStorage.setItem("selectValue", selectValue );
+
+                        //éxécution de la fonction de gestion d'affichage des medias
+                        updatefilterPage(selectValue) 
+
+                        
+                    /////////////////////////////////////////////////
+
+
+                } else if (selectedValueoption === "Date") {
+                    
+                    console.log("bienvenue à l'évennement Date ")
+
+                    select2.style.display = "none";
+                    optionDate.style.display = "block";
+
+                    console.log("***optionDate")
+                    console.log(optionDate)
+
+
+                    optionPopularite.style.display = "none";
+                    optionTitre.style.display = "none";
+
+                        /////////////////////////////////////////////:
+
+                    // Récupération de la valeur sélectionnée
+                    let selectValue = select2.value;
+
+                    console.log("***** selectValue ")
+                    console.log(selectValue)
+
+
+                    console.log("typeof selectValue : " + typeof selectValue )
+
+                    //ajout dans le local storage
+                    localStorage.setItem("selectValue", selectValue );
+
+                    //éxécution de la fonction de gestion d'affichage des medias
+                    updatefilterPage(selectValue) 
+
+
+
+
+                    /////////////////////////////////////////////////
+                    
+            
+                } else if (selectedValueoption === "Titre") {
+                    
+                    console.log("bienvenue à l'évennement triDateTitre ")
+
+                    select2.style.display = "none";
+                    optionTitre.style.display = "block";
+
+                    optionPopularite.style.display = "none";
+                    optionDate.style.display = "none";
+
+                        /////////////////////////////////////////////:
+
+                    // Récupération de la valeur sélectionnée
+                    let selectValue = select2.value;
+
+                    console.log("***** selectValue ")
+                    console.log(selectValue)
+
+
+                    console.log("typeof selectValue : " + typeof selectValue )
+
+                    //ajout dans le local storage
+                    localStorage.setItem("selectValue", selectValue );
+
+                    //éxécution de la fonction de gestion d'affichage des medias
+                    updatefilterPage(selectValue) 
+
+
+
+
+                    /////////////////////////////////////////////////
+
+                    
+                }
+                
+            });
+
+            // Ajout de l'événement 'beforeunload' à la fenêtre qui permet d'éxécuter un code avant actualisation de la page
+            //ici je supprime selectValue du localstorage à chaque actualisation de la page
+            window.addEventListener('beforeunload', ()=>{
+
+                // Supprimer de selectValue du localStorage
+                //localStorage.removeItem('selectValue');
+                localStorage.clear();
+
+            });
+
+
+          
+        
+        //////////////////////////////////////////////////////////////////////////
         
         
 
@@ -691,7 +832,7 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
                 console.log(selectValueLocalStorage)
             
 
-                if(  selectValueLocalStorage === "Popularité" && lisNumberLikeOrderCroissant ) {   //selectValueLocalStorage === "Popularité" &&
+                if(  selectValueLocalStorage === "Popularite" || !selectValueLocalStorage ) {   //selectValueLocalStorage === "Popularite" && lisNumberLikeOrderCroissant
 
 
                     console.log("***** bienvenue dans le if  selectValueLocalStorage && listeTitreOrderCroissant")
@@ -721,58 +862,101 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
 
                         let lisNumberLikeOrderCroissant1 = lisNumberLikeOrderCroissant[i]
 
-                        console.log("lisNumberLikeOrderCroissant1")
-                        console.log(lisNumberLikeOrderCroissant1)
+                       // console.log("lisNumberLikeOrderCroissant1")
+                       // console.log(lisNumberLikeOrderCroissant1)
 
-                        articleItem = `
+                        /////////////////////////
+                        //gestion de la miniature
+                        if(lisNumberLikeOrderCroissant1.video){
 
-                        <article class="articlePortfolioitem" > 
-                        
-                            <div class="articlePortfolio__item">
-                    
-                                <div class="articlePortfolio__item--img imgVideo${lisNumberLikeOrderCroissant1.id}"
-                                
-                                    style=" background-image: url('./assets/photographersMedia/${lisNumberLikeOrderCroissant1.image}');
-                                    background-repeat: no-repeat; background-position: center center; background-size: cover; "> 
-                                
-                                </div>
-                                
-                                <!--
+                            articleItem = `
 
-                                <div class="articlePortfolio__item--img imgVideo${lisNumberLikeOrderCroissant1.id}">
+                                <div class="articlePortfolioitem > 
+                                
+                                    <div class="articlePortfolio__item">
+                            
+                                        <button class="articlePortfolio__item--img imgVideo${lisNumberLikeOrderCroissant1.id}"
+                                        
+                                            style=" background-image: url('./assets/miniatures/iaTest.jpg');
+                                            background-repeat: no-repeat; background-position: center center; background-size: cover; "> 
+                                        
+                                        </button>
+                                        
                                     
-                                    <img src="./assets/photographersMedia/${lisNumberLikeOrderCroissant1.image}" alt=" " class="photographerImg" >
+                                        <div class="articlePortfolio__item--description description">
+                                        
+                                            <p class="description__titre" > ${lisNumberLikeOrderCroissant1.title}  </p>
                                 
-                                </div>
+                                            <div class="description__numLike"> 
 
-                                -->
+                                                    <!-- replace(/\s+/g, '') expression régulière permettant de supprimer les espaces dans toute la chaine -->
+                                            <div class= "numberLikes ${lisNumberLikeOrderCroissant1.title.replace(/\s+/g, '')}  ${lisNumberLikeOrderCroissant1.id}"  id= ${lisNumberLikeOrderCroissant1.title.replace(/\s+/g, '')}  data-idMediaCurrent =${lisNumberLikeOrderCroissant1.id} > ${lisNumberLikeOrderCroissant1.likes}  </div> 
+                                                    
+                                            <button class="heartLikeMedia" data-idMediaCurrent =${lisNumberLikeOrderCroissant1.id} id= "${lisNumberLikeOrderCroissant1.title.replace(/\s+/g, '')}">  <i class="fa-solid fa-heart" ></i> </button>
 
-                                <div class="articlePortfolio__item--description description">
-                                    <p class="description__titre" > ${lisNumberLikeOrderCroissant1.title}  </p>
-                        
-                                    <div class="description__numLike"> 
-
-                                            <!-- replace(/\s+/g, '') expression régulière permettant de supprimer les espaces dans toute la chaine -->
-                                    <div class= "numberLikes ${lisNumberLikeOrderCroissant1.title.replace(/\s+/g, '')}  ${lisNumberLikeOrderCroissant1.id}"  id= ${lisNumberLikeOrderCroissant1.title.replace(/\s+/g, '')}  data-idMediaCurrent =${lisNumberLikeOrderCroissant1.id} > ${lisNumberLikeOrderCroissant1.likes}  </div> 
                                             
-                                        <i class="fa-solid fa-heart   heartLikeMedia" data-idMediaCurrent =${lisNumberLikeOrderCroissant1.id} id= "${lisNumberLikeOrderCroissant1.title.replace(/\s+/g, '')}"></i>
+                                            
+                                            </div>
+                                            
+                                        </div>
 
-                                    
-                                    
                                     </div>
-                                    
-                                </div>
+                            
+                                </div> 
+                            
+                                `
+                                popularite.innerHTML += articleItem;
 
-                            </div>
-                    
-                        </article> 
-                    
-                        `
+                        }else{
+
+                            articleItem = `
+
+                            <div class="articlePortfolioitem" > 
+                            
+                                <div class="articlePortfolio__item">
+                        
+                                    <button class="articlePortfolio__item--img imgVideo${lisNumberLikeOrderCroissant1.id}"
+                                    
+                                        style=" background-image: url('./assets/photographersMedia/${lisNumberLikeOrderCroissant1.image}');
+                                        background-repeat: no-repeat; background-position: center center; background-size: cover; "> 
+                                    
+                                    </button>
+                                    
+                                
+                                    <div class="articlePortfolio__item--description description">
+                                        <p class="description__titre" > ${lisNumberLikeOrderCroissant1.title}  </p>
+                            
+                                        <div class="description__numLike"> 
+
+                                                <!-- replace(/\s+/g, '') expression régulière permettant de supprimer les espaces dans toute la chaine -->
+                                        <div class= "numberLikes ${lisNumberLikeOrderCroissant1.title.replace(/\s+/g, '')}  ${lisNumberLikeOrderCroissant1.id}"  id= ${lisNumberLikeOrderCroissant1.title.replace(/\s+/g, '')}  data-idMediaCurrent =${lisNumberLikeOrderCroissant1.id} > ${lisNumberLikeOrderCroissant1.likes}  </div> 
+                                                
+                                        <button class="heartLikeMedia" data-idMediaCurrent =${lisNumberLikeOrderCroissant1.id} id= "${lisNumberLikeOrderCroissant1.title.replace(/\s+/g, '')}">  <i class="fa-solid fa-heart" ></i> </button>
+
+                                        
+                                        
+                                        </div>
+                                        
+                                    </div>
+
+                                </div>
+                        
+                            </div> 
+                        
+                            `
+                            popularite.innerHTML += articleItem;
+
+                        }
+
+
+                        ////////////////////////
+
+                        
                     
                     //éxécution de la fonction d'affichage de la liste des médias initiale
                     //listeArticleNormalFunction()
 
-                        popularite.innerHTML += articleItem;
+                       // popularite.innerHTML += articleItem;
 
                        // articleElement.innerHTML += articleItem;
                        
@@ -818,64 +1002,95 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
 
                         let listeDateOrderCroissantDate1 = listeDateOrderCroissantDate[i]
 
-                        console.log("listeDateOrderCroissantDate")
-                        console.log(listeDateOrderCroissantDate1)
+                        //console.log("listeDateOrderCroissantDate")
+                       // console.log(listeDateOrderCroissantDate1)
 
-                        articleItem = `
+                        //gestion de la miniature
+                        if(listeDateOrderCroissantDate1.video){
 
-                        <article class="articlePortfolioitem" > 
+                            articleItem = `
+
+                            <div class="articlePortfolioitem" "> 
+                            
+                                <div class="articlePortfolio__item">
                         
-                            <div class="articlePortfolio__item">
-                    
-                                <div class="articlePortfolio__item--img imgVideo${listeDateOrderCroissantDate1.id}"
-                                
-                                    style=" background-image: url('./assets/photographersMedia/${listeDateOrderCroissantDate1.image}');
-                                    background-repeat: no-repeat; background-position: center center; background-size: cover; "> 
-                                
-                                </div>
-                                
-                                <!--
-
-                                <div class="articlePortfolio__item--img imgVideo${listeDateOrderCroissantDate1.id}">
+                                    <button class="articlePortfolio__item--img imgVideo${listeDateOrderCroissantDate1.id}"
                                     
-                                    <img src="./assets/photographersMedia/${listeDateOrderCroissantDate1.image}" alt=" " class="photographerImg" >
-                                
-                                </div>
-
-                                -->
-
-                                <div class="articlePortfolio__item--description description">
-                                    <p class="description__titre" > ${listeDateOrderCroissantDate1.title}  </p>
-                        
-                                    <div class="description__numLike"> 
-
-                                            <!-- replace(/\s+/g, '') expression régulière permettant de supprimer les espaces dans toute la chaine -->
-                                    <div class= "numberLikes ${listeDateOrderCroissantDate1.title.replace(/\s+/g, '')}  ${listeDateOrderCroissantDate1.id}"  id= ${listeDateOrderCroissantDate1.title.replace(/\s+/g, '')}  data-idMediaCurrent =${listeDateOrderCroissantDate1.id} > ${listeDateOrderCroissantDate1.likes}  </div> 
-                                            
-                                        <i class="fa-solid fa-heart   heartLikeMedia" data-idMediaCurrent =${listeDateOrderCroissantDate1.id} id= "${listeDateOrderCroissantDate1.title.replace(/\s+/g, '')}"></i>
-
+                                        style=" background-image: url('./assets/miniatures/iaTest.jpg');
+                                        background-repeat: no-repeat; background-position: center center; background-size: cover; "> 
                                     
+                                    </button>
                                     
+                                    <div class="articlePortfolio__item--description description">
+                                        <p class="description__titre" > ${listeDateOrderCroissantDate1.title}  </p>
+                            
+                                        <div class="description__numLike"> 
+    
+                                                <!-- replace(/\s+/g, '') expression régulière permettant de supprimer les espaces dans toute la chaine -->
+                                        <div class= "numberLikes ${listeDateOrderCroissantDate1.title.replace(/\s+/g, '')}  ${listeDateOrderCroissantDate1.id}"  id= ${listeDateOrderCroissantDate1.title.replace(/\s+/g, '')}  data-idMediaCurrent =${listeDateOrderCroissantDate1.id} > ${listeDateOrderCroissantDate1.likes}  </div> 
+                                                
+                                        <button class="heartLikeMedia" data-idMediaCurrent =${listeDateOrderCroissantDate1.id} id= "${listeDateOrderCroissantDate1.title.replace(/\s+/g, '')}"> <i class="fa-solid fa-heart" ></i> </button>
+    
+                                        
+                                        
+                                        </div>
+                                        
                                     </div>
-                                    
+    
                                 </div>
+                        
+                            </div> 
+                        
+                            `
+    
+                            date.innerHTML += articleItem;
 
-                            </div>
-                    
-                        </article> 
-                    
-                        `
-                    
-                    //éxécution de la fonction d'affichage de la liste des médias initiale
-                    //listeArticleNormalFunction()
+                        }else{
 
-                        date.innerHTML += articleItem;
+                            articleItem = `
 
-                       // articleElement.innerHTML += articleItem;
+                            <div class="articlePortfolioitem"> 
+                            
+                                <div class="articlePortfolio__item">
+                        
+                                    <button class="articlePortfolio__item--img imgVideo${listeDateOrderCroissantDate1.id}"
+                                    
+                                        style=" background-image: url('./assets/photographersMedia/${listeDateOrderCroissantDate1.image}');
+                                        background-repeat: no-repeat; background-position: center center; background-size: cover; "> 
+                                    
+                                    </button>
+                                    
+    
+                                    <div class="articlePortfolio__item--description description">
+                                        <p class="description__titre" > ${listeDateOrderCroissantDate1.title}  </p>
+                            
+                                        <div class="description__numLike"> 
+    
+                                                <!-- replace(/\s+/g, '') expression régulière permettant de supprimer les espaces dans toute la chaine -->
+                                        <div class= "numberLikes ${listeDateOrderCroissantDate1.title.replace(/\s+/g, '')}  ${listeDateOrderCroissantDate1.id}"  id= ${listeDateOrderCroissantDate1.title.replace(/\s+/g, '')}  data-idMediaCurrent =${listeDateOrderCroissantDate1.id} > ${listeDateOrderCroissantDate1.likes}  </div> 
+                                                
+                                        <button class="heartLikeMedia" data-idMediaCurrent =${listeDateOrderCroissantDate1.id} id= "${listeDateOrderCroissantDate1.title.replace(/\s+/g, '')}" >  <i class="fa-solid fa-heart" ></i> </button>
+    
+                                        
+                                        
+                                        </div>
+                                        
+                                    </div>
+    
+                                </div>
+                        
+                            </div> 
+                        
+                            `
+                        
+    
+                            date.innerHTML += articleItem;
+
+
+                            
+                        }
                        
-                    
-                    
-
+                 
                     }
 
                    
@@ -914,293 +1129,102 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
                         console.log("listeTitreOrderCroissant1")
                         console.log(listeTitreOrderCroissant1)
 
-                        articleItem = `
+                        //gestion de la miniature
+                        if(listeTitreOrderCroissant1.video){
 
-                        <article class="articlePortfolioitem" > 
+                            articleItem = `
+
+                            <div class="articlePortfolioitem""> 
+                            
+                                <div class="articlePortfolio__item">
                         
-                            <div class="articlePortfolio__item">
-                    
-                                <div class="articlePortfolio__item--img imgVideo${listeTitreOrderCroissant1.id}"
-                                
-                                    style=" background-image: url('./assets/photographersMedia/${listeTitreOrderCroissant1.image}');
-                                    background-repeat: no-repeat; background-position: center center; background-size: cover; "> 
-                                
-                                </div>
-                                
-                                <!--
-
-                                <div class="articlePortfolio__item--img imgVideo${listeTitreOrderCroissant1.id}">
+                                    <button class="articlePortfolio__item--img imgVideo${listeTitreOrderCroissant1.id}"
                                     
-                                    <img src="./assets/photographersMedia/${listeTitreOrderCroissant1.image}" alt=" " class="photographerImg" >
+                                        style=" background-image: url('./assets/miniatures/iaTest.jpg');
+                                        background-repeat: no-repeat; background-position: center center; background-size: cover; "> 
+                                    
+                                    </button>
                                 
-                                </div>
-
-                                -->
-
-                                <div class="articlePortfolio__item--description description">
-                                    <p class="description__titre" > ${listeTitreOrderCroissant1.title}  </p>
-                        
-                                    <div class="description__numLike"> 
-
-
-
+    
+                                    <div class="articlePortfolio__item--description description">
+                                        <p class="description__titre" > ${listeTitreOrderCroissant1.title}  </p>
+                            
+                                        <div class="description__numLike"> 
+    
+    
+    
+                                                
+                                            <div class= "numberLikes ${listeTitreOrderCroissant1.title.replace(/\s+/g, '')}  ${listeTitreOrderCroissant1.id} "  id= ${listeTitreOrderCroissant1.title.replace(/\s+/g, '')} data-idMediaCurrent =${listeTitreOrderCroissant1.id} > ${listeTitreOrderCroissant1.likes}  </div> 
+                                                
+                                            <button class="heartLikeMedia"data-idMediaCurrent =${listeTitreOrderCroissant1.id} id= "${listeTitreOrderCroissant1.title.replace(/\s+/g, '')}" > <i class="fa-solid fa-heart" ></i> </button>
+    
                                             
-                                        <div class= "numberLikes ${listeTitreOrderCroissant1.title.replace(/\s+/g, '')}  ${listeTitreOrderCroissant1.id} "  id= ${listeTitreOrderCroissant1.title.replace(/\s+/g, '')} data-idMediaCurrent =${listeTitreOrderCroissant1.id} > ${listeTitreOrderCroissant1.likes}  </div> 
                                             
-                                        <i class="fa-solid fa-heart   heartLikeMedia" data-idMediaCurrent =${listeTitreOrderCroissant1.id} id= "${listeTitreOrderCroissant1.title.replace(/\s+/g, '')}"></i>
-
-                                        
+                                        </div>
                                         
                                     </div>
-                                    
+    
                                 </div>
+                        
+                            </div> 
+                        
+                            `
+                        
+                            //éxécution de la fonction d'affichage de la liste des médias initiale
+                            //listeArticleNormalFunction()
+    
+                            titre.innerHTML += articleItem;
 
-                            </div>
-                    
-                        </article> 
-                    
-                        `
-                    
-                        //éxécution de la fonction d'affichage de la liste des médias initiale
-                        //listeArticleNormalFunction()
 
-                        titre.innerHTML += articleItem;
+                        }else{
 
-                       // articleElement.innerHTML += articleItem;
-                       
-                    
-                    
+                            articleItem = `
 
+                            <div class="articlePortfolioitem" > 
+                            
+                                <div class="articlePortfolio__item">
+                        
+                                    <button class="articlePortfolio__item--img imgVideo${listeTitreOrderCroissant1.id}"
+                                    
+                                        style=" background-image: url('./assets/photographersMedia/${listeTitreOrderCroissant1.image}');
+                                        background-repeat: no-repeat; background-position: center center; background-size: cover; "> 
+                                    
+                                    </button>
+                                    
+                                   
+                                    <div class="articlePortfolio__item--description description">
+                                        <p class="description__titre" > ${listeTitreOrderCroissant1.title}  </p>
+                            
+                                        <div class="description__numLike"> 
+    
+    
+    
+                                                
+                                            <div class= "numberLikes ${listeTitreOrderCroissant1.title.replace(/\s+/g, '')}  ${listeTitreOrderCroissant1.id} "  id= ${listeTitreOrderCroissant1.title.replace(/\s+/g, '')} data-idMediaCurrent =${listeTitreOrderCroissant1.id} > ${listeTitreOrderCroissant1.likes}  </div> 
+                                                
+                                           <button class="heartLikeMedia" data-idMediaCurrent =${listeTitreOrderCroissant1.id} id= "${listeTitreOrderCroissant1.title.replace(/\s+/g, '')}" > <i class="fa-solid fa-heart"></i> </button>
+    
+                                            
+                                            
+                                        </div>
+                                        
+                                    </div>
+    
+                                </div>
+                        
+                            </div> 
+                        
+                            `
+                        
+    
+                            titre.innerHTML += articleItem;
+
+                        }
+
+                      
                     }
-
-                     /*************** gestion des likes et du total des likes   *********************/
-
-                    ///////////////////////////////////////////////
-
-                    //récupération de tous les coeurs
-                    const listeMedia = document.getElementsByClassName("heartLikeMedia")
-                        
-                    for( let j=0; j< listeMedia.length; j++){
-
-                        
-                        let  currentElementHeart = listeMedia[j]
-
-                        // Obtation la valeur de l'attribut data-custom-data
-                        let customDataValue = currentElementHeart.getAttribute("data-idMediaCurrent");
-
-                        // Gestionnaire d'événement pour "click" avec accès au dataset
-                        currentElementHeart.addEventListener("click", function() {
-
-                           
-
-                            console.log("Clic sur un élément avec la classe heartLikeMedia ");
-                        
-                            let listeMediaValue = ProjetPhotographCurrent
-                            //conversion de en entier
-                            let idMediaCurrent= parseInt(customDataValue)
-
-                            // console.log("idMediaCurrent : " + idMediaCurrent );
-
-                            //récupération de l'objet du média encours
-                            const mediaCurrent = listeMediaValue.find( item => item.id === idMediaCurrent )
-                            
-                            console.log("*** mediaCurrent")
-                            console.log(mediaCurrent)
-
-                            
-                            
-                            
-                            //mediaCurrent.likes += 1 
-
-                            console.log("*** mediaCurrent.likes : " + mediaCurrent.title + ": "+ mediaCurrent.likes  );
-
-                        
-                            /////////////////////////////////////////////////
-                            //récupération d'un like spécifique
-                            
-                            //supression des espaces dans toutes la chaine avec cette expression régulière .replace(/\s+/g, '')
-                            let titleMedia = mediaCurrent.title.replace(/\s+/g, '')
-
-                            // console.log("**** titleMedia")
-                            // console.log(titleMedia)
-
-                            //récupération du  nombre de likes en question
-                            let numberLikeCurrent = document.querySelector(`.${titleMedia}`)
-                            
-                             console.log("*** numberLikeCurrent ")
-                             console.log( numberLikeCurrent )
-                             console.log(numberLikeCurrent.innerText )
-
-                             
-
-
-                            // Récupération des données dans le localstorage
-                            let titleLocastorage = localStorage.getItem(`${titleMedia}`);
-
-                             console.log("***** titleLocastorage")
-                             console.log(titleLocastorage)
-
-                            //vérification si  ce title est déjà dans le localstorage
-                            if(titleLocastorage){
-
-
-                                
-                                console.log("************* le localstorage contient cette donnée")
-                                //mise à jour de ce title dans le localstorage
-
-                                let likeValue = parseInt(numberLikeCurrent.innerText)
-                                let likeIncrement = likeValue +=1
-
-                                ////
-                                //mise à jour du nombre de likes
-                                numberLikeCurrent.innerText = likeIncrement
-
-
-                                ////
-
-
-
-                                ///////////////////////////
-
-                                /*
-                                //mise à jour de l'objet encours
-
-                                mediaCurrent.likes = likeValue  //mise à jour de likes dans l'objet mediaCurrent
-
-                                console.log("************* mediaCurrent.likes = likeValue")
-                                console.log(mediaCurrent.likes = likeValue)
-                                console.log(mediaCurrent)
-                                */
-                                
-                                //conversion de l'objet en string avant de le stocker dans le local storage car ne prend que des string
-                                localStorage.setItem(`${mediaCurrent.id }`, JSON.stringify(mediaCurrent));
-
-                                //récuppération de l'objet précédant dans le loca storage
-                                let objetlocaleStorage = localStorage.getItem(`${mediaCurrent.id}`)
-                            
-                                console.log(  "***** likeIncrement objetlocaleStorage" )
-                                console.log(  objetlocaleStorage )
-                                
-                                ///////////////////////////
-
-
-                                // console.log(  "***** likeIncrement" + " "+likeIncrement )
-
-                                localStorage.setItem(`${titleMedia}`, `${likeIncrement}`);
-
-                                //mise à jour du like coté dom
-                                let likeValueDom = localStorage.getItem(`${titleMedia}`)
-
-                                
-                                // console.log("****** nouvelle valeur du like" + likeValueDom )
-
-                            
-
-                                //numberLikeCurrent.innerText =  likeIncrement
-
-
-                                console.log("************* valeur dans le local en fin sachant que donnée existait déjà" + " " +localStorage.getItem(`${titleMedia}`) )
-
-                                //éxécution de la fonction de mise a jour du like du dom
-                                // updateNumberlikesFunction(likeValueDom )
-                                updateNumberlikesFunction(customDataValue, titleMedia, likeValueDom,numberLikeCurrent )
-
-                                //éxécution de la fonction totalLikePriceFunction de mis à jour du total de likes
-                                totalLikePriceFunction()
-
-                                //éxécution de la fonction d'affichage des articles
-                                // showNewArticleFunction()
-
-
-                            }else{
-
-                                console.log("************* le localstorage est vide pour cette donnée")
-                                //si ce title n'est pas dans localstorage
-                                //sauvegarde de ce title dans le localstorage
-
-                                // let likeValue = numberLikeCurrent.innerText
-                                
-                                let likeValue = parseInt(numberLikeCurrent.innerText)
-                                let likeIncrement = likeValue +=1
-
-                                
-                                
-
-                                ///////////////////////////
-                                
-                                //mise à jour de l'objet encours
-                                mediaCurrent.likes = likeValue //mise à jour de likes dans l'objet mediaCurrent
-
-                                console.log("************* mediaCurrent.likes = likeValue")
-                                console.log(mediaCurrent.likes = likeValue)
-                                console.log(mediaCurrent)
-
-                            
-                                //conversion de l'objet en string avant de le stocker dans le local storage car ne prend que des string
-                                localStorage.setItem(`${mediaCurrent.id}`, JSON.stringify(mediaCurrent));
-
-                                //récuppération de l'objet précédant dans le loca storage
-                                let objetlocaleStorage = localStorage.getItem(`${mediaCurrent.id}`)
-                        
-                                console.log(  "***** likeIncrement objetlocaleStorage" )
-                                console.log(  objetlocaleStorage )
-                            
-                                ///////////////////////////
-
-                                console.log(  "***** likeIncrement" + " "+likeIncrement )
-                            
-                                //mise à jour du localstorage
-                                localStorage.setItem(`${titleMedia}`, `${likeIncrement}`);
-
-                                //mise à jour du like coté dom
-                                let likeValueDom = localStorage.getItem(`${titleMedia}`)
-
-                                
-                                console.log("****** nouvelle valeur du like" + likeValueDom )
-
-                                //mise à jour du like coté dom
-                                //numberLikeCurrent.innerText = likeValueDom 
-
-                                //numberLikeCurrent.innerText =  likeIncrement
-
-                                console.log("************* valeur dans le local en fin sachant que donnée n'existait pas " + " " +localStorage.getItem(`${titleMedia}`) )
-                            
-                                //éxécution de la fonction de mise a jour du like du dom
-                                updateNumberlikesFunction(customDataValue, titleMedia, likeValueDom,numberLikeCurrent )
-
-                                //éxécution de la fonction totalLikePriceFunction de mis à jour du total de likes
-                                totalLikePriceFunction()
-
-                                //éxécution de la fonction d'affichage des articles
-                                //showNewArticleFunction()
-                            
-                                
-                           
-
-                            }
-                            
-                            
-                            
-
-                            /////////////////////////////////////////////////
-                        
-                            let incrementation = 1
-                            totalLikePriceFunction(incrementation)
-
-                            
-                        
-                        });
 
                    
-
-                       
-            
-                    }
-
-                    /////////////////////////////////////////::::
-                    
-
-
                 }  
 
 
@@ -1222,213 +1246,195 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
      //récupération de tous les coeurs
      const listeMedia = document.getElementsByClassName("heartLikeMedia")
         
-        for( let j=0; j< listeMedia.length; j++){
+    for( let j=0; j< listeMedia.length; j++){
 
-            let  currentElementHeart = listeMedia[j]
+        let  currentElementHeart = listeMedia[j]
 
-            // Obtation la valeur de l'attribut data-custom-data
-            let customDataValue = currentElementHeart.getAttribute("data-idMediaCurrent");
+       // console.log("****currentElementHeart")
+       // console.log(currentElementHeart)
 
-            // Gestionnaire d'événement pour "click" avec accès au dataset
-            currentElementHeart.addEventListener("click", function() {
+        // Obtation la valeur de l'attribut data-custom-data
+        let customDataValue = currentElementHeart.getAttribute("data-idMediaCurrent");
 
-                console.log("Clic sur un élément avec la classe heartLikeMedia ");
+        // Gestionnaire d'événement pour "click" avec accès au dataset
+        currentElementHeart.addEventListener("click", function() {
+
+            console.log("Clic sur un élément avec la classe heartLikeMedia ");
+        
+            let listeMediaValue = ProjetPhotographCurrent
+            //conversion de en entier
+            let idMediaCurrent= parseInt(customDataValue)
+
+            // console.log("idMediaCurrent : " + idMediaCurrent );
+
+            //récupération de l'objet du média encours
+            const mediaCurrent = listeMediaValue.find( item => item.id === idMediaCurrent )
             
-                let listeMediaValue = ProjetPhotographCurrent
-                //conversion de en entier
-                let idMediaCurrent= parseInt(customDataValue)
+            console.log("*** mediaCurrent")
+            console.log(mediaCurrent)
 
-                // console.log("idMediaCurrent : " + idMediaCurrent );
+                //récupération de l'objet média en cours mais dans la liste de media d'origine
+            //car je veux le nombre de likes innitial pour faire la différence avec le nouveau
+            const mediaCurrentOrigin = listeMediaOriginLocalstorage.find( item => item.id === idMediaCurrent )
 
-                //récupération de l'objet du média encours
-                const mediaCurrent = listeMediaValue.find( item => item.id === idMediaCurrent )
-                
-                console.log("*** mediaCurrent")
-                console.log(mediaCurrent)
-
-                
-                
-                
-                //mediaCurrent.likes += 1 
-
-                console.log("*** mediaCurrent.likes : " + mediaCurrent.title + ": "+ mediaCurrent.likes  );
-
+            console.log("*** mediaCurrentOrigin")
+            console.log(mediaCurrentOrigin)
             
-                /////////////////////////////////////////////////
-                //récupération d'un like spécifique
+
+            //mediaCurrent.likes += 1 
+
+            console.log("*** mediaCurrent.likes : " + mediaCurrent.title + ": "+ mediaCurrent.likes  );
+
+        
+            /////////////////////////////////////////////////
+            //récupération d'un like spécifique
+            
+            //supression des espaces dans toutes la chaine avec cette expression régulière .replace(/\s+/g, '')
+            let titleMedia = mediaCurrent.title.replace(/\s+/g, '')
+
+                console.log("**** titleMedia")
+                console.log(titleMedia)
+
+            //récupération du  nombre de likes en question
+            let numberLikeCurrent = document.querySelector(`.${titleMedia}`)
+            
+                console.log("*** numberLikeCurrent ")
+                console.log(numberLikeCurrent.innerText )
+
+            // Récupération des données dans le localstorage
+            let titleLocastorage = localStorage.getItem(`${titleMedia}`);
+
+                console.log("***** titleLocastorage")
+                console.log(titleLocastorage)
+            
+            //vérification si  ce title est déjà dans le localstorage
+            if(titleLocastorage  ){
+
+                console.log("************* le localstorage contient cette donnée")
                 
-                //supression des espaces dans toutes la chaine avec cette expression régulière .replace(/\s+/g, '')
-                let titleMedia = mediaCurrent.title.replace(/\s+/g, '')
-
-                 console.log("**** titleMedia")
-                 console.log(titleMedia)
-
-                //récupération du  nombre de likes en question
-                let numberLikeCurrent = document.querySelector(`.${titleMedia}`)
-                
-                 console.log("*** numberLikeCurrent ")
-                 console.log(numberLikeCurrent.innerText )
-
-                // Récupération des données dans le localstorage
-                let titleLocastorage = localStorage.getItem(`${titleMedia}`);
-
-                 console.log("***** titleLocastorage")
-                 console.log(titleLocastorage)
-                 console.log( parseInt(titleLocastorage) + 10)
 
                 
-                //vérification si  ce title est déjà dans le localstorage
-                if(titleLocastorage  ){
 
-                    console.log("************* le localstorage contient cette donnée")
-                    //mise à jour de ce title dans le localstorage
+                if(mediaCurrentOrigin.likes < mediaCurrent.likes){
 
-                    //////////////////////////////////////////////////////////
-                    let likeValue = parseInt(numberLikeCurrent.innerText)
-                    let likeIncrement = likeValue +=1
+                    numberLikeCurrent.innerText = mediaCurrentOrigin.likes
+                
 
-                     //supression de l'objet dans le local storage
-                    localStorage.removeItem(`${titleMedia}`);
+                    //mise à jour de likes dans l'objet mediaCurrent
+                    mediaCurrent.likes = mediaCurrentOrigin.likes 
 
-                     //////////////////////////////////////////////////////////
-
-                   
-
-                    ///////////////////////////
-
-                    console.log("**** mediaCurrent.likes avant la mise à jour de l'objet")
-                    console.log(mediaCurrent.likes)
-                    //mise à jour de l'objet encours
-
-                    mediaCurrent.likes = likeIncrement 
                     console.log("**** mediaCurrent.likes après la mise à jour de l'objet")
-                    console.log(mediaCurrent.likes)
-
-                   // mediaCurrent.likes = likeValue  //mise à jour de likes dans l'objet mediaCurrent
-
-                    console.log("************* mediaCurrent.likes = likeValue")
-                    console.log(mediaCurrent.likes = likeValue)
                     console.log(mediaCurrent)
 
-                    
 
+                    console.log("**** mediaCurrentOrigin")
+                    console.log(mediaCurrentOrigin)
+
+                
                     //conversion de l'objet en string avant de le stocker dans le local storage car ne prend que des string
                    // localStorage.setItem(`${mediaCurrent.id }`, JSON.stringify(mediaCurrent));
 
-                    //récuppération de l'objet précédant dans le loca storage
-                    let objetlocaleStorage = localStorage.getItem(`${mediaCurrent.id}`)
-                
-                    console.log(  "***** likeIncrement objetlocaleStorage" )
-                    console.log(  objetlocaleStorage )
-                    
-                    ///////////////////////////
-
-
-                    // console.log(  "***** likeIncrement" + " "+likeIncrement )
-
-                    localStorage.setItem(`${titleMedia}`, `${likeIncrement}`);
-
-                    //mise à jour du like coté dom
-                    let likeValueDom = localStorage.getItem(`${titleMedia}`)
-                    
-
-                    
-                    // console.log("****** nouvelle valeur du like" + likeValueDom )
-
-                
-
-                    //numberLikeCurrent.innerText =  likeIncrement
-
-
-                    console.log("************* valeur dans le local en fin sachant que donnée existait déjà" + " " +localStorage.getItem(`${titleMedia}`) )
-
-                    //éxécution de la fonction de mise a jour du like du dom
-                    // updateNumberlikesFunction(likeValueDom )
-                    updateNumberlikesFunction(customDataValue, titleMedia, likeValueDom,numberLikeCurrent )
-
-                    //éxécution de la fonction totalLikePriceFunction de mis à jour du total de likes
-                    totalLikePriceFunction()
-
-                    //éxécution de la fonction d'affichage des articles
-                    // showNewArticleFunction()
+                   console.log(  "***** mediaCurrentOrigin.likes" + " "+  mediaCurrentOrigin.likes )
+            
+                   //mise à jour du localstorage
+                   localStorage.setItem(`${titleMedia}`, `${mediaCurrentOrigin.likes}`);
 
 
                 }else{
 
-                    console.log("************* le localstorage est vide pour cette donnée")
-                    //si ce title n'est pas dans localstorage
-                    //sauvegarde de ce title dans le localstorage
-
-                    // let likeValue = numberLikeCurrent.innerText
+                    numberLikeCurrent.innerText = mediaCurrentOrigin.likes + 1
+                
                     
-                    let likeValue = parseInt(numberLikeCurrent.innerText)
-                    let likeIncrement = likeValue +=1
 
-                    ///////////////////////////
+                    //mise à jour de likes dans l'objet mediaCurrent
+                    mediaCurrent.likes = mediaCurrentOrigin.likes + 1
 
-                    
-                    //mise à jour de l'objet encours
-                    mediaCurrent.likes = likeValue //mise à jour de likes dans l'objet mediaCurrent
+                    console.log("**** mediaCurrent.likes après la mise à jour de l'objet")
+                    console.log(mediaCurrent.likes)
 
-                    console.log("************* mediaCurrent.likes = likeValue")
-                    console.log(mediaCurrent.likes = likeValue)
-                    console.log(mediaCurrent)
+                    console.log("**** mediaCurrentOrigin")
+                    console.log(mediaCurrentOrigin.likes)
 
                 
                     //conversion de l'objet en string avant de le stocker dans le local storage car ne prend que des string
-                    localStorage.setItem(`${mediaCurrent.id}`, JSON.stringify(mediaCurrent));
+                    //localStorage.setItem(`${mediaCurrent.id }`, JSON.stringify(mediaCurrent));
 
-                    //récuppération de l'objet précédant dans le loca storage
-                    let objetlocaleStorage = localStorage.getItem(`${mediaCurrent.id}`)
+                    console.log(  "***** mediaCurrent.likes" + " "+  mediaCurrent.likes )
             
-                    console.log(  "***** likeIncrement objetlocaleStorage" )
-                    console.log(  objetlocaleStorage )
-                
-                    ///////////////////////////
-
-                    console.log(  "***** likeIncrement" + " "+likeIncrement )
-                
                     //mise à jour du localstorage
-                    localStorage.setItem(`${titleMedia}`, `${likeIncrement}`);
-
-                    //mise à jour du like coté dom
-                    let likeValueDom = localStorage.getItem(`${titleMedia}`)
-
+                    localStorage.setItem(`${titleMedia}`, `${mediaCurrent.likes}`);
                     
-                    console.log("****** nouvelle valeur du like" + likeValueDom )
-
-                    //mise à jour du like coté dom
-                    //numberLikeCurrent.innerText = likeValueDom 
-
-                    //numberLikeCurrent.innerText =  likeIncrement
-
-                    console.log("************* valeur dans le local en fin sachant que donnée n'existait pas " + " " +localStorage.getItem(`${titleMedia}`) )
-                
-                    //éxécution de la fonction de mise a jour du like du dom
-                    updateNumberlikesFunction(customDataValue, titleMedia, likeValueDom,numberLikeCurrent )
-
-                    //éxécution de la fonction totalLikePriceFunction de mis à jour du total de likes
-                    totalLikePriceFunction()
-
-                    //éxécution de la fonction d'affichage des articles
-                    //showNewArticleFunction()
-                
-
+                    
                 }
                 
-                
-
-
-                /////////////////////////////////////////////////
-            
-                let incrementation = 1
-                totalLikePriceFunction(incrementation)
 
                 
-            
-            });
+                console.log("************* valeur dans le local en fin sachant que donnée existait déjà" + " " +localStorage.getItem(`${titleMedia}`) )
 
-    
+                
+                //éxécution de la fonction de mise a jour du like du dom
+                updateNumberlikesFunction(customDataValue, titleMedia, numberLikeCurrent )
+
+                //éxécution de la fonction totalLikePriceFunction de mis à jour du total de likes
+                totalLikePriceFunction()
+
+
+            }else{
+
+                console.log("************* le localstorage est vide pour cette donnée")
+                //si ce title n'est pas dans localstorage
+                //sauvegarde de ce title dans le localstorage
+                
+                let likeValue = parseInt(numberLikeCurrent.innerText)
+                let likeIncrement = likeValue + 1
+
+                ///////////////////////////
+
+                
+                //mise à jour de l'objet encours
+                mediaCurrent.likes = likeIncrement //mise à jour de likes dans l'objet mediaCurrent
+
+                console.log("************* mediaCurrent.likes = likeValue")
+                console.log(mediaCurrent)
+
+            
+                //conversion de l'objet en string avant de le stocker dans le local storage car ne prend que des string
+               // localStorage.setItem(`${mediaCurrent.id}`, JSON.stringify(mediaCurrent));
+
+            
+                ///////////////////////////
+
+                console.log(  "***** likeIncrement" + " "+likeIncrement )
+            
+                //mise à jour du localstorage
+                localStorage.setItem(`${titleMedia}`, `${likeIncrement}`);
+
+
+                console.log("************* valeur dans le local en fin sachant que donnée n'existait pas " + " " +localStorage.getItem(`${titleMedia}`) )
+            
+                //éxécution de la fonction de mise a jour du like du dom
+                updateNumberlikesFunction(customDataValue, titleMedia,numberLikeCurrent )
+
+                //éxécution de la fonction totalLikePriceFunction de mis à jour du total de likes
+                totalLikePriceFunction()
+
+            
+
+            }
+            
+            
+
+
+            /////////////////////////////////////////////////
+        
+            let incrementation = 1
+            totalLikePriceFunction(incrementation)
+
+            
+        
+        });
+
+
     }
 
     /////////////////////////////////////////::::
@@ -1691,53 +1697,334 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
     
     `
 
+   /****************************  gestion du formulaire contactez-moi******************************************** */
+
+
+    let contact_button = document.querySelector(".contact_button")
+
+    let photographHeader = document.querySelector(".photograph-header")
+    let containerFormulaireContact1 = document.querySelector(".containerFormulaireContact")
+   
+    let sectionMain = document.querySelector(".sectionMain")
+   
+    // Création du formulaire.
+    const formulaireContact = `
+
     
+    <form id="formulaireContact"  role="information" aria-labelledby="coordonnees du photographe" >
+    
+        <div class="titreContact ">
+            <p class="titreContact__itre"> contactez-moi ${nomForm} </p>
+           
+            <button class="titreContact__image">
+                <i class="fa-solid fa-x" ></i>
+            </button>
+        </div> 
 
-     /*************** gestion du filtre   *********************/
+        <div  class="conatainerItem" >
+            <label for="prenom"  class="tailleContainer" >Prénom </label>
+            <input type="text" id="prenom" name="prenom" class="tailleContainer input1" placeholder="Henri Matis" >
+        </div>
 
-     //sélection de l'élément select du formulaire 
-     const selectForm = document.querySelector("#mySelect")
+        <div  class="conatainerItem">
+            <label for="nom" class="tailleContainer">Nom </label>
+            <input type="text" id="nom" name="nom" class="tailleContainer"  placeholder="Pierre" >
+        </div>
 
+        <div  class="conatainerItem">
+            <label for="email" class="tailleContainer">Email </label>
+            <input type="email" id="email" name="email" class="tailleContainer"  placeholder="henripierre@yahoo.fr">
+        </div>
 
-     console.log(selectForm)
+        <div  class="conatainerItem">
+            <label for="message" class="tailleContainer message">Message </label>
+            <textarea id="message" name="message"   class="tailleContainer"  placeholder="Entrez votre message " ></textarea>
+        </div>
 
-     console.log("***** listeMedia")
-     console.log(listeMedia)
-
+      
+        <input type="submit" value="Envoyer"  class="inputbtn">
      
+       
 
-    //insersion d'un évènnement dans l'élément selectionné
-    selectForm.addEventListener( "change", ()=>{
+    </form>
+    `;
 
-        // Récupération de la valeur sélectionnée
-    // const selectValue = selectForm.value;
-        selectValue = selectForm.value;
+    // Ajout du formulaire au conteneur sélectionné.
+    // photographHeader.innerHTML = formulaireContact;
+    containerFormulaireContact1.innerHTML = formulaireContact
 
-        console.log("***** selectValue ")
-        console.log(selectValue)
+    //récupération du formulaire de contact
+    let formuContact = document.querySelector("#formulaireContact")
 
+    //récupération du premier input du formulaire
+    let input1Contact = document.querySelector(".input1")
 
-        console.log("typeof selectValue : " + typeof selectValue )
+   // console.log("**** formuContact")
+   // console.log(formuContact)
 
-        //ajout dans le local storage
-        localStorage.setItem("selectValue", selectValue );
-
-        //éxécution de la fonction de gestion d'affichage des medias
-        updatefilterPage(selectValue) 
-
-        //éxécution de la fonction d'affichage des articles
-        //showNewArticleFunction()
-
-        
+    //console.log("**** input1Contact")
+    //console.log(input1Contact)
     
-        
+    //input1Contact.focus()
+
+    //récupération de l'image croix 
+    let imageCroix = document.querySelector(".fa-x")
+
+    //insertion de l'evennement pour la fermeture de la modale
+    imageCroix.addEventListener("click", () =>{
+
+        containerFormulaireContact1.style.display = "none";
+
+        //gestion de l'opacité du reste de la page pour grise la page en arrière plant du formulaire
+        photographHeader.style.opacity = 1;
+        sectionMain.style.opacity = 1;
 
     })
 
-    //fonction d'affichage des media filtrés
 
+    //insertion de l'evennement pour ouvrir la modale
+    contact_button.addEventListener( "click", () =>{
+
+        console.log("bienvenue dans le formulaire")
+
+        containerFormulaireContact1.style.display = "block";
+
+        //gestion de l'opacité du reste de la page pour grise la page en arrière plant du formulaire
+        photographHeader.style.opacity = 0.5;
+        sectionMain.style.opacity = 0.5;
+
+        //gestion du focus et du retrait du focus 
+       // input1Contact.focus(); // permet le focus sur le premier champ  du formulaire
+        formuContact.focus()
+
+    })
+
+    let inputbtn = document.querySelector(".inputbtn")
+
+    //récupération du formulaire
+    const formContact = document.querySelector("#formulaireContact")
+
+    //récupération de tous les champs de formulaire
+    const prenom = document.querySelector("#prenom")
+    const nom = document.querySelector("#nom")
+    const email = document.querySelector("#email")
+    const message = document.querySelector("#message")
+
+
+    // Ajout d'un événement pour le submit
+    inputbtn.addEventListener("submit",(e) => {
+       
+        e.preventDefault();
+
+        console.log("bienvenue dans l'évennement de la soumission du formulaire")
+
+        //création de l'objet FormData avec le formulaire
+        const formData = new FormData(formContact)
+
+        //récupération des valeurs des champs
+        const prenom = formData.get("prenom");
+        const nom = formData.get("nom");
+        const email = formData.get("email");
+        const message = formData.get("message");
+
+        // Afficheage des valeurs dans la console
+        console.log("Preom : " + prenom);
+        console.log("Nom : " + nom);
+        console.log("Email : " + email);
+        console.log("Message : " + message);
+
+        containerFormulaireContact1.style.display = "none";
+
+        //gestion de l'opacité du reste de la page pour grise la page en arrière plant du formulaire
+        photographHeader.style.opacity = 1;
+        sectionMain.style.opacity = 1;
+
+    })
+
+
+    /***************************** gestion de la lightbox ******************************************** */
+    const mediaPhotographe = ProjetPhotographCurrent
+
+    console.log(  "******* mediaPhotographe" );
+    console.log( mediaPhotographe);
+
+    //récupération des images de media 
+    let imageMedia = mediaPhotographe.map(item => item.image || item.video)
+    let titreMedia = mediaPhotographe.map(item => item.title )
+    
+    
+
+    //récupération de la taille du tableau des images de medias
+    const imageMediaLength = imageMedia.length
+
+    console.log(imageMedia)
+    console.log(imageMedia[0])
+
+    console.log("titreMedia")
+    console.log(titreMedia)
+
+    let currentIndex = 0;
+
+    const lightbox = `
+    
+        <div class="lightbox">
+
+            
+
+            <div class="arrowContainerlightbox">
+
+                <div class="lockLightbox">
+                  
+                </div>
+
+                <div class="arrowrigthLeft arrowleft">
+                    <button class="prev-button" >
+                        <i class="fa-solid fa-angle-left prev-button"></i>
+                    </button  >
+                </div>
+            
+            </div>
+
+            <div class="containerMediaImg imageContainer" style="display: block;">
+
+                <div class="image" style="background-image: url('./assets/photographersMedia/${imageMedia[0]}');
+                    background-repeat: no-repeat; background-position: center center; background-size: cover;">
+                </div>
+                <div class="titreLightbox">${titreMedia[currentIndex]}</div>
+
+            </div>
+            
+                   
+            <div class="containerMediaImg videoContainer" style="display: none;">
+                <div class="videoContainer image">
+                    <video class="video" src="./assets/photographersMedia/${imageMedia[0]}" >
+                    </video>
+                </div>
+                <div class="titreLightbox">${titreMedia[currentIndex]}</div>
+            </div>
+
+            <div class="arrowContainerlightbox">
+
+                <button class="lockLightbox lockLightboxBtn" >
+                    <i class="fa-solid fa-x" ></i>
+                </button>
+
+                <div class="arrowrigthLeft arrowrigth ">
+
+                    <button class=" next-button" >
+                        <i class="fa-solid fa-angle-right "></i>
+                    </button>
+
+                </div>
+            
+            </div>
+
+        </div>
+       
+    
+    
+    `
+
+    const containerLightbox = document.querySelector(".containerLightbox")
+    containerLightbox.innerHTML = lightbox
+
+
+    //récupération des élements
+    const imageContainer = document.querySelector(".imageContainer")
+    const imagelightbox = document.querySelector(".image")
+    const videoContainer = document.querySelector(".videoContainer")
+    const videolightbox = document.querySelector(".video")
+    const titreLightbox= document.querySelector(".titreLightbox")
+    const prevButton = document.querySelector(".prev-button");
+    const nextButton = document.querySelector(".next-button");
+    let containerMediaImg = document.querySelector(".containerMediaImg")
+
+
+    //gestion de l'index de l'image
+   const showImage = (index) => {
+
+        if( imageMedia[index].includes("jpg") ){
+
+            console.log("**** bienvenue dans les images")
+            
+            videoContainer.style.display = "none"
+            imageContainer.style.display = "block"
+            imagelightbox.style.backgroundImage = `url(./assets/photographersMedia/${imageMedia[index]})`;
+           
+          
+           titreLightbox.innerText = titreMedia[index]
+
+        }else if( imageMedia[index].includes("mp4") ){
+
+            console.log(" ***** bienvenue dans les vidéos")
+
+            videoContainer.style.display = "block"
+            imageContainer.style.display = "none"
+
+            videolightbox.src = `./assets/photographersMedia/${imageMedia[index]}`
+            videolightbox.controls = true;
+        }
+
+    }
+
+    //gestion des images suivantes
+    const showNextImage = ()=> {
+
+        currentIndex = (currentIndex + 1) % imageMedia.length; //modulo permet de récupérer la partie entière supérieure 1%2 = 1 ou 2/2 1
+        showImage(currentIndex);
+
+    }
+
+    const showPreviousImage = () =>{
+        currentIndex = (currentIndex - 1 + imageMedia.length) % imageMedia.length;
+        showImage(currentIndex);
+    }
+
+    prevButton.addEventListener("click", showPreviousImage);
+    nextButton.addEventListener("click", showNextImage);
+
+    showImage(currentIndex);
+
+
+    //récupération de toutes les images
+    let photographerImg = document.getElementsByClassName("articlePortfolio__item--img")
+    //récupération du bouton de fermeture de la galerie
+    const lockGalerie = document.querySelector(".lockLightboxBtn")
+
+   // console.log(photographerImg)
+
+    //gestion de l'ouverture de la galerie
+    for( let i =0; i<photographerImg.length;i++){
+
+        let imageencours = photographerImg[i]
+        //console.log(imageencours)
+
+        imageencours.addEventListener("click", ()=>{
+
+            console.log("*** bienvenue au  imageencours.addEventListener")
+
+             //gestion du focus et du retrait du focus 
+             lockGalerie.focus()
+            containerLightbox.style.display = "block"
+
+            //gestion de l'opacité du reste de la page pour grise la page en arrière plant du formulaire
+            photographHeader.style.opacity = 0;
+            sectionMain.style.opacity = 0;
+
+        })
+    }
+    
+    //fermeture de la galerie
     
   
+
+    lockGalerie.addEventListener("click", ()=> {
+
+        console.log("*** bienvenue au lockLightbox.addEventListener")
+        containerLightbox.style.display = "none"
+        photographHeader.style.opacity = 1;
+        sectionMain.style.opacity = 1;
+    })
 
 }
 
@@ -1757,71 +2044,5 @@ async function initonePhotographerDataTemplate() {
 
 initonePhotographerDataTemplate();
 
-
-/****************************  gestion du formulaire contactez-moi******************************************** */
-
-
-let contact_button = document.querySelector(".contact_button")
-
-let photographHeader = document.querySelector(".photograph-header")
-let containerFormulaireContact1 = document.querySelector(".containerFormulaireContact")
-
- // Création du formulaire.
- const formulaireContact = `
-
- 
- <form id="formulaireContact" style="display: block;">
-   
-    <div class="titreContact tailleContainer">
-        <p class="titreContact__itre"> contactez-moi </p>
-        <p  class="titreContact__image"> <i class="fa-solid fa-x" ></i> </p>
-    </div>
-
-    <label for="prenom"  class="tailleContainer" >Prénom </label>
-    <input type="text" id="prenom" name="prenom" class="tailleContainer" required>
-
-    <label for="nom" class="tailleContainer">Nom </label>
-    <input type="text" id="nom" name="nom" class="tailleContainer" required>
-
-    <label for="email" class="tailleContainer">Email </label>
-    <input type="email" id="email" name="email" class="tailleContainer" required>
-
-    <label for="message" class="tailleContainer message">Message </label>
-    <textarea id="message" name="message"   class="tailleContainer"required></textarea>
-
-    <input type="submit" value="Envoyer" class="inputbtn">
-
- </form>
- `;
-
-  // Ajout du formulaire au conteneur sélectionné.
- // photographHeader.innerHTML = formulaireContact;
- containerFormulaireContact1.innerHTML = formulaireContact
-  
-
-//récupération du formulaire
-//let formulaireContact1 = document.querySelector("#formulaireContact")
-
- //récupération de l'image croix 
- let imageCroix = document.querySelector(".fa-x")
-
- //insertion de l'evennement 
- imageCroix.addEventListener("click", () =>{
-
-    //formulaireContact1.style.display = "none";
-    containerFormulaireContact1.style.display = "none";
-
- })
-
-
- //insertion de l'evennement 
-contact_button.addEventListener( "click", () =>{
-
-    console.log("bienvenue dans le formulaire")
-
-    containerFormulaireContact1.style.display = "block";
-   
-
-})
 
 
