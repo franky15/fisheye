@@ -174,8 +174,11 @@ main{
 
             option{
 
-                width: 150px;
+                width: 180px;
                 height: 40px;
+                font-weight: 400;
+                font-size: 20px;
+
                 cursor: pointer;
                 /*
                 padding-top: -50px;
@@ -218,6 +221,7 @@ main{
             display: flex;
             justify-content: space-around;
             align-items: center;
+            border: solid $colorPrimairy;
             
             /*
             padding-top: 20px;
@@ -245,7 +249,8 @@ main{
 
             position: absolute;
             top: 30px;
-            left: 220px;
+            left: 200px;
+            font-size: 22px;
             color: white;
         }
         
@@ -489,6 +494,7 @@ main{
                  top: -37px;
                  border: solid $colorBlockTotal;
                  background-color: $colorBlockTotal;
+                 cursor: pointer;
 
                  //border: solid blue;
              }
@@ -559,6 +565,7 @@ main{
              margin-top: 10px;
              margin-bottom: 20px;
              background-color: $colorPrimairy;
+             cursor: pointer;
          }
  
      }

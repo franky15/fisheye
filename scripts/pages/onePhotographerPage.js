@@ -567,7 +567,7 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
             <div id="deuxiemeFormulaire" >
                 
                 
-                <button  class="optionPopularite" id="optionPopularite"  style="display: block;"> <span>Popularité11</span> <span class="arrowDown"> <i class="fa-solid fa-angle-down"></i> </span> </button>
+                <button  class="optionPopularite" id="optionPopularite"  style="display: block;"> <span>Popularité</span> <span class="arrowDown"> <i class="fa-solid fa-angle-down"></i> </span> </button>
                 
                 <button   class="optionPopularite  optionDate" id="optionDate" style="display: none;"> <span>Date</span>  <span class="arrowDown"> <i class="fa-solid fa-angle-down"></i> </span> </button>
 
@@ -657,7 +657,7 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
 
                 console.log("*** bienvenue dans l'evennement change du filtre pour modifier le size " );
 
-
+                
                 // Code à exécuter lorsque l'option est sélectionnée
                 const selectedValueoption = select2.value; // Obtenez la valeur de l'option sélectionnée
                 console.log("Option sélectionnée : " + selectedValueoption);
@@ -666,10 +666,20 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
                 // Exécutez d'autres actions en fonction de la sélection
                 if (selectedValueoption === "Popularite") {
                 
+                    
                     console.log("bienvenue à l'évennement Popularite ")
 
                     select2.style.display = "none";
                     optionPopularite.style.display = "block";
+
+                    //////////////:
+                    console.log("***optionDate")
+                    console.log(optionDate)
+
+                    console.log("***optionTitre")
+                    console.log(optionTitre)
+
+                    ///////////////
 
                         /////////////////////////////////////////////:
 
@@ -699,12 +709,22 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
                     select2.style.display = "none";
                     optionDate.style.display = "block";
 
+                    optionPopularite.style.display = "none";
+                    optionTitre.style.display = "none";
+
+
+                    ///////////////////
                     console.log("***optionDate")
                     console.log(optionDate)
 
+                    console.log("***optionTitre")
+                    console.log(optionTitre)
 
-                    optionPopularite.style.display = "none";
-                    optionTitre.style.display = "none";
+                    console.log("***optionPopularite")
+                    console.log(optionPopularite)
+
+                    ////////////////////////
+
 
                         /////////////////////////////////////////////:
 
@@ -738,6 +758,18 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
 
                     optionPopularite.style.display = "none";
                     optionDate.style.display = "none";
+
+                    ///////////////////
+                    console.log("***optionDate")
+                    console.log(optionDate)
+
+                    console.log("***optionTitre")
+                    console.log(optionTitre)
+
+                    console.log("***optionPopularite")
+                    console.log(optionPopularite)
+
+                    ////////////////////////
 
                         /////////////////////////////////////////////:
 
@@ -1711,7 +1743,7 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
     const formulaireContact = `
 
     
-    <form id="formulaireContact"  role="information" aria-labelledby="coordonnees du photographe" >
+    <div id="formulaireContact"  role="information" aria-labelledby="coordonnees du photographe" >
     
         <div class="titreContact ">
             <p class="titreContact__itre"> contactez-moi ${nomForm} </p>
@@ -1742,11 +1774,11 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
         </div>
 
       
-        <input type="submit" value="Envoyer"  class="inputbtn">
+        <input type="submit" value="Envoyer"  class="inputbtn" >
      
        
 
-    </form>
+    </div>
     `;
 
     // Ajout du formulaire au conteneur sélectionné.
@@ -1768,7 +1800,7 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
     //input1Contact.focus()
 
     //récupération de l'image croix 
-    let imageCroix = document.querySelector(".fa-x")
+    let imageCroix = document.querySelector(".titreContact__image")
 
     //insertion de l'evennement pour la fermeture de la modale
     imageCroix.addEventListener("click", () =>{
@@ -1812,12 +1844,13 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
 
 
     // Ajout d'un événement pour le submit
-    inputbtn.addEventListener("submit",(e) => {
+    inputbtn.addEventListener("click",(e) => {
        
-        e.preventDefault();
+       // e.preventDefault();
 
         console.log("bienvenue dans l'évennement de la soumission du formulaire")
 
+        /*
         //création de l'objet FormData avec le formulaire
         const formData = new FormData(formContact)
 
@@ -1826,12 +1859,21 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
         const nom = formData.get("nom");
         const email = formData.get("email");
         const message = formData.get("message");
+        */
 
         // Afficheage des valeurs dans la console
-        console.log("Preom : " + prenom);
-        console.log("Nom : " + nom);
-        console.log("Email : " + email);
-        console.log("Message : " + message);
+        console.log("Preom : " + prenom.value);
+        console.log("Nom : " + nom.value);
+        console.log("Email : " + email.value);
+        console.log("Message : " + message.value);
+
+
+        //vidage des champs du formulaire
+        prenom.value = ""
+        nom.value = ""
+        email.value = ""
+        message.value = ""
+
 
         containerFormulaireContact1.style.display = "none";
 

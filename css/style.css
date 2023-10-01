@@ -115,8 +115,10 @@ main {
   justify-content: center;
 }
 .form #deuxiemeFormulaire select option {
-  width: 150px;
+  width: 180px;
   height: 40px;
+  font-weight: 400;
+  font-size: 20px;
   cursor: pointer;
   /*
   padding-top: -50px;
@@ -145,6 +147,7 @@ main {
   display: flex;
   justify-content: space-around;
   align-items: center;
+  border: solid #901C1C;
   /*
   padding-top: 20px;
   padding-left: 10px;
@@ -161,7 +164,8 @@ main {
 .form #deuxiemeFormulaire .arrowUp {
   position: absolute;
   top: 30px;
-  left: 220px;
+  left: 200px;
+  font-size: 22px;
   color: white;
 }
 
@@ -317,6 +321,7 @@ main {
   top: -37px;
   border: solid #DB8876;
   background-color: #DB8876;
+  cursor: pointer;
 }
 .containerFormulaireContact #formulaireContact .titreContact .titreContact__itre {
   width: 80%;
@@ -360,6 +365,7 @@ main {
   margin-top: 10px;
   margin-bottom: 20px;
   background-color: #901C1C;
+  cursor: pointer;
 }
 
 .containerLightbox .lightbox {
