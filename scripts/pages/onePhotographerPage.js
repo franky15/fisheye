@@ -247,6 +247,7 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
         // let selectValueLocalStorage
         // Récupération des données  du filtre (selectValue) du localStorage
         selectValueLocalStorage = localStorage.getItem("selectValue");
+
         console.log("**** selectValueLocalStorage");
         console.log(selectValueLocalStorage);
 
@@ -549,254 +550,168 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
 
              /***************** gestion  et création du formulaire  du trie ********************** */
     
-                // récupération du formulaire ///////////////
-                let formElement = document.querySelector(".form");
-
-
-                //deuxième formulaire de type select
-            const deuxiemeForm = `
             
-            <div class="filterTitre" style=" display: block;">
-                Trier par
-            </div>
 
-            <div class="filterTitre2"  style=" display: none;">
-                Trier par 
-            </div>
+            ///////////////////////////////////////////////////////////////
 
-            <div id="deuxiemeFormulaire" >
-                
-                
-                <button  class="optionPopularite" id="optionPopularite"  style="display: block;"> <span>Popularité</span> <span class="arrowDown"> <i class="fa-solid fa-angle-down"></i> </span> </button>
-                
-                <button   class="optionPopularite  optionDate" id="optionDate" style="display: none;"> <span>Date</span>  <span class="arrowDown"> <i class="fa-solid fa-angle-down"></i> </span> </button>
-
-                <button  class="optionPopularite optionTitre" id="optionTitre" style="display: none;">  <span>Titre</span> <span class="arrowDown"> <i class="fa-solid fa-angle-down"></i> </span> </button>
-
-                
-
-                <select id="triDateTitre"  class="select2"  name="triDateTitre"  style="display: none;" size="3" >
-
-                    
-                    <option   value="Popularite" class="optionBar populariteElement"   style="display: block;" >Popularité  </option>
-                    <option value="Date" class="optionBar dateElement"  style="display: block;" >Date</option>
-                    <option value="Titre"   class="titreElement" style="display: block;">Titre</option>
-                    
-
-                </select>
-                <div class="arrowUp" style="display:none"> <i class="fa-solid fa-angle-up"></i> </div>
-
-            </div>
-            `;
-
-
-
-            //Ajout du formulaire dans au formulaire parent 
-            formElement.innerHTML = deuxiemeForm
-            
             //récupération des élément
-            const filterTitre = document.querySelector(".filterTitre")
-            const filterTitre2 = document.querySelector(".filterTitre2")
-            const optionPopularite = document.querySelector("#optionPopularite")
+            const filterTitre1 = document.querySelector(".titreFilter1")
+            const filterTitre2 = document.querySelector(".titreFilter2")
             const arrowUp = document.querySelector(".arrowUp")
-            const select2 = document.querySelector(".select2")
-            const optionDate = document.querySelector("#optionDate")
-            const optionTitre = document.querySelector("#optionTitre")
+            const listeUlContainer = document.querySelector(".listeUlContainer")
+            const btnPopularite1 = document.querySelector(".btnPopularite1")
+            const btnPopularite2 = document.querySelector(".btnPopularite2")
+            const spanPopularite1 = document.querySelector(".spanPopularite1")
+            const btnDate = document.querySelector(".btnDate")
+            const btnTitre = document.querySelector(".btnTitre")
+            const deuxiemeFormulaire = document.querySelector("#deuxiemeFormulaire")
 
-            
-            //insersion des évennements pour l'affichage du filtre à trois valeurs
 
-                //gestion de l'affichage des autres valeurs si on sélectionne une valeur dans les filtre
-                let listesOptionElement = [ optionPopularite, optionDate, optionTitre ]
+            //gestion du masquage du premier bouton popularité et apparution de la liste déroulante
+            btnPopularite1.addEventListener("click",()=>{
 
-                for(let i=0; i<listesOptionElement.length; i++){
+                console.log("**** bienvenue dans btnPopularite")
+                btnPopularite1.value
 
-                    let itemOption = listesOptionElement[i]
+                console.log( "****btnPopularite.value")
+                console.log( btnPopularite1.value)
 
-                    console.log("**itemOption")
-                    console.log(itemOption)
+                btnPopularite1.style.display = "none"
+                filterTitre1.style.display = "none"
 
-                   // itemOption.style.display = "block"
+                filterTitre2.style.display = "block"
+                listeUlContainer.style.display = "block"
 
-                    itemOption.addEventListener("click", ()=>{
 
-                    console.log("bienvenue à l'évennement triDateTitre ")
-            
+
+            })
+
+
+            let listevalueFilter = [ "Popularite", "Date", "Titre"]
+
+            //gestion du bouton btnPopularite2
+            btnPopularite2.addEventListener("click", ()=>{
+
+                console.log("**** bienvenue dans à l'évennement de laliste déroulante btnPopularite2")
+
+                console.log("**** btnDate.value")
+                console.log(btnPopularite2.value)
+
+                switch(btnPopularite2.value ){
+
+                    case listevalueFilter[0] :
                     
-                    filterTitre2.style.display = "block"
-                    select2.style.display = "block"
-                    arrowUp.style.display = "block"
-            
-                    itemOption.style.display = "none"
-                    filterTitre.style.display = "none"
-            
-                    
-                })
+                        console.log("**** bienvenue dans le cas Popularite")
+                        
+                        btnPopularite1.style.display = "block"
+                        spanPopularite1.innerText = "Popularité"
+                        filterTitre1.style.display = "block"
 
-                }
-
-            
-                
-            //fermeture du filtre quand on a perdu le focus
-            select2.addEventListener("blur", () => {
-                
-                console.log("****bienvenue dans l'evennement blur")
-
-                select2.style.display = "none";
-                arrowUp.style.display = "none";
-                filterTitre2.style.display = "none";
-
-                // optionPopularite.style.display = "block"
-               filterTitre.style.display = "block"
-            });
-            
-            
-
-            //gestion de la modification du size du filtre après avoir choisi valeur dans le filtre
-            select2.addEventListener("change", function() {
-
-                console.log("*** bienvenue dans l'evennement change du filtre pour modifier le size " );
-
-                
-                // Code à exécuter lorsque l'option est sélectionnée
-                const selectedValueoption = select2.value; // Obtenez la valeur de l'option sélectionnée
-                console.log("Option sélectionnée : " + selectedValueoption);
-                
-                
-                // Exécutez d'autres actions en fonction de la sélection
-                if (selectedValueoption === "Popularite") {
-                
-                    
-                    console.log("bienvenue à l'évennement Popularite ")
-
-                    select2.style.display = "none";
-                    optionPopularite.style.display = "block";
-
-                    //////////////:
-                    console.log("***optionDate")
-                    console.log(optionDate)
-
-                    console.log("***optionTitre")
-                    console.log(optionTitre)
-
-                    ///////////////
-
-                        /////////////////////////////////////////////:
+                        filterTitre2.style.display = "none"
+                        listeUlContainer.style.display = "none"
 
                         // Récupération de la valeur sélectionnée
-                        let selectValue = select2.value;
+                        let selectValue = btnPopularite2.value;
 
-                        console.log("***** selectValue ")
+                        console.log("**** selectValue")
                         console.log(selectValue)
 
-
-                        console.log("typeof selectValue : " + typeof selectValue )
-
                         //ajout dans le local storage
+                        localStorage.setItem("selectValue", selectValue );
+
+                         //éxécution de la fonction de gestion d'affichage des medias
+                         updatefilterPage(selectValue) 
+
+                    break;
+                }
+
+
+            })
+
+            //gestion du bouton btnDate
+            btnDate.addEventListener("click", ()=>{
+
+                console.log("**** bienvenue dans à l'évennement de laliste déroulante btnDate")
+
+                console.log("**** btnDate.value")
+                console.log(btnDate.value)
+
+                switch(btnDate.value ){
+
+                    case listevalueFilter[1] :
+                    
+                        console.log("**** bienvenue dans le cas btnDate")
+                        
+                        btnPopularite1.style.display = "block"
+                        spanPopularite1.innerText = "Date"
+                        filterTitre1.style.display = "block"
+
+                        filterTitre2.style.display = "none"
+                        listeUlContainer.style.display = "none"
+
+                        // Récupération de la valeur sélectionnée
+                        let selectValue = btnDate.value;
+
+                        console.log("**** selectValue")
+                        console.log(selectValue)
+
+                          //ajout dans le local storage
                         localStorage.setItem("selectValue", selectValue );
 
                         //éxécution de la fonction de gestion d'affichage des medias
                         updatefilterPage(selectValue) 
 
-                        
-                    /////////////////////////////////////////////////
-
-
-                } else if (selectedValueoption === "Date") {
-                    
-                    console.log("bienvenue à l'évennement Date ")
-
-                    select2.style.display = "none";
-                    optionDate.style.display = "block";
-
-                    optionPopularite.style.display = "none";
-                    optionTitre.style.display = "none";
-
-
-                    ///////////////////
-                    console.log("***optionDate")
-                    console.log(optionDate)
-
-                    console.log("***optionTitre")
-                    console.log(optionTitre)
-
-                    console.log("***optionPopularite")
-                    console.log(optionPopularite)
-
-                    ////////////////////////
-
-
-                        /////////////////////////////////////////////:
-
-                    // Récupération de la valeur sélectionnée
-                    let selectValue = select2.value;
-
-                    console.log("***** selectValue ")
-                    console.log(selectValue)
-
-
-                    console.log("typeof selectValue : " + typeof selectValue )
-
-                    //ajout dans le local storage
-                    localStorage.setItem("selectValue", selectValue );
-
-                    //éxécution de la fonction de gestion d'affichage des medias
-                    updatefilterPage(selectValue) 
-
-
-
-
-                    /////////////////////////////////////////////////
-                    
-            
-                } else if (selectedValueoption === "Titre") {
-                    
-                    console.log("bienvenue à l'évennement triDateTitre ")
-
-                    select2.style.display = "none";
-                    optionTitre.style.display = "block";
-
-                    optionPopularite.style.display = "none";
-                    optionDate.style.display = "none";
-
-                    ///////////////////
-                    console.log("***optionDate")
-                    console.log(optionDate)
-
-                    console.log("***optionTitre")
-                    console.log(optionTitre)
-
-                    console.log("***optionPopularite")
-                    console.log(optionPopularite)
-
-                    ////////////////////////
-
-                        /////////////////////////////////////////////:
-
-                    // Récupération de la valeur sélectionnée
-                    let selectValue = select2.value;
-
-                    console.log("***** selectValue ")
-                    console.log(selectValue)
-
-
-                    console.log("typeof selectValue : " + typeof selectValue )
-
-                    //ajout dans le local storage
-                    localStorage.setItem("selectValue", selectValue );
-
-                    //éxécution de la fonction de gestion d'affichage des medias
-                    updatefilterPage(selectValue) 
-
-
-
-
-                    /////////////////////////////////////////////////
-
-                    
+                    break;
                 }
-                
-            });
+
+
+            })
+
+             //gestion du bouton btnTitre
+             btnTitre.addEventListener("click", ()=>{
+
+                console.log("**** bienvenue dans à l'évennement de laliste déroulante btnTitre")
+
+                console.log("**** btnDbtnTitreate.value")
+                console.log(btnTitre.value)
+
+                switch(btnTitre.value ){
+
+                    case listevalueFilter[2] :
+                    
+                        console.log("**** bienvenue dans le cas btnTitre")
+                        
+                        btnPopularite1.style.display = "block"
+                        spanPopularite1.innerText = "Titre"
+                        filterTitre1.style.display = "block"
+
+                        filterTitre2.style.display = "none"
+                        listeUlContainer.style.display = "none"
+
+                         // Récupération de la valeur sélectionnée
+                        let selectValue = btnTitre.value;
+
+                        console.log("**** selectValue")
+                        console.log(selectValue)
+
+                        //ajout dans le local storage
+                        localStorage.setItem("selectValue", selectValue );
+
+                        
+                         //éxécution de la fonction de gestion d'affichage des medias
+                         updatefilterPage(selectValue) 
+
+                    break;
+                }
+
+
+            })
+
+
+
+
+           
+
 
             // Ajout de l'événement 'beforeunload' à la fenêtre qui permet d'éxécuter un code avant actualisation de la page
             //ici je supprime selectValue du localstorage à chaque actualisation de la page
@@ -820,6 +735,11 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
 
                 console.log("***** bienvenue dans la showNewArticleFunction ")
 
+                
+
+                //récupération de lavaleur du filtre dans le local storage
+                let selectValueLocalStorage = localStorage.getItem("selectValue");
+              
 
                 //récupération de la lisNumberLikeOrderCroissantJSON   dans le local storage
                 const lisNumberLikeOrderCroissantJSON  = localStorage.getItem('listeArticlesCroissanteLikes');
@@ -831,8 +751,7 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
                 
                 console.log(lisNumberLikeOrderCroissant)
 
-                console.log("**** selectValue")
-                console.log(selectValue)
+                
 
 
                 /******  gestion de la récupération de la liste listeDateOrderCroissantDate ******* */
@@ -846,8 +765,6 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
                 
                 console.log(listeDateOrderCroissantDate)
 
-                console.log("**** selectValue")
-                console.log(selectValue)
 
                 /******  gestion de la récupération de la liste des titres croissants ******* */
 
@@ -903,7 +820,7 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
 
                             articleItem = `
 
-                                <div class="articlePortfolioitem > 
+                                <div class="articlePortfolioitem" > 
                                 
                                     <div class="articlePortfolio__item">
                             
@@ -1846,7 +1763,7 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
     // Ajout d'un événement pour le submit
     inputbtn.addEventListener("click",(e) => {
        
-       // e.preventDefault();
+        //e.preventDefault();
 
         console.log("bienvenue dans l'évennement de la soumission du formulaire")
 

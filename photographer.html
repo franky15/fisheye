@@ -49,14 +49,64 @@
       
       <section  class="sectionMain">
 
-        <div class="formFilterContainer">
+          <div id="deuxiemeFormulaire" class="custom-select" role="filter" aria-labelledby="fitrage par ordre croissant">
+             
+              <div class="sort-text">
+                
+                <div class="sort-text__item titreFilter1" style="display: block;">
+                   <p> Trier par  </p>
+                </div>
 
-          <div class="form formFilter">
-            
-          
+                <div class="sort-text__item titreFilter2" style="display: none;"> 
+                  <p> Trier par  </p>
+                </div>
+
+              </div>
+             
+
+              <div id="sort-wrapper">
+
+                  <button  value="Popularite"  class="optionPopularite btnPopularite1" id="optionPopularite"  style="display: block;"> <span class="spanPopularite1" >Popularité</span> <span class="arrowDown"> <i class="fa-solid fa-angle-down"></i> </span> </button>
+                
+                  <ul  id="triDateTitre"  class="listeUlContainer"  style="display: none;" role="listbox">
+                      
+                      <li class="optionBar populariteElement" style="display: block;" role='option'>  
+                        
+                        <button  value="Popularite" class="containerPopulariteArrow btnPopularite2">
+
+                          <span class="spanPopularite">Popularité</span>
+                           <span class="spanArrowUp">  <i class="fa-solid fa-angle-up"></i> </span>
+                        </button>
+                          
+                      </li>
+                      
+                      <li class="optionBar dateElement"   role='option'>
+                        <button  value="Date" class="btnDate">Date</button>  
+                      </li>
+
+                      <li class="titreElement"  role='option'>
+                         <button value="Titre"  class="btnTitre" >Titre</button>
+                      </li>
+
+                  </ul>
+
+                  <div class="arrowUp" style="display:none"> <i class="fa-solid fa-angle-up"></i> </div>
+
+              </div>
+
           </div>
-  
-        </div>
+
+        <!--
+
+          <div class="formFilterContainer">
+
+            <div class="form formFilter">
+              
+            
+            </div>
+    
+          </div>
+        -->
      
         <div class="articleContainerParent"  style="display: block;">
           <div class="articleContainer" style="display: flex; justify-content: space-between; flex-wrap: wrap; width: 90%; margin: auto;  " ></div>
