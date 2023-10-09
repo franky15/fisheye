@@ -610,6 +610,8 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
                         filterTitre2.style.display = "none"
                         listeUlContainer.style.display = "none"
 
+
+
                         // Récupération de la valeur sélectionnée
                         let selectValue = btnPopularite2.value;
 
@@ -648,6 +650,9 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
 
                         filterTitre2.style.display = "none"
                         listeUlContainer.style.display = "none"
+
+
+                     
 
                         // Récupération de la valeur sélectionnée
                         let selectValue = btnDate.value;
@@ -688,6 +693,8 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
                         filterTitre2.style.display = "none"
                         listeUlContainer.style.display = "none"
 
+
+                      
                          // Récupération de la valeur sélectionnée
                         let selectValue = btnTitre.value;
 
@@ -781,7 +788,7 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
                 console.log(selectValueLocalStorage)
             
 
-                if(  selectValueLocalStorage === "Popularite" || !selectValueLocalStorage ) {   //selectValueLocalStorage === "Popularite" && lisNumberLikeOrderCroissant
+                if(  selectValueLocalStorage === "Popularite" || !selectValueLocalStorage ) {   //selectValueLocalStorage 
 
 
                     console.log("***** bienvenue dans le if  selectValueLocalStorage && listeTitreOrderCroissant")
@@ -791,9 +798,9 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
                     ///////////////
                     // Suppression de certains tableaux du localStorage
                     localStorage.removeItem('listeTitreOrderCroissant');
-                    localStorage.removeItem('listeDateOrderCroissantDate');
-
-
+                    localStorage.removeItem('listeDateOrderCroissant'); 
+                   // localStorage.removeItem('listeTitreOrderCroissant');
+                    
                     //masquage des autres block des médias 
                     articleContainerParent.style.display = "none"
                     titreParent.style.display = "none"
@@ -803,11 +810,25 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
                     
                     populariteParent.style.display = "block"
 
+                    
                     ///////////////
                 
+                    ////////////////////
 
-                    //rangement par nombre de likes croissants
+                    const articlePopularite = document.querySelector(".articlePopularite")
+
+                    if(articlePopularite) {
+
+                        console.log("articlePopularite existe déjà ne rien faire")
+                    } else {
+
+
+                         //rangement par nombre de likes croissants
                     for(let i = 0; i < lisNumberLikeOrderCroissant.length; i++){
+
+                       
+                        
+                       
 
                         let lisNumberLikeOrderCroissant1 = lisNumberLikeOrderCroissant[i]
 
@@ -818,16 +839,27 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
                         //gestion de la miniature
                         if(lisNumberLikeOrderCroissant1.video){
 
+                             
+                            ///////////////////////////////////////////////////////
+
+
+
+                            ///////////////////////////////////////////////////////
+
+
+
                             articleItem = `
 
-                                <div class="articlePortfolioitem" > 
+                                <div class="articlePortfolioitem articlePopularite"  > 
                                 
                                     <div class="articlePortfolio__item">
                             
-                                        <button class="articlePortfolio__item--img imgVideo${lisNumberLikeOrderCroissant1.id}"
+                                        <button class="articlePortfolio__item--img imgVideo${lisNumberLikeOrderCroissant1.id}" > 
                                         
-                                            style=" background-image: url('./assets/miniatures/iaTest.jpg');
-                                            background-repeat: no-repeat; background-position: center center; background-size: cover; "> 
+                                         
+
+                                            <video class="videoMiniature" src="./assets/photographersMedia/${lisNumberLikeOrderCroissant1.video}" > 
+                                            
                                         
                                         </button>
                                         
@@ -856,11 +888,17 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
                                 `
                                 popularite.innerHTML += articleItem;
 
+                            
+
                         }else{
+
+
+                            
+                           
 
                             articleItem = `
 
-                            <div class="articlePortfolioitem" > 
+                            <div class="articlePortfolioitem articlePopularite" > 
                             
                                 <div class="articlePortfolio__item">
                         
@@ -868,6 +906,8 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
                                     
                                         style=" background-image: url('./assets/photographersMedia/${lisNumberLikeOrderCroissant1.image}');
                                         background-repeat: no-repeat; background-position: center center; background-size: cover; "> 
+
+                                        
                                     
                                     </button>
                                     
@@ -902,8 +942,8 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
 
                         
                     
-                    //éxécution de la fonction d'affichage de la liste des médias initiale
-                    //listeArticleNormalFunction()
+                        //éxécution de la fonction d'affichage de la liste des médias initiale
+                        //listeArticleNormalFunction()
 
                        // popularite.innerHTML += articleItem;
 
@@ -913,6 +953,14 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
                     
 
                     }
+
+
+                    }
+
+                    
+                
+
+                   
 
                     //////////////////////////////////////////////////
 
@@ -932,9 +980,10 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
                     // Suppression de certains tableaux du localStorage
                     localStorage.removeItem('lisNumberLikeOrderCroissant');
                     localStorage.removeItem('listeTitreOrderCroissant');
+                    localStorage.removeItem('listeArticlesCroissanteLikes'); //listeArticlesOrderCroissant 
                    
 
-
+                    
                     //masquage des autres block des médias 
                     articleContainerParent.style.display = "none"
                     titreParent.style.display = "none"
@@ -944,103 +993,126 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
                     
                     dateParent.style.display = "block"
 
+                    
+
                     ///////////////
                 
+                    const articleDate = document.querySelector(".articleDate")
 
-                    for(let i = 0; i < listeDateOrderCroissantDate.length; i++){
+                    if(articleDate) {
 
-                        let listeDateOrderCroissantDate1 = listeDateOrderCroissantDate[i]
+                        console.log("articleDate existe déjà ne rien faire")
+                    } else {
 
-                        //console.log("listeDateOrderCroissantDate")
-                       // console.log(listeDateOrderCroissantDate1)
 
-                        //gestion de la miniature
-                        if(listeDateOrderCroissantDate1.video){
+                        for(let i = 0; i < listeDateOrderCroissantDate.length; i++){
 
-                            articleItem = `
-
-                            <div class="articlePortfolioitem" "> 
-                            
-                                <div class="articlePortfolio__item">
-                        
-                                    <button class="articlePortfolio__item--img imgVideo${listeDateOrderCroissantDate1.id}"
-                                    
-                                        style=" background-image: url('./assets/miniatures/iaTest.jpg');
-                                        background-repeat: no-repeat; background-position: center center; background-size: cover; "> 
-                                    
-                                    </button>
-                                    
-                                    <div class="articlePortfolio__item--description description">
-                                        <p class="description__titre" > ${listeDateOrderCroissantDate1.title}  </p>
-                            
-                                        <div class="description__numLike"> 
+                            let listeDateOrderCroissantDate1 = listeDateOrderCroissantDate[i]
     
-                                                <!-- replace(/\s+/g, '') expression régulière permettant de supprimer les espaces dans toute la chaine -->
-                                        <div class= "numberLikes ${listeDateOrderCroissantDate1.title.replace(/\s+/g, '')}  ${listeDateOrderCroissantDate1.id}"  id= ${listeDateOrderCroissantDate1.title.replace(/\s+/g, '')}  data-idMediaCurrent =${listeDateOrderCroissantDate1.id} > ${listeDateOrderCroissantDate1.likes}  </div> 
-                                                
-                                        <button class="heartLikeMedia" data-idMediaCurrent =${listeDateOrderCroissantDate1.id} id= "${listeDateOrderCroissantDate1.title.replace(/\s+/g, '')}"> <i class="fa-solid fa-heart" ></i> </button>
+                            //console.log("listeDateOrderCroissantDate")
+                           // console.log(listeDateOrderCroissantDate1)
     
+                            //gestion de la miniature
+                            if(listeDateOrderCroissantDate1.video){
+    
+                                
+    
+                                articleItem = `
+    
+                                <div class="articlePortfolioitem articleDate"  > 
+                                
+                                    <div class="articlePortfolio__item">
+                            
+                                        <button class="articlePortfolio__item--img imgVideo${listeDateOrderCroissantDate1.id}"  >
                                         
                                         
+                                        
+                                            <video class="videoMiniature" src="./assets/photographersMedia/${listeDateOrderCroissantDate1.video}" > </video>
+                                            
+    
+                                        </button>
+                                        
+                                        <div class="articlePortfolio__item--description description">
+                                            <p class="description__titre" > ${listeDateOrderCroissantDate1.title}  </p>
+                                
+                                            <div class="description__numLike"> 
+        
+                                                    <!-- replace(/\s+/g, '') expression régulière permettant de supprimer les espaces dans toute la chaine -->
+                                            <div class= "numberLikes ${listeDateOrderCroissantDate1.title.replace(/\s+/g, '')}  ${listeDateOrderCroissantDate1.id}"  id= ${listeDateOrderCroissantDate1.title.replace(/\s+/g, '')}  data-idMediaCurrent =${listeDateOrderCroissantDate1.id} > ${listeDateOrderCroissantDate1.likes}  </div> 
+                                                    
+                                            <button class="heartLikeMedia" data-idMediaCurrent =${listeDateOrderCroissantDate1.id} id= "${listeDateOrderCroissantDate1.title.replace(/\s+/g, '')}"> <i class="fa-solid fa-heart" ></i> </button>
+        
+                                            
+                                            
+                                            </div>
+                                            
                                         </div>
-                                        
+        
                                     </div>
-    
-                                </div>
-                        
-                            </div> 
-                        
-                            `
-    
-                            date.innerHTML += articleItem;
-
-                        }else{
-
-                            articleItem = `
-
-                            <div class="articlePortfolioitem"> 
                             
-                                <div class="articlePortfolio__item">
-                        
-                                    <button class="articlePortfolio__item--img imgVideo${listeDateOrderCroissantDate1.id}"
-                                    
-                                        style=" background-image: url('./assets/photographersMedia/${listeDateOrderCroissantDate1.image}');
-                                        background-repeat: no-repeat; background-position: center center; background-size: cover; "> 
-                                    
-                                    </button>
-                                    
-    
-                                    <div class="articlePortfolio__item--description description">
-                                        <p class="description__titre" > ${listeDateOrderCroissantDate1.title}  </p>
+                                </div> 
                             
-                                        <div class="description__numLike"> 
+                                `
+        
+                                date.innerHTML += articleItem;
     
-                                                <!-- replace(/\s+/g, '') expression régulière permettant de supprimer les espaces dans toute la chaine -->
-                                        <div class= "numberLikes ${listeDateOrderCroissantDate1.title.replace(/\s+/g, '')}  ${listeDateOrderCroissantDate1.id}"  id= ${listeDateOrderCroissantDate1.title.replace(/\s+/g, '')}  data-idMediaCurrent =${listeDateOrderCroissantDate1.id} > ${listeDateOrderCroissantDate1.likes}  </div> 
-                                                
-                                        <button class="heartLikeMedia" data-idMediaCurrent =${listeDateOrderCroissantDate1.id} id= "${listeDateOrderCroissantDate1.title.replace(/\s+/g, '')}" >  <i class="fa-solid fa-heart" ></i> </button>
+                            }else{
     
+    
+    
+    
+                                articleItem = `
+    
+                                <div class="articlePortfolioitem articleDate" > 
+                                
+                                    <div class="articlePortfolio__item">
+                            
+                                        <button class="articlePortfolio__item--img imgVideo${listeDateOrderCroissantDate1.id}"
                                         
+                                            style=" background-image: url('./assets/photographersMedia/${listeDateOrderCroissantDate1.image}');
+                                            background-repeat: no-repeat; background-position: center center; background-size: cover; "> 
+    
+                                            
                                         
+                                        </button>
+                                        
+        
+                                        <div class="articlePortfolio__item--description description">
+                                            <p class="description__titre" > ${listeDateOrderCroissantDate1.title}  </p>
+                                
+                                            <div class="description__numLike"> 
+        
+                                                    <!-- replace(/\s+/g, '') expression régulière permettant de supprimer les espaces dans toute la chaine -->
+                                            <div class= "numberLikes ${listeDateOrderCroissantDate1.title.replace(/\s+/g, '')}  ${listeDateOrderCroissantDate1.id}"  id= ${listeDateOrderCroissantDate1.title.replace(/\s+/g, '')}  data-idMediaCurrent =${listeDateOrderCroissantDate1.id} > ${listeDateOrderCroissantDate1.likes}  </div> 
+                                                    
+                                            <button class="heartLikeMedia" data-idMediaCurrent =${listeDateOrderCroissantDate1.id} id= "${listeDateOrderCroissantDate1.title.replace(/\s+/g, '')}" >  <i class="fa-solid fa-heart" ></i> </button>
+        
+                                            
+                                            
+                                            </div>
+                                            
                                         </div>
-                                        
+        
                                     </div>
-    
-                                </div>
-                        
-                            </div> 
-                        
-                            `
-                        
-    
-                            date.innerHTML += articleItem;
-
-
                             
+                                </div> 
+                            
+                                `
+                            
+        
+                                date.innerHTML += articleItem;
+    
+    
+                                
+                            }
+                           
+                     
                         }
-                       
-                 
-                    }
+
+
+                     }
+
+                    
 
                    
 
@@ -1052,13 +1124,15 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
 
                     console.log("**** listeTitreOrderCroissant")
                     console.log(listeTitreOrderCroissant)
-
+                    
                     // Suppression de certains tableaux du localStorage
-                    localStorage.removeItem('listeDateOrderCroissantDate');
+                    localStorage.removeItem('listeDateOrderCroissant'); 
                     localStorage.removeItem('lisNumberLikeOrderCroissant');
-                  
+                    localStorage.removeItem('listeArticlesCroissanteLikes'); 
+                   
                   
                     ///////////////
+                    
                     //masquage des autres block des médias 
                     articleContainerParent.style.display = "none"
                     populariteParent.style.display = "none"
@@ -1067,111 +1141,129 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
                     //démasquage du block des medias popularite
                     
                     titreParent.style.display = "block"
-
+                    
                     ///////////////
-                
+                    
+                    const articleTitre = document.querySelector(".articleTitre")
 
-                    for(let i = 0; i < listeTitreOrderCroissant.length; i++){
+                    if(articleTitre) {
 
-                        let listeTitreOrderCroissant1 = listeTitreOrderCroissant[i]
+                        console.log("articleTitre existe déjà ne rien faire")
+                    } else {
 
-                        console.log("listeTitreOrderCroissant1")
-                        console.log(listeTitreOrderCroissant1)
 
-                        //gestion de la miniature
-                        if(listeTitreOrderCroissant1.video){
+                        for(let i = 0; i < listeTitreOrderCroissant.length; i++){
 
-                            articleItem = `
-
-                            <div class="articlePortfolioitem""> 
+                            let listeTitreOrderCroissant1 = listeTitreOrderCroissant[i]
+    
+                            console.log("listeTitreOrderCroissant1")
+                            console.log(listeTitreOrderCroissant1)
+    
+                            //gestion de la miniature
+                            if(listeTitreOrderCroissant1.video){
+    
+                               
+    
+    
+                                articleItem = `
+    
+                                <div class="articlePortfolioitem articleTitre" > 
+                                
+                                    <div class="articlePortfolio__item">
                             
-                                <div class="articlePortfolio__item">
-                        
-                                    <button class="articlePortfolio__item--img imgVideo${listeTitreOrderCroissant1.id}"
+                                        <button class="articlePortfolio__item--img imgVideo${listeTitreOrderCroissant1.id}" >
+                                        
+                                        
+                                            <video class="videoMiniature" src="./assets/photographersMedia/${listeTitreOrderCroissant1.video}" >  </video>
+                                       
+    
+                                        </button>
                                     
-                                        style=" background-image: url('./assets/miniatures/iaTest.jpg');
-                                        background-repeat: no-repeat; background-position: center center; background-size: cover; "> 
-                                    
-                                    </button>
+        
+                                        <div class="articlePortfolio__item--description description">
+                                            <p class="description__titre" > ${listeTitreOrderCroissant1.title}  </p>
+                                
+                                            <div class="description__numLike"> 
+        
+        
+        
+                                                    
+                                                <div class= "numberLikes ${listeTitreOrderCroissant1.title.replace(/\s+/g, '')}  ${listeTitreOrderCroissant1.id} "  id= ${listeTitreOrderCroissant1.title.replace(/\s+/g, '')} data-idMediaCurrent =${listeTitreOrderCroissant1.id} > ${listeTitreOrderCroissant1.likes}  </div> 
+                                                    
+                                                <button class="heartLikeMedia"data-idMediaCurrent =${listeTitreOrderCroissant1.id} id= "${listeTitreOrderCroissant1.title.replace(/\s+/g, '')}" > <i class="fa-solid fa-heart" ></i> </button>
+        
+                                                
+                                                
+                                            </div>
+                                            
+                                        </div>
+        
+                                    </div>
+                            
+                                </div> 
+                            
+                                `
+                            
+                                //éxécution de la fonction d'affichage de la liste des médias initiale
+                                //listeArticleNormalFunction()
+        
+                                titre.innerHTML += articleItem;
+    
+    
+                            }else{
+    
                                 
     
-                                    <div class="articlePortfolio__item--description description">
-                                        <p class="description__titre" > ${listeTitreOrderCroissant1.title}  </p>
+                                articleItem = `
+    
+                                <div class="articlePortfolioitem articleTitre" > 
+                                
+                                    <div class="articlePortfolio__item">
                             
-                                        <div class="description__numLike"> 
-    
-    
-    
+                                        <button class="articlePortfolio__item--img imgVideo${listeTitreOrderCroissant1.id}"
+                                        
+                                            style=" background-image: url('./assets/photographersMedia/${listeTitreOrderCroissant1.image}');
+                                            background-repeat: no-repeat; background-position: center center; background-size: cover; "> 
+                                        
+                                        </button>
+                                        
+                                       
+                                        <div class="articlePortfolio__item--description description">
+                                            <p class="description__titre" > ${listeTitreOrderCroissant1.title}  </p>
+                                
+                                            <div class="description__numLike"> 
+        
+        
+        
+                                                    
+                                                <div class= "numberLikes ${listeTitreOrderCroissant1.title.replace(/\s+/g, '')}  ${listeTitreOrderCroissant1.id} "  id= ${listeTitreOrderCroissant1.title.replace(/\s+/g, '')} data-idMediaCurrent =${listeTitreOrderCroissant1.id} > ${listeTitreOrderCroissant1.likes}  </div> 
+                                                    
+                                               <button class="heartLikeMedia" data-idMediaCurrent =${listeTitreOrderCroissant1.id} id= "${listeTitreOrderCroissant1.title.replace(/\s+/g, '')}" > <i class="fa-solid fa-heart"></i> </button>
+        
                                                 
-                                            <div class= "numberLikes ${listeTitreOrderCroissant1.title.replace(/\s+/g, '')}  ${listeTitreOrderCroissant1.id} "  id= ${listeTitreOrderCroissant1.title.replace(/\s+/g, '')} data-idMediaCurrent =${listeTitreOrderCroissant1.id} > ${listeTitreOrderCroissant1.likes}  </div> 
                                                 
-                                            <button class="heartLikeMedia"data-idMediaCurrent =${listeTitreOrderCroissant1.id} id= "${listeTitreOrderCroissant1.title.replace(/\s+/g, '')}" > <i class="fa-solid fa-heart" ></i> </button>
-    
-                                            
+                                            </div>
                                             
                                         </div>
-                                        
+        
                                     </div>
-    
-                                </div>
-                        
-                            </div> 
-                        
-                            `
-                        
-                            //éxécution de la fonction d'affichage de la liste des médias initiale
-                            //listeArticleNormalFunction()
-    
-                            titre.innerHTML += articleItem;
-
-
-                        }else{
-
-                            articleItem = `
-
-                            <div class="articlePortfolioitem" > 
                             
-                                <div class="articlePortfolio__item">
-                        
-                                    <button class="articlePortfolio__item--img imgVideo${listeTitreOrderCroissant1.id}"
-                                    
-                                        style=" background-image: url('./assets/photographersMedia/${listeTitreOrderCroissant1.image}');
-                                        background-repeat: no-repeat; background-position: center center; background-size: cover; "> 
-                                    
-                                    </button>
-                                    
-                                   
-                                    <div class="articlePortfolio__item--description description">
-                                        <p class="description__titre" > ${listeTitreOrderCroissant1.title}  </p>
+                                </div> 
                             
-                                        <div class="description__numLike"> 
+                                `
+                            
+        
+                                titre.innerHTML += articleItem;
     
+                            }
     
-    
-                                                
-                                            <div class= "numberLikes ${listeTitreOrderCroissant1.title.replace(/\s+/g, '')}  ${listeTitreOrderCroissant1.id} "  id= ${listeTitreOrderCroissant1.title.replace(/\s+/g, '')} data-idMediaCurrent =${listeTitreOrderCroissant1.id} > ${listeTitreOrderCroissant1.likes}  </div> 
-                                                
-                                           <button class="heartLikeMedia" data-idMediaCurrent =${listeTitreOrderCroissant1.id} id= "${listeTitreOrderCroissant1.title.replace(/\s+/g, '')}" > <i class="fa-solid fa-heart"></i> </button>
-    
-                                            
-                                            
-                                        </div>
-                                        
-                                    </div>
-    
-                                </div>
-                        
-                            </div> 
-                        
-                            `
-                        
-    
-                            titre.innerHTML += articleItem;
-
+                          
                         }
 
-                      
+
                     }
+
+                    
 
                    
                 }  
