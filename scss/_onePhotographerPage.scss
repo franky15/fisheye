@@ -596,10 +596,13 @@ main{
 
  //style de la lightbox
 
+ 
+
  .containerLightbox{
 
-    
-
+    height: 700px;
+  // border: solid red;
+   
     .lightbox{
 
         width: 60%;
@@ -607,13 +610,15 @@ main{
         margin: auto;
         display: flex;
         justify-content: space-between;
+        /*
         position: absolute;
         left: 50%;
         transform: translate(-50%, -50%);
         z-index: 2;
+        */
         background-color: white;
        // box-shadow: -5px 3px 32px -5px #000000;
-        //border: solid red;
+       // border: solid red;
 
         .containerMediaImg{
     
@@ -621,7 +626,7 @@ main{
             border-radius: 5px;
             //height: 100%;
 
-            //border: solid black;
+           // border: solid black;
 
             .image{
 
@@ -630,6 +635,15 @@ main{
                 height: 550px;
                 border-radius: 5px;
                // border: solid blue;
+
+               .child {
+                width: 100%; 
+                height: 100%; 
+                object-fit: cover; 
+                border-radius: 5px;
+
+                //background-color: red;
+            }
             }
 
             .titreLightbox{

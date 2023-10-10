@@ -1882,17 +1882,18 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
                 </div>
 
                 <div class="arrowrigthLeft arrowleft">
-                    <button class="prev-button" >
+                    <button class="prev-button"  >
                         <i class="fa-solid fa-angle-left prev-button"></i>
                     </button  >
                 </div>
             
             </div>
 
-            <div class="containerMediaImg imageContainer" style="display: block;">
+            <div class="containerMediaImg imageContainer" style="display: block;" >
 
-                <div class="image" style="background-image: url('./assets/photographersMedia/${imageMedia[0]}');
-                    background-repeat: no-repeat; background-position: center center; background-size: cover;">
+                <div class="image" >
+
+					 <img class="child" src="./assets/photographersMedia/${imageMedia[0]}" alt="${titreMedia[currentIndex]}" /> 
                 </div>
                 <div class="titreLightbox">${titreMedia[currentIndex]}</div>
 
@@ -1935,15 +1936,15 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
 
 	//récupération des élements
 	const imageContainer = document.querySelector(".imageContainer");
-	const imagelightbox = document.querySelector(".image");
+	//const imagelightbox = document.querySelector(".image");
 	const videoContainer = document.querySelector(".videoContainer");
 	const videolightbox = document.querySelector(".video");
 	const titreLightbox= document.querySelector(".titreLightbox");
 	const prevButton = document.querySelector(".prev-button");
 	const nextButton = document.querySelector(".next-button");
+	const child = document.querySelector(".child");
+
 	
-
-
 	//gestion de l'index de l'image
 	const showImage = (index) => {
 
@@ -1953,8 +1954,8 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
             
 			videoContainer.style.display = "none";
 			imageContainer.style.display = "block";
-			imagelightbox.style.backgroundImage = `url(./assets/photographersMedia/${imageMedia[index]})`;
-           
+			//imagelightbox.style.backgroundImage = `url(./assets/photographersMedia/${imageMedia[index]})`;
+			child.src = `./assets/photographersMedia/${imageMedia[index]}`;
           
 			titreLightbox.innerText = titreMedia[index];
 
@@ -1989,13 +1990,16 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
 
 	showImage(currentIndex);
 
-
+	
 	//récupération de toutes les images
 	let photographerImg = document.getElementsByClassName("articlePortfolio__item--img");
 	//récupération du bouton de fermeture de la galerie
 	const lockGalerie = document.querySelector(".lockLightboxBtn");
 
 	// console.log(photographerImg)
+
+	const sectionProfile = document.querySelector(".sectionProfile");
+	
 
 	//gestion de l'ouverture de la galerie
 	for( let i =0; i<photographerImg.length;i++){
@@ -2007,13 +2011,15 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
 
 			console.log("*** bienvenue au  imageencours.addEventListener");
 
-			//gestion du focus et du retrait du focus 
-			lockGalerie.focus();
+			
+		
 			containerLightbox.style.display = "block";
+			sectionMain.style.display = "none";
+			sectionProfile.style.display = "none";
 
 			//gestion de l'opacité du reste de la page pour grise la page en arrière plant du formulaire
-			photographHeader.style.opacity = 0;
-			sectionMain.style.opacity = 0;
+			//photographHeader.style.opacity = 0;
+			//sectionMain.style.opacity = 0;
 
 		});
 	}
@@ -2026,8 +2032,12 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
 
 		console.log("*** bienvenue au lockLightbox.addEventListener");
 		containerLightbox.style.display = "none";
-		photographHeader.style.opacity = 1;
-		sectionMain.style.opacity = 1;
+		sectionMain.style.display = "block";
+		sectionProfile.style.display = "block";
+
+
+		//photographHeader.style.opacity = 1;
+		//sectionMain.style.opacity = 1;
 	});
 
 }

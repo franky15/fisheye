@@ -408,16 +408,21 @@ main {
   cursor: pointer;
 }
 
+.containerLightbox {
+  height: 700px;
+}
 .containerLightbox .lightbox {
   width: 60%;
   height: 600px;
   margin: auto;
   display: flex;
   justify-content: space-between;
+  /*
   position: absolute;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 2;
+  */
   background-color: white;
 }
 .containerLightbox .lightbox .containerMediaImg {
@@ -427,6 +432,12 @@ main {
 .containerLightbox .lightbox .containerMediaImg .image {
   width: 100%;
   height: 550px;
+  border-radius: 5px;
+}
+.containerLightbox .lightbox .containerMediaImg .image .child {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
   border-radius: 5px;
 }
 .containerLightbox .lightbox .containerMediaImg .titreLightbox {
