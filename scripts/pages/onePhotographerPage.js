@@ -1,13 +1,11 @@
 
-
-
 //gestion de onePhotographerTemplate.js
 let nomForm;
 async function onePhotographerData(){
 
 	let photographers;
 	let photographerMedia;
-	let dataliste = [];
+	//let dataliste = [];
 
 	try {
 
@@ -21,7 +19,7 @@ async function onePhotographerData(){
 
 		photographers = dataVal.photographers;
 
-		dataliste = [photographers, photographerMedia];
+		//dataliste = [photographers, photographerMedia];
       
 		//console.log( dataliste);
 		//console.log( photographers);
@@ -78,7 +76,7 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
 	console.log("***** photographCurrent");
 	console.log(photographCurrent);
 
-	const { id, name, portrait, city, country, tagline, price } = photographCurrent;
+	const {  name, portrait, city, country, tagline, price } = photographCurrent;
 
 	console.log(  "city : "+ city  +  "  * country : " + country  +  " * tagline : "+ tagline  + "  * price : "+ price  );
 
@@ -155,7 +153,7 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
 	descriptionTitle.appendChild(countryBlock );
 
 	//creation de l'élément img du photographe///////////////
-	const picture = `./assets/photographers/${portrait}`;
+	//const picture = `./assets/photographers/${portrait}`;
 
 	const imgBlock = document.createElement("p");
      
@@ -202,7 +200,7 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
 
 	// récupération de tous les containers des différents affichage des médias
 	const articleContainerParent = document.querySelector(".articleContainerParent");
-	const articleElement  = document.querySelector(".articleContainer");
+	//const articleElement  = document.querySelector(".articleContainer");
 
 	const populariteParent =  document.querySelector(".populariteParent");
 	const popularite  = document.querySelector(".populariteParent__article");
@@ -226,7 +224,7 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
     
 	//creation des medias
 
-	let ShowNormalOrderPopularite; 
+	//let ShowNormalOrderPopularite; 
 
     
 	///////////////////////////////////////:
@@ -318,7 +316,7 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
 						console.log(listeMediaFilterCurrent );
 
 						//mise à jour de la nouvelle liste  
-						//listeMediaUpdate.push(listeMediaFilterCurrent) //attention on a une liste dans une
+						listeMediaUpdate.push(listeMediaFilterCurrent); //attention on a une liste dans une
 						listeMediaUpdate = listeMediaFilterCurrent;
 
 						console.log("**** listeMediaUpdate");
@@ -361,7 +359,7 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
 						console.log("*** listeMediaUpdate");
 						console.log(listeMediaUpdate);
 
-						//listeDateOrderCroissantDate = listeMediaUpdate
+						listeDateOrderCroissantDate = listeMediaUpdate;
 
 						//conversion des dates en entiers
                             
@@ -472,7 +470,7 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
 					/******* gestion de la liste des dates et de son ordement croissant  *******/
                             
                            
-					//lisNumberLikeOrderCroissant  = ProjetPhotographCurrent
+					lisNumberLikeOrderCroissant  = ProjetPhotographCurrent;
 					let listeDateOrderCroissant = ProjetPhotographCurrent;
 
 					//listeDateOrderCroissantDate = listeMediaUpdate
@@ -557,14 +555,14 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
 		//récupération des élément
 		const filterTitre1 = document.querySelector(".titreFilter1");
 		const filterTitre2 = document.querySelector(".titreFilter2");
-		const arrowUp = document.querySelector(".arrowUp");
+		//const arrowUp = document.querySelector(".arrowUp");
 		const listeUlContainer = document.querySelector(".listeUlContainer");
 		const btnPopularite1 = document.querySelector(".btnPopularite1");
 		const btnPopularite2 = document.querySelector(".btnPopularite2");
 		const spanPopularite1 = document.querySelector(".spanPopularite1");
 		const btnDate = document.querySelector(".btnDate");
 		const btnTitre = document.querySelector(".btnTitre");
-		const deuxiemeFormulaire = document.querySelector("#deuxiemeFormulaire");
+		//const deuxiemeFormulaire = document.querySelector("#deuxiemeFormulaire");
 
 
 		//gestion du masquage du premier bouton popularité et apparution de la liste déroulante
@@ -613,7 +611,7 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
 
 
 				// Récupération de la valeur sélectionnée
-				let selectValue = btnPopularite2.value;
+				selectValue = btnPopularite2.value;
 
 				console.log("**** selectValue");
 				console.log(selectValue);
@@ -655,7 +653,8 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
                      
 
 				// Récupération de la valeur sélectionnée
-				let selectValue = btnDate.value;
+				
+				selectValue = btnDate.value;
 
 				console.log("**** selectValue");
 				console.log(selectValue);
@@ -696,7 +695,7 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
 
                       
 				// Récupération de la valeur sélectionnée
-				let selectValue = btnTitre.value;
+				selectValue = btnTitre.value;
 
 				console.log("**** selectValue");
 				console.log(selectValue);
@@ -870,7 +869,7 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
                                 
                                             <div class="description__numLike"> 
 
-                                                    <!-- replace(/\s+/g, '') expression régulière permettant de supprimer les espaces dans toute la chaine -->
+                                                   
                                             <div class= "numberLikes ${lisNumberLikeOrderCroissant1.title.replace(/\s+/g, "")}  ${lisNumberLikeOrderCroissant1.id}"  id= ${lisNumberLikeOrderCroissant1.title.replace(/\s+/g, "")}  data-idMediaCurrent =${lisNumberLikeOrderCroissant1.id} > ${lisNumberLikeOrderCroissant1.likes}  </div> 
                                                     
                                             <button class="heartLikeMedia" data-idMediaCurrent =${lisNumberLikeOrderCroissant1.id} id= "${lisNumberLikeOrderCroissant1.title.replace(/\s+/g, "")}">  <i class="fa-solid fa-heart" ></i> </button>
@@ -902,11 +901,11 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
                             
                                 <div class="articlePortfolio__item">
                         
-                                    <button class="articlePortfolio__item--img imgVideo${lisNumberLikeOrderCroissant1.id}"
+                                    <button class="articlePortfolio__item--img imgVideo${lisNumberLikeOrderCroissant1.id}">
                                     
-                                        style=" background-image: url('./assets/photographersMedia/${lisNumberLikeOrderCroissant1.image}');
-                                        background-repeat: no-repeat; background-position: center center; background-size: cover; "> 
+                                       
 
+										<img class="child" src="./assets/photographersMedia/${lisNumberLikeOrderCroissant1.image}" alt= ${lisNumberLikeOrderCroissant1.title} />
                                         
                                     
                                     </button>
@@ -917,7 +916,7 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
                             
                                         <div class="description__numLike"> 
 
-                                                <!-- replace(/\s+/g, '') expression régulière permettant de supprimer les espaces dans toute la chaine -->
+                                               
                                         <div class= "numberLikes ${lisNumberLikeOrderCroissant1.title.replace(/\s+/g, "")}  ${lisNumberLikeOrderCroissant1.id}"  id= ${lisNumberLikeOrderCroissant1.title.replace(/\s+/g, "")}  data-idMediaCurrent =${lisNumberLikeOrderCroissant1.id} > ${lisNumberLikeOrderCroissant1.likes}  </div> 
                                                 
                                         <button class="heartLikeMedia" data-idMediaCurrent =${lisNumberLikeOrderCroissant1.id} id= "${lisNumberLikeOrderCroissant1.title.replace(/\s+/g, "")}">  <i class="fa-solid fa-heart" ></i> </button>
@@ -1002,6 +1001,7 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
 				if(articleDate) {
 
 					console.log("articleDate existe déjà ne rien faire");
+
 				} else {
 
 
@@ -1037,7 +1037,7 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
                                 
                                             <div class="description__numLike"> 
         
-                                                    <!-- replace(/\s+/g, '') expression régulière permettant de supprimer les espaces dans toute la chaine -->
+                                                   
                                             <div class= "numberLikes ${listeDateOrderCroissantDate1.title.replace(/\s+/g, "")}  ${listeDateOrderCroissantDate1.id}"  id= ${listeDateOrderCroissantDate1.title.replace(/\s+/g, "")}  data-idMediaCurrent =${listeDateOrderCroissantDate1.id} > ${listeDateOrderCroissantDate1.likes}  </div> 
                                                     
                                             <button class="heartLikeMedia" data-idMediaCurrent =${listeDateOrderCroissantDate1.id} id= "${listeDateOrderCroissantDate1.title.replace(/\s+/g, "")}"> <i class="fa-solid fa-heart" ></i> </button>
@@ -1067,12 +1067,10 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
                                 
                                     <div class="articlePortfolio__item">
                             
-                                        <button class="articlePortfolio__item--img imgVideo${listeDateOrderCroissantDate1.id}"
-                                        
-                                            style=" background-image: url('./assets/photographersMedia/${listeDateOrderCroissantDate1.image}');
-                                            background-repeat: no-repeat; background-position: center center; background-size: cover; "> 
+                                        <button class="articlePortfolio__item--img imgVideo${listeDateOrderCroissantDate1.id}" >
+                             
     
-                                            
+                                            <img class="child" src="./assets/photographersMedia/${listeDateOrderCroissantDate1.image}" alt= ${listeDateOrderCroissantDate1.title} />
                                         
                                         </button>
                                         
@@ -1082,7 +1080,7 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
                                 
                                             <div class="description__numLike"> 
         
-                                                    <!-- replace(/\s+/g, '') expression régulière permettant de supprimer les espaces dans toute la chaine -->
+                                                   
                                             <div class= "numberLikes ${listeDateOrderCroissantDate1.title.replace(/\s+/g, "")}  ${listeDateOrderCroissantDate1.id}"  id= ${listeDateOrderCroissantDate1.title.replace(/\s+/g, "")}  data-idMediaCurrent =${listeDateOrderCroissantDate1.id} > ${listeDateOrderCroissantDate1.likes}  </div> 
                                                     
                                             <button class="heartLikeMedia" data-idMediaCurrent =${listeDateOrderCroissantDate1.id} id= "${listeDateOrderCroissantDate1.title.replace(/\s+/g, "")}" >  <i class="fa-solid fa-heart" ></i> </button>
@@ -1220,11 +1218,10 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
                                 
                                     <div class="articlePortfolio__item">
                             
-                                        <button class="articlePortfolio__item--img imgVideo${listeTitreOrderCroissant1.id}"
+                                        <button class="articlePortfolio__item--img imgVideo${listeTitreOrderCroissant1.id}" > 
                                         
-                                            style=" background-image: url('./assets/photographersMedia/${listeTitreOrderCroissant1.image}');
-                                            background-repeat: no-repeat; background-position: center center; background-size: cover; "> 
-                                        
+											<img class="child" src="./assets/photographersMedia/${listeTitreOrderCroissant1.image}" alt= ${listeTitreOrderCroissant1.title} />
+
                                         </button>
                                         
                                        
@@ -1483,7 +1480,7 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
      
 
 	//mise à jour du nombre de likes après la mise à jour du localstorage
-	const updateNumberlikesFunction = (customDataValue, titleMedia, likeValueDom,numberLikeCurrent, numberLikes) =>{
+	const updateNumberlikesFunction = () =>{
 
 		console.log("bienvenue dans la fonction updateNumberlikesFunction");
 
@@ -1612,7 +1609,7 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
 	///////////////////////:
      
 	//const totalLikePriceFunction = (incrementation) => {
-	function totalLikePriceFunction(incrementation){
+	function totalLikePriceFunction(){
 
 		console.log("**** bienvenue dans la fonction  totalLikePriceFunction");
 		//gestion du total des likes
@@ -1651,7 +1648,7 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
 		let photographerCurrent = photographers.find( item => item.id === parseInt(idPhotographer) );
 
 		//récupération de la liste des likes du photographe encours
-		let listeLikes = ProjetPhotographCurrent.map( item => item.likes);
+		//let listeLikes = ProjetPhotographCurrent.map( item => item.likes);
 		// console.log("**** listeLikes ")
 		// console.log(listeLikes )
     
@@ -1701,21 +1698,15 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
 
 	///////////////////////////////////////////////
 
-    
-    
 	//récupération du photographe encour
-	let photographerCurrent = photographers.find( item => item.id === parseInt(idPhotographer) );
+	//let photographerCurrent = photographers.find( item => item.id === parseInt(idPhotographer) );
 
 	//récupération de la liste des likes du photographe encours
-	let listeLikes = ProjetPhotographCurrent.map( item => item.likes);
+	//let listeLikes = ProjetPhotographCurrent.map( item => item.likes);
 	// console.log("**** listeLikes ")
 	// console.log(listeLikes )
 
 	//addition des likes du photographe encours
-	const totalLikes = listeLikes.reduce( (acc, current)=> {
-
-		return acc + current;
-	}, 0);
 
 	// console.log("**** totalLikes")
 	// console.log(totalLikes)
@@ -1723,21 +1714,7 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
 	// console.log("**** photographerCurrent")
 	// console.log(photographerCurrent.price)
 
-	//récupération de l'élément
-	let priceLikeTotal = document.querySelector(".priceLikeTotal");
-
-	let priceLikeTotalBlock = `
-    
-        <p class="priceLikeTotal__like"> 
-        
-            ${totalLikes} 
-            <span class="priceLikeTotal__like--like"> <i class="fa-solid fa-heart iconheartLike"></i>  </span>
-                        
-        </p>
-        <p class="priceLikeTotal__like price">  ${photographerCurrent.price}€ / jour  </p>
-    
-    `;
-
+	
 	/****************************  gestion du formulaire contactez-moi******************************************** */
 
 
@@ -1797,17 +1774,6 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
 	//récupération du formulaire de contact
 	let formuContact = document.querySelector("#formulaireContact");
 
-	//récupération du premier input du formulaire
-	let input1Contact = document.querySelector(".input1");
-
-	// console.log("**** formuContact")
-	// console.log(formuContact)
-
-	//console.log("**** input1Contact")
-	//console.log(input1Contact)
-     
-	//input1Contact.focus()
-
 	//récupération de l'image croix 
 	let imageCroix = document.querySelector(".titreContact__image");
 
@@ -1843,7 +1809,6 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
 	let inputbtn = document.querySelector(".inputbtn");
 
 	//récupération du formulaire
-	const formContact = document.querySelector("#formulaireContact");
 
 	//récupération de tous les champs de formulaire
 	const prenom = document.querySelector("#prenom");
@@ -1853,22 +1818,11 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
 
 
 	// Ajout d'un événement pour le submit
-	inputbtn.addEventListener("click",(e) => {
+	inputbtn.addEventListener("click",() => {
        
 		//e.preventDefault();
 
 		console.log("bienvenue dans l'évennement de la soumission du formulaire");
-
-		/*
-        //création de l'objet FormData avec le formulaire
-        const formData = new FormData(formContact)
-
-        //récupération des valeurs des champs
-        const prenom = formData.get("prenom");
-        const nom = formData.get("nom");
-        const email = formData.get("email");
-        const message = formData.get("message");
-        */
 
 		// Afficheage des valeurs dans la console
 		console.log("Preom : " + prenom.value);
@@ -1906,7 +1860,6 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
     
 
 	//récupération de la taille du tableau des images de medias
-	const imageMediaLength = imageMedia.length;
 
 	console.log(imageMedia);
 	console.log(imageMedia[0]);
@@ -1988,7 +1941,7 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
 	const titreLightbox= document.querySelector(".titreLightbox");
 	const prevButton = document.querySelector(".prev-button");
 	const nextButton = document.querySelector(".next-button");
-	let containerMediaImg = document.querySelector(".containerMediaImg");
+	
 
 
 	//gestion de l'index de l'image
@@ -2097,3 +2050,9 @@ initonePhotographerDataTemplate();
 
 
 
+/*
+
+  style=" background-image: url('./assets/photographersMedia/${lisNumberLikeOrderCroissant1.image}');
+                                        background-repeat: no-repeat; background-position: center center; background-size: cover; " 
+
+*/

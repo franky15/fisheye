@@ -260,21 +260,7 @@ main{
    
 }
 
-.articleContainer{
 
-    
-    /*
-    width: 90%;
-    margin: auto;
-     display: flex;
-     justify-content: space-between;
-     flex-wrap: wrap;
-    margin-top: 20px;
-  
-    border: solid black;
-    */
-
-}
 
 .articlePortfolioitem{ 
 
@@ -301,39 +287,49 @@ main{
 
     &--img{
 
-       
+       width: 100%;
         height: 85%; //300px
         border-radius: 5px;
         cursor: pointer;
-       // border-radius: 5px 5px 0 0;
-
-        border: solid 1px rgb(233, 231, 231);
+        border: none;
+       // background-color: white;
+        padding: 0px;
+        //border: solid red;
 
         .videoMiniature{
 
             width: 100%;
-           // height: 400px;
-        }
-
-        /*
-        .photographerImg{
-
-            width: 100%;
             height: 100%;
-            border-radius: 5px 5px 0 0;
-            //background-size: cover;
+           // height: 400px;
+           //border: solid red;
         }
-        */
+
+        
+
+        .child {
+            border-radius: 5px;
+            width: 100%; 
+            height: 100%;
+            object-fit: cover;
+            
+            //border: solid blue;
+            border: solid 1px rgb(233, 231, 231);
+        
+        }
+
+
     }
 
     &--description{
 
         width: 100%;
         height: 11%; //51px
+        margin: auto;
         display: flex;
         justify-content: space-between;
         align-items: center;      
         color: $colorPrimairy;
+       
 
         
        // border: solid yellow;
@@ -377,6 +373,21 @@ main{
             
         }
 
+        .heartLikeMedia{
+
+            position: relative;
+            right: -5px;
+            width: 50%;
+            text-align: right;
+            
+
+            
+           // border: solid blue;
+        
+            
+            
+        }
+
         
     }
 
@@ -402,8 +413,10 @@ main{
 .heartLikeMedia{
 
     width: 50%;
-   text-align: right;
-   // border: solid blue;
+    text-align: right;
+    padding: 0px;
+
+    border: solid blue;
 
     
     
@@ -735,15 +748,6 @@ main{
 
    // border: solid yellow;
 
-    .sort-text__item{
-
-       // height: auto;
-       // border: solid black;
-
-        
-        
-
-    }
     .titreFilter1{
 
         height: 60px;
@@ -786,6 +790,23 @@ main{
             cursor: pointer;
             border: none;
             border-radius: 5px;
+          
+
+            .spanPopularite1{
+
+                position: relative;
+                left: -20px;
+                
+               // border: solid white;
+            }
+
+            .arrowDown{
+
+                position: relative;
+                left: 20px;
+
+               // border: solid white;
+            }
 
         }
 

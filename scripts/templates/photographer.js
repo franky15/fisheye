@@ -12,7 +12,7 @@ function photographerTemplate(data) {
 		article.setAttribute("class", "article");
 		const img = document.createElement( "img" );
 		img.setAttribute("src", picture);
-		img.alt = "";
+		img.alt = `${name}`;
 		img.setAttribute("class", "cercle");
     
 
@@ -69,4 +69,6 @@ function photographerTemplate(data) {
 
 	return { name, picture, getUserCardDOM };
 }
+
+
 
