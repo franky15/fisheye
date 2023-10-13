@@ -1930,6 +1930,7 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
     
     `;
 
+	//récupération de la section de la modale containerLightbox
 	const containerLightbox = document.querySelector(".containerLightbox");
 	containerLightbox.innerHTML = lightbox;
 
@@ -1944,7 +1945,7 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
 	const nextButton = document.querySelector(".next-button");
 	const child = document.querySelector(".child");
 
-	
+
 	//gestion de l'index de l'image
 	const showImage = (index) => {
 
@@ -1999,9 +2000,15 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
 	// console.log(photographerImg)
 
 	const sectionProfile = document.querySelector(".sectionProfile");
+
+	//récupération des sections 
+	let sections = document.getElementsByClassName("ariaHiddenElement");
+	console.log("**** sections");
+	//sections[0].setAttribute("aria-hidden", "false");
+	console.log(sections[0] );
 	
 
-	//gestion de l'ouverture de la galerie
+	//gestion de l'ouverture de la galerie ou modale
 	for( let i =0; i<photographerImg.length;i++){
 
 		let imageencours = photographerImg[i];
@@ -2011,11 +2018,35 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
 
 			console.log("*** bienvenue au  imageencours.addEventListener");
 
+			///////////////////////////////////
+			//modification de l'attribut aria-hidden de chaque section
+			for( let a=0; a < sections.length; a++){
+
+				let elementCurrent = sections[a];
+
+				console.log("**** elementCurrent");
+				console.log(elementCurrent);
+
+				//modification de l'attribut aria-hidden en false pour le cacher des lecteurs
+				elementCurrent.setAttribute("aria-hidden", "false");
+
+				//modification de l'attribut aria-hidden en true pour le rendre accessible des lecteurs
+				containerLightbox.setAttribute("aria-hidden", "true");
+
+				console.log("**** containerLightbox");
+				console.log(containerLightbox);
+
+				
+			}
 			
-		
+
+			///////////////////////////////////
+
+			//masquage du
 			containerLightbox.style.display = "block";
 			sectionMain.style.display = "none";
 			sectionProfile.style.display = "none";
+			lockGalerie.focus();
 
 			//gestion de l'opacité du reste de la page pour grise la page en arrière plant du formulaire
 			//photographHeader.style.opacity = 0;
@@ -2024,13 +2055,33 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
 		});
 	}
     
-	//fermeture de la galerie
+	//fermeture de la galerie ou modale
     
-  
-
 	lockGalerie.addEventListener("click", ()=> {
 
 		console.log("*** bienvenue au lockLightbox.addEventListener");
+
+		///////////////////////////////////
+		//modification de l'attribut aria-hidden de chaque section
+		for( let a=0; a < sections.length; a++){
+
+			let elementCurrent = sections[a];
+
+			console.log("**** elementCurrent");
+			console.log(elementCurrent);
+
+			//modification de l'attribut aria-hidden en true pour le rendre accessible des lecteurs
+			elementCurrent.setAttribute("aria-hidden", "true");
+
+			//modification de l'attribut aria-hidden en false pour le masquer des lecteurs
+			containerLightbox.setAttribute("aria-hidden", "false");
+
+				
+		}
+			
+
+		///////////////////////////////////
+			
 		containerLightbox.style.display = "none";
 		sectionMain.style.display = "block";
 		sectionProfile.style.display = "block";
