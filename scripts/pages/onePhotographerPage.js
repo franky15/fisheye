@@ -566,7 +566,7 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
 
 
 		//gestion du masquage du premier bouton popularité et apparution de la liste déroulante
-		btnPopularite1.addEventListener("click",()=>{
+		btnPopularite1.addEventListener("click",() => {
 
 			console.log("**** bienvenue dans btnPopularite");
 			btnPopularite1.value;
