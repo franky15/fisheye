@@ -1,6 +1,6 @@
   
 import photographerTemplate from "../templates/photographer.js";
-//import onePhotographerDataTemplate from "../pages/onePhotographerPage"
+
 
 async function getPhotographers() {
 	// Ceci est un exemple de données pour avoir un affichage de photographes de test dès le démarrage du projet, 

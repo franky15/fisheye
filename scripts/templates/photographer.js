@@ -1,4 +1,4 @@
-function photographerTemplate(data) {
+const photographerTemplate = (data) => {
 
 	const {
 		id, name, portrait, city, country, tagline, price,
@@ -68,9 +68,9 @@ function photographerTemplate(data) {
 
 
 	return { name, picture, getUserCardDOM };
-}
+};
 
-export default photographerTemplate
+export default photographerTemplate;
 
 
 
