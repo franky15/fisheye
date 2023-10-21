@@ -1,8 +1,12 @@
-const photographerTemplate = (data) => {
+/*
+// eslint-disable-next-line no-unused-vars
+ //export default function photographerTemplate(data) {
+
 
 	const {
 		id, name, portrait, city, country, tagline, price,
 	} = data;
+
 	console.log(`city : ${city}  * country : ${country} * tagline : ${tagline}  * price : ${price}`);
 
 	const picture = `./assets/photographers/${portrait}`;
@@ -56,7 +60,7 @@ const photographerTemplate = (data) => {
             ${price}/jour
         </span>
     
-    `;
+     `;
 		wrapper.innerHTML = priceHtml;
 		article.appendChild( wrapper );
     
@@ -70,7 +74,11 @@ const photographerTemplate = (data) => {
 	return { name, picture, getUserCardDOM };
 };
 
-export default photographerTemplate;
+// export default photographerTemplate;
+
+*/
+
+
 
 
 

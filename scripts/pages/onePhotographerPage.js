@@ -47,7 +47,7 @@ async function onePhotographerData(){
 //fonction de récupération de photographers, photographersMedia
 async function onePhotographerDataTemplate(photographers, photographersMedia){
 
-	console.log("***** bienvenue dans onePhotographerDataTemplate() *****");
+	//console.log("***** bienvenue dans onePhotographerDataTemplate() *****");
 
    
 	///////////////////////////////////////
@@ -64,21 +64,22 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
 	// Suppression des espaces inutiles avant et après l'ID
 	let idPhotographer = extractedId.trim();
 
-	console.log(idPhotographer); // Affiche l'ID extrait et sans espaces
+	//console.log(idPhotographer); // Affiche l'ID extrait et sans espaces
 
-	console.log(  photographersMedia );
-	console.log( photographers);
+	//console.log(  photographersMedia );
+	//console.log( photographers);
 
 	///////////////////////////////////////
 	//récupération du photographe encours
 	let photographCurrent = photographers.find( item => item.id === parseInt(idPhotographer) );
 
-	console.log("***** photographCurrent");
-	console.log(photographCurrent);
+	//console.log("***** photographCurrent");
+	//console.log(photographCurrent);
 
+	// eslint-disable-next-line no-unused-vars
 	const {  name, portrait, city, country, tagline, price } = photographCurrent;
 
-	console.log(  "city : "+ city  +  "  * country : " + country  +  " * tagline : "+ tagline  + "  * price : "+ price  );
+	//console.log(  "city : "+ city  +  "  * country : " + country  +  " * tagline : "+ tagline  + "  * price : "+ price  );
 
 	nomForm=name;
 	//récupération des objets du portfolio du photographe en cours
@@ -86,20 +87,20 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
 
 	//récupération
 
-	console.log(  "******* ProjetPhotographCurrent" );
-	console.log( ProjetPhotographCurrent);
+	//console.log(  "******* ProjetPhotographCurrent" );
+	//console.log( ProjetPhotographCurrent);
    
 
 	/////////////////////////////:
 
-	console.log("** localStorage.length");
-	console.log(localStorage.length);
+	//console.log("** localStorage.length");
+	//console.log(localStorage.length);
 
 	//saugarde de la listes des medias d'origine dans le localstaorage si le localstorage est vide
 
 	if(localStorage.length === 0){
 
-		console.log("bienvenue dans la condition localStorage.length ===0");
+		//console.log("bienvenue dans la condition localStorage.length ===0");
 
 		//conversion de la liste en chaine json
 		const listeMediaOriginJson = JSON.stringify(ProjetPhotographCurrent);
@@ -116,56 +117,15 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
 	//conversion en données normales utilisables
 	const listeMediaOriginLocalstorage = JSON.parse(listeMediaOriginJson);
 
-	console.log("*** listeMediaOriginLocalstorage");
-	console.log(listeMediaOriginLocalstorage);
+	//console.log("*** listeMediaOriginLocalstorage");
+	//console.log(listeMediaOriginLocalstorage);
    
 
 	///////////////////////////////
 
 
 	/*****************partie du pays et tu titre********************** */
-  
-	const descriptionTitle = document.createElement("div");
-	descriptionTitle.setAttribute( "class", "countryTitle");
 
-	//creation de l'élément nom du photographe///////////////
-	const nameElement = document.createElement("h1");
-	nameElement.setAttribute( "class", "nameElement");
-	nameElement.innerText = name;
-
-	//creation du block country et description
-	const countryBlock = document.createElement("div");
-	countryBlock.setAttribute( "class", "countryBlock");
-    
-	//creation des enfants  du block country et description///////////////
-	const countryElement = document.createElement("p");
-	countryElement.setAttribute( "class", "countryElement");
-	countryElement.innerText = country;
-
-	const descripElement = document.createElement("p");
-	descripElement.setAttribute( "class", "descripElement");
-	descripElement.innerText = tagline;
-
-	//insertion des enfants dans les parents///////////////
-	countryBlock.appendChild(countryElement);
-	countryBlock.appendChild(descripElement );
-	descriptionTitle.appendChild(nameElement );
-	descriptionTitle.appendChild(countryBlock );
-
-	//creation de l'élément img du photographe///////////////
-	//const picture = `./assets/photographers/${portrait}`;
-
-	const imgBlock = document.createElement("p");
-     
-	imgBlock.setAttribute( "class", "imgBlock");
-	/*
-     const imgElement = document.createElement("img")
-     nameElement.setAttribute( "class", "nameElement")
-     nameElement.setAttribute( "alt", " ")
-     imgBlock.appendChild(imgElement)
-     imgElement.setAttribute("src", picture)
-    */
-	////////////////////
 	const imgBlock2 = `
      
         <div class= "imgBlock2" alt="photographe" style="background-image: url('./assets/photographers/${portrait}');
@@ -178,13 +138,14 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
      
      `;
 
+	const nameElement = document.querySelector(".nameElement");
+	const countryElement = document.querySelector(".countryElement");
+	const descripElement = document.querySelector(".descripElement");
 
-	////////////////////
-
-	//insertion du parent partiel sur le grand parent///////////////
-	const photographHeaderClass = document.querySelector(".photograph-header");
-	photographHeaderClass.appendChild(descriptionTitle);
-	photographHeaderClass.appendChild(imgBlock);
+	nameElement.innerText = name;
+	countryElement.innerText = country;
+	descripElement.innerText = tagline;
+	
 
 	///////////////////
 	const imgPhotographe  = document.querySelector(".imgBlock");
@@ -192,7 +153,6 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
 
 	//////////////////
 
-   
 
 	/***************** gestion  du portfolio ********************** */
 
@@ -215,7 +175,7 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
 
 
 
-	console.log(ProjetPhotographCurrent.length);
+	//console.log(ProjetPhotographCurrent.length);
 
 	// console.log("***ProjetPhotographCurrent")
 	// console.log(ProjetPhotographCurrent)
@@ -231,25 +191,25 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
 
    
 
-	let selectValueLocalStorage;
+	//let selectValueLocalStorage;
 
 	//fonction de mise à jour des résultats du filtre
 	const updatefilterPage = (selectValue) => {
 
-		console.log("bienvenue dans la fonction updatefilterPage");
+		//console.log("bienvenue dans la fonction updatefilterPage");
 
-		console.log("**** selectValue dans updatefilterPage");
-		console.log(selectValue);
+		//console.log("**** selectValue dans updatefilterPage");
+		//console.log(selectValue);
 
         
 		// let selectValueLocalStorage
 		// Récupération des données  du filtre (selectValue) du localStorage
-		selectValueLocalStorage = localStorage.getItem("selectValue");
+		//selectValueLocalStorage = localStorage.getItem("selectValue");
 
-		console.log("**** selectValueLocalStorage");
-		console.log(selectValueLocalStorage);
+		//console.log("**** selectValueLocalStorage");
+		//console.log(selectValueLocalStorage);
 
-		console.log("typeof selectValueLocalStorage : " + typeof selectValueLocalStorage );
+		//console.log("typeof selectValueLocalStorage : " + typeof selectValueLocalStorage );
 		// console.log(selectValueLocalStorage.selectValue)
         
       
@@ -259,11 +219,12 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
 		const listeFilterUpdateFunction = () => {  //selectValue
 
 			//mise à jour du tableau des media avec le local storage
-			console.log("**** bienvenue dans la fonction listeFilterUpdateFunction ");
+
+			//console.log("**** bienvenue dans la fonction listeFilterUpdateFunction ");
 			// ProjetPhotographCurrent  selectValueLocalStorage
 
-			console.log("******ProjetPhotographCurrent dans listeFilterUpdateFunction");
-			console.log(ProjetPhotographCurrent);
+			//console.log("******ProjetPhotographCurrent dans listeFilterUpdateFunction");
+			//console.log(ProjetPhotographCurrent);
 
 			// let listeMediaUpdate = []
 			let listeMediaUpdate; 
@@ -272,59 +233,56 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
 
 				let itemArticle = ProjetPhotographCurrent[k];
 
-				console.log("*** itemArticle" );
-				console.log( itemArticle);
-				console.log( itemArticle.id + " "  + typeof [itemArticle.id] );
-				console.log( itemArticle.id + " "  + typeof itemArticle.id );
+				
                     
 				// Récupération de  l'objet sérialisé depuis le localStorage
 				let articleString = localStorage.getItem(itemArticle.id ); //[] car je récupère un objet du local storage
 
-				console.log("*** articleString" );
-				console.log( articleString );
+				//console.log("*** articleString" );
+				//console.log( articleString );
                    
 
 				// Désérialisation de l'objet articleString en un objet Jason
 				let articleJson = JSON.parse(articleString);
 
-				console.log("*** articleJson" );
-				console.log( articleJson);
+				//console.log("*** articleJson" );
+				//console.log( articleJson);
 
 
 				if(articleString){  //articleString
 
-					console.log("***** bienvenue dans le if articleString existe");
+					//console.log("***** bienvenue dans le if articleString existe");
 
 					if( itemArticle.id === articleJson.id){
 
-						console.log("**** bienvenue dans le if ProjetPhotographCurrent[k].id === articleJson.id");
+						//console.log("**** bienvenue dans le if ProjetPhotographCurrent[k].id === articleJson.id");
                             
-						console.log("**** ProjetPhotographCurrent");
-						console.log(ProjetPhotographCurrent);
+						//console.log("**** ProjetPhotographCurrent");
+						//console.log(ProjetPhotographCurrent);
 
 						//récupération de la liste des media sans l'ancien objet
 						let listeMediaFilterCurrent = ProjetPhotographCurrent.filter( item => item.id !== articleJson.id);
                         
-						console.log("**** listeMediaFilterCurrent");
-						console.log(listeMediaFilterCurrent);
+						//console.log("**** listeMediaFilterCurrent");
+						//console.log(listeMediaFilterCurrent);
 
 						//ajout de l'objet récupéré dans le local storage dans la liste filtrée pour remplacer l'objet filtré précédamment
 						// let listemMdiaFilterUpdate =[] 
 						listeMediaFilterCurrent.push(articleJson);
 
-						console.log("**** listeMediaFilterCurrent2 ");
-						console.log(listeMediaFilterCurrent );
+						//console.log("**** listeMediaFilterCurrent2 ");
+						//console.log(listeMediaFilterCurrent );
 
 						//mise à jour de la nouvelle liste  
 						listeMediaUpdate.push(listeMediaFilterCurrent); //attention on a une liste dans une
 						listeMediaUpdate = listeMediaFilterCurrent;
 
-						console.log("**** listeMediaUpdate");
-						console.log(listeMediaUpdate);
+						//console.log("**** listeMediaUpdate");
+						//console.log(listeMediaUpdate);
 
 
-						console.log("**** listeMediaFilterCurrent");
-						console.log(listeMediaFilterCurrent);
+						//console.log("**** listeMediaFilterCurrent");
+						//console.log(listeMediaFilterCurrent);
 
 						/******* gestion de la liste du nombre de likes et de son ordement croissant  *******/
 
@@ -341,8 +299,8 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
 						});
                             
 
-						console.log("***** lisNumberLikeOrderCroissant ");
-						console.log(lisNumberLikeOrderCroissant);
+						//console.log("***** lisNumberLikeOrderCroissant ");
+						//console.log(lisNumberLikeOrderCroissant);
 
 						//converion en string avant le stockage dans le local storage
 						const lisNumberLikeOrderCroissantJSON = JSON.stringify(lisNumberLikeOrderCroissant);
@@ -356,8 +314,8 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
 						let listeDateOrderCroissantDate = [];
                            
 
-						console.log("*** listeMediaUpdate");
-						console.log(listeMediaUpdate);
+						//console.log("*** listeMediaUpdate");
+						//console.log(listeMediaUpdate);
 
 						listeDateOrderCroissantDate = listeMediaUpdate;
 
@@ -391,8 +349,8 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
 						});
 
 
-						console.log("***** listeDateOrderCroissantDate ordonnée ");
-						console.log(listeDateOrderCroissantDate);
+						//console.log("***** listeDateOrderCroissantDate ordonnée ");
+						//console.log(listeDateOrderCroissantDate);
 
                          
 
@@ -416,8 +374,8 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
 						});
 
 
-						console.log("***** listeTitreOrderCroissant non ordonnée ");
-						console.log(listeTitreOrderCroissant);
+						//console.log("***** listeTitreOrderCroissant non ordonnée ");
+						//console.log(listeTitreOrderCroissant);
 
                          
 
@@ -428,8 +386,8 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
 						localStorage.setItem("listeTitreOrderCroissant", listeTitreOrderCroissantJSON);
 
 
-						console.log("***** listeTitreOrderCroissant ordonnée");
-						console.log(listeTitreOrderCroissant);
+						//console.log("***** listeTitreOrderCroissant ordonnée");
+						//console.log(listeTitreOrderCroissant);
 						/////////////////////////////////
 
 					}
@@ -445,8 +403,8 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
                             
 					lisNumberLikeOrderCroissant  = ProjetPhotographCurrent; //listeMediaUpdate
 
-					console.log("***** lisNumberLikeOrderCroissant ");
-					console.log(lisNumberLikeOrderCroissant);
+					//console.log("***** lisNumberLikeOrderCroissant ");
+					//console.log(lisNumberLikeOrderCroissant);
                             
 
 					//ordonnement de la liste du nombre de likes par ordre croissant
@@ -457,8 +415,8 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
 					});
                             
 
-					console.log("***** lisNumberLikeOrderCroissant ");
-					console.log(lisNumberLikeOrderCroissant);
+					//console.log("***** lisNumberLikeOrderCroissant ");
+					//console.log(lisNumberLikeOrderCroissant);
 
 					//converion en string avant le stockage dans le local storage
 					const lisNumberLikeOrderCroissantJSON = JSON.stringify(lisNumberLikeOrderCroissant);
@@ -483,8 +441,8 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
 					});
 
 
-					console.log("***** listeDateOrderCroissant ordonnée ");
-					console.log(listeDateOrderCroissant);
+					//console.log("***** listeDateOrderCroissant ordonnée ");
+					//console.log(listeDateOrderCroissant);
 
                          
 					//converion en string avant le stockage dans le local storage
@@ -507,8 +465,8 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
 					});
 
 
-					console.log("***** listeTitreOrderCroissant non ordonnée ");
-					console.log(listeTitreOrderCroissant);
+					//console.log("***** listeTitreOrderCroissant non ordonnée ");
+					//console.log(listeTitreOrderCroissant);
 
                          
 
@@ -519,8 +477,7 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
 					localStorage.setItem("listeTitreOrderCroissant", listeTitreOrderCroissantJSON);
 
 
-					console.log("***** listeTitreOrderCroissant ordonnée");
-					console.log(listeTitreOrderCroissant);
+					
 					/////////////////////////////////
 
 
@@ -568,11 +525,11 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
 		//gestion du masquage du premier bouton popularité et apparution de la liste déroulante
 		btnPopularite1.addEventListener("click",() => {
 
-			console.log("**** bienvenue dans btnPopularite");
+			//console.log("**** bienvenue dans btnPopularite");
 			btnPopularite1.value;
 
-			console.log( "****btnPopularite.value");
-			console.log( btnPopularite1.value);
+			//console.log( "****btnPopularite.value");
+			//console.log( btnPopularite1.value);
 
 			btnPopularite1.style.display = "none";
 			filterTitre1.style.display = "none";
@@ -590,16 +547,16 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
 		//gestion du bouton btnPopularite2
 		btnPopularite2.addEventListener("click", ()=>{
 
-			console.log("**** bienvenue dans à l'évennement de laliste déroulante btnPopularite2");
+			//console.log("**** bienvenue dans à l'évennement de laliste déroulante btnPopularite2");
 
-			console.log("**** btnDate.value");
-			console.log(btnPopularite2.value);
+			//console.log("**** btnDate.value");
+			//console.log(btnPopularite2.value);
 
 			switch(btnPopularite2.value ){
 
 			case listevalueFilter[0] :
                     
-				console.log("**** bienvenue dans le cas Popularite");
+				//console.log("**** bienvenue dans le cas Popularite");
                         
 				btnPopularite1.style.display = "block";
 				spanPopularite1.innerText = "Popularité";
@@ -613,8 +570,8 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
 				// Récupération de la valeur sélectionnée
 				selectValue = btnPopularite2.value;
 
-				console.log("**** selectValue");
-				console.log(selectValue);
+				//console.log("**** selectValue");
+				//console.log(selectValue);
 
 				//ajout dans le local storage
 				localStorage.setItem("selectValue", selectValue );
@@ -631,16 +588,16 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
 		//gestion du bouton btnDate
 		btnDate.addEventListener("click", ()=>{
 
-			console.log("**** bienvenue dans à l'évennement de laliste déroulante btnDate");
+			//console.log("**** bienvenue dans à l'évennement de laliste déroulante btnDate");
 
-			console.log("**** btnDate.value");
-			console.log(btnDate.value);
+			//console.log("**** btnDate.value");
+			//console.log(btnDate.value);
 
 			switch(btnDate.value ){
 
 			case listevalueFilter[1] :
                     
-				console.log("**** bienvenue dans le cas btnDate");
+				//console.log("**** bienvenue dans le cas btnDate");
                         
 				btnPopularite1.style.display = "block";
 				spanPopularite1.innerText = "Date";
@@ -656,8 +613,8 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
 				
 				selectValue = btnDate.value;
 
-				console.log("**** selectValue");
-				console.log(selectValue);
+				//console.log("**** selectValue");
+				//console.log(selectValue);
 
 				//ajout dans le local storage
 				localStorage.setItem("selectValue", selectValue );
@@ -674,16 +631,16 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
 		//gestion du bouton btnTitre
 		btnTitre.addEventListener("click", ()=>{
 
-			console.log("**** bienvenue dans à l'évennement de laliste déroulante btnTitre");
+			//console.log("**** bienvenue dans à l'évennement de laliste déroulante btnTitre");
 
-			console.log("**** btnDbtnTitreate.value");
-			console.log(btnTitre.value);
+			//console.log("**** btnDbtnTitreate.value");
+			//console.log(btnTitre.value);
 
 			switch(btnTitre.value ){
 
 			case listevalueFilter[2] :
                     
-				console.log("**** bienvenue dans le cas btnTitre");
+				//console.log("**** bienvenue dans le cas btnTitre");
                         
 				btnPopularite1.style.display = "block";
 				spanPopularite1.innerText = "Titre";
@@ -697,8 +654,8 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
 				// Récupération de la valeur sélectionnée
 				selectValue = btnTitre.value;
 
-				console.log("**** selectValue");
-				console.log(selectValue);
+				//console.log("**** selectValue");
+				//console.log(selectValue);
 
 				//ajout dans le local storage
 				localStorage.setItem("selectValue", selectValue );
@@ -739,7 +696,7 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
 		//fonction d'affichage des articles mis à jour
 		const showNewArticleFunction = ( ) => { //selectValue
 
-			console.log("***** bienvenue dans la showNewArticleFunction ");
+			//console.log("***** bienvenue dans la showNewArticleFunction ");
 
                 
 
@@ -753,9 +710,9 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
 			//convertion en tableau normal
 			const lisNumberLikeOrderCroissant = JSON.parse(lisNumberLikeOrderCroissantJSON);
 
-			console.log("****lisNumberLikeOrderCroissant1 dans la fonction showNewArticleFunction");
+			//console.log("****lisNumberLikeOrderCroissant1 dans la fonction showNewArticleFunction");
                 
-			console.log(lisNumberLikeOrderCroissant);
+			//console.log(lisNumberLikeOrderCroissant);
 
                 
 
@@ -767,9 +724,9 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
 			//convertion en tableau normal
 			const listeDateOrderCroissantDate = JSON.parse(listeDateOrderCroissantDateJSON);
 
-			console.log("****listeDateOrderCroissantDate ordonnée dans la fonction showNewArticleFunction");
+			//console.log("****listeDateOrderCroissantDate ordonnée dans la fonction showNewArticleFunction");
                 
-			console.log(listeDateOrderCroissantDate);
+			//console.log(listeDateOrderCroissantDate);
 
 
 			/******  gestion de la récupération de la liste des titres croissants ******* */
@@ -779,23 +736,129 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
 			//convertion en tableau normal
 			const listeTitreOrderCroissant = JSON.parse(listeTitreOrderCroissantJSON);
 
-			console.log("****listeTitreOrderCroissant dans la fonction showNewArticleFunction");
+			//console.log("****listeTitreOrderCroissant dans la fonction showNewArticleFunction");
                 
-			console.log(listeTitreOrderCroissant);
+			//console.log(listeTitreOrderCroissant);
 
-			console.log("**** selectValueLocalStorage");
-			console.log(selectValueLocalStorage);
+			//console.log("**** selectValueLocalStorage");
+			//console.log(selectValueLocalStorage);
+
+
+			///////////////////////////////////////////////////:
+			//factory function
+			
+			function createArticle( mediaData, filtre ){
+
+
+				if(mediaData.video){
+
+					articleItem = `
+
+						<div class="articlePortfolioitem articlePopularite"  > 
+						
+							<div class="articlePortfolio__item">
+					
+								<button  value=${mediaData.id} class="articlePortfolio__item--img imgVideo${mediaData.id}" > 
+								
+								 
+
+									<video class="videoMiniature" src="./assets/photographersMedia/${mediaData.video}" > 
+									
+								
+								</button>
+								
+							
+								<div class="articlePortfolio__item--description description">
+								
+									<p class="description__titre" > ${mediaData.title}  </p>
+						
+									<div class="description__numLike"> 
+
+										   
+									<div class= "numberLikes ${mediaData.title.replace(/\s+/g, "")}  ${mediaData.id}"  id= ${mediaData.title.replace(/\s+/g, "")}  data-idMediaCurrent =${mediaData.id} > ${mediaData.likes}  </div> 
+											
+									<button  value=${mediaData.id} class="heartLikeMedia" data-idMediaCurrent =${mediaData.id} id= "${mediaData.title.replace(/\s+/g, "")}">  <i class="fa-solid fa-heart" ></i> </button>
+
+									
+									
+									</div>
+									
+								</div>
+
+							</div>
+					
+						</div> 
+					
+						`;
+					// popularite.innerHTML += articleItem;
+					filtre.innerHTML += articleItem;
+
+
+				}else{
+
+
+					articleItem = `
+
+					<div class="articlePortfolioitem articlePopularite" > 
+					
+						<div class="articlePortfolio__item">
+				
+							<button  value=${mediaData.id} class="articlePortfolio__item--img imgVideo${mediaData.id}">
+							
+							   
+
+								<img class="child" src="./assets/photographersMedia/${mediaData.image}" alt= ${mediaData.title} />
+								
+							
+							</button>
+							
+						
+							<div class="articlePortfolio__item--description description">
+								<p class="description__titre" > ${mediaData.title}  </p>
+					
+								<div class="description__numLike"> 
+
+									   
+								<div class= "numberLikes ${mediaData.title.replace(/\s+/g, "")}  ${mediaData.id}"  id= ${mediaData.title.replace(/\s+/g, "")}  data-idMediaCurrent =${mediaData.id} > ${mediaData.likes}  </div> 
+										
+								<button  value=${mediaData.id} class="heartLikeMedia" data-idMediaCurrent =${mediaData.id} id= "${mediaData.title.replace(/\s+/g, "")}">  <i class="fa-solid fa-heart" ></i> </button>
+
+								
+								
+								</div>
+								
+							</div>
+
+						</div>
+				
+					</div> 
+				
+					`;
+					// popularite.innerHTML += articleItem;
+					filtre.innerHTML += articleItem;
+					
+
+				}
+
+
+			} 
+
+
+
+
+
+			///////////////////////////////////////////////////////
             
-
+			//condition sur la donnée qui est dans le localstorage si c'est popularite
 			if(  selectValueLocalStorage === "Popularite" || !selectValueLocalStorage ) {   //selectValueLocalStorage 
 
 
-				console.log("***** bienvenue dans le if  selectValueLocalStorage && listeTitreOrderCroissant");
+				//console.log("***** bienvenue dans le if  selectValueLocalStorage && listeTitreOrderCroissant");
 				//console.log(selectValueLocalStorage.selectValue)
 
                 
 				///////////////
-				// Suppression de certains tableaux du localStorage
+				// Suppression de certains tableaux du localStorage qu'on ne veut pas utiliser actuellement
 				localStorage.removeItem("listeTitreOrderCroissant");
 				localStorage.removeItem("listeDateOrderCroissant"); 
 				// localStorage.removeItem('listeTitreOrderCroissant');
@@ -834,122 +897,13 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
 						// console.log("lisNumberLikeOrderCroissant1")
 						// console.log(lisNumberLikeOrderCroissant1)
 
-						/////////////////////////
-						//gestion de la miniature
-						if(lisNumberLikeOrderCroissant1.video){
+						/******************* utilisation de la factory function ************************ */
+						
+						
 
-                             
-							///////////////////////////////////////////////////////
+						createArticle(lisNumberLikeOrderCroissant1,popularite );
 
-
-
-							///////////////////////////////////////////////////////
-
-
-
-							articleItem = `
-
-                                <div class="articlePortfolioitem articlePopularite"  > 
-                                
-                                    <div class="articlePortfolio__item">
-                            
-                                        <button class="articlePortfolio__item--img imgVideo${lisNumberLikeOrderCroissant1.id}" > 
-                                        
-                                         
-
-                                            <video class="videoMiniature" src="./assets/photographersMedia/${lisNumberLikeOrderCroissant1.video}" > 
-                                            
-                                        
-                                        </button>
-                                        
-                                    
-                                        <div class="articlePortfolio__item--description description">
-                                        
-                                            <p class="description__titre" > ${lisNumberLikeOrderCroissant1.title}  </p>
-                                
-                                            <div class="description__numLike"> 
-
-                                                   
-                                            <div class= "numberLikes ${lisNumberLikeOrderCroissant1.title.replace(/\s+/g, "")}  ${lisNumberLikeOrderCroissant1.id}"  id= ${lisNumberLikeOrderCroissant1.title.replace(/\s+/g, "")}  data-idMediaCurrent =${lisNumberLikeOrderCroissant1.id} > ${lisNumberLikeOrderCroissant1.likes}  </div> 
-                                                    
-                                            <button class="heartLikeMedia" data-idMediaCurrent =${lisNumberLikeOrderCroissant1.id} id= "${lisNumberLikeOrderCroissant1.title.replace(/\s+/g, "")}">  <i class="fa-solid fa-heart" ></i> </button>
-
-                                            
-                                            
-                                            </div>
-                                            
-                                        </div>
-
-                                    </div>
-                            
-                                </div> 
-                            
-                                `;
-							popularite.innerHTML += articleItem;
-
-                            
-
-						}else{
-
-
-                            
-                           
-
-							articleItem = `
-
-                            <div class="articlePortfolioitem articlePopularite" > 
-                            
-                                <div class="articlePortfolio__item">
-                        
-                                    <button class="articlePortfolio__item--img imgVideo${lisNumberLikeOrderCroissant1.id}">
-                                    
-                                       
-
-										<img class="child" src="./assets/photographersMedia/${lisNumberLikeOrderCroissant1.image}" alt= ${lisNumberLikeOrderCroissant1.title} />
-                                        
-                                    
-                                    </button>
-                                    
-                                
-                                    <div class="articlePortfolio__item--description description">
-                                        <p class="description__titre" > ${lisNumberLikeOrderCroissant1.title}  </p>
-                            
-                                        <div class="description__numLike"> 
-
-                                               
-                                        <div class= "numberLikes ${lisNumberLikeOrderCroissant1.title.replace(/\s+/g, "")}  ${lisNumberLikeOrderCroissant1.id}"  id= ${lisNumberLikeOrderCroissant1.title.replace(/\s+/g, "")}  data-idMediaCurrent =${lisNumberLikeOrderCroissant1.id} > ${lisNumberLikeOrderCroissant1.likes}  </div> 
-                                                
-                                        <button class="heartLikeMedia" data-idMediaCurrent =${lisNumberLikeOrderCroissant1.id} id= "${lisNumberLikeOrderCroissant1.title.replace(/\s+/g, "")}">  <i class="fa-solid fa-heart" ></i> </button>
-
-                                        
-                                        
-                                        </div>
-                                        
-                                    </div>
-
-                                </div>
-                        
-                            </div> 
-                        
-                            `;
-							popularite.innerHTML += articleItem;
-
-						}
-
-
-						////////////////////////
-
-                        
-                    
-						//éxécution de la fonction d'affichage de la liste des médias initiale
-						//listeArticleNormalFunction()
-
-						// popularite.innerHTML += articleItem;
-
-						// articleElement.innerHTML += articleItem;
-                       
-                    
-                    
+						
 
 					}
 
@@ -969,11 +923,11 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
 			} else if( selectValueLocalStorage === "Date" && listeDateOrderCroissantDate ) {   //selectValueLocalStorage === "Date" &&
 
 
-				console.log("***** bienvenue dans le if  selectValueLocalStorage && lisNumberLikeOrderCroissant");
+				//console.log("***** bienvenue dans le if  selectValueLocalStorage && lisNumberLikeOrderCroissant");
 				//console.log(selectValueLocalStorage.selectValue)
 
-				console.log("****listeDateOrderCroissantDate");
-				console.log(listeDateOrderCroissantDate);
+				//console.log("****listeDateOrderCroissantDate");
+				//console.log(listeDateOrderCroissantDate);
 				///////////////
 
 				// Suppression de certains tableaux du localStorage
@@ -1011,101 +965,18 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
     
 						//console.log("listeDateOrderCroissantDate")
 						// console.log(listeDateOrderCroissantDate1)
-    
-						//gestion de la miniature
-						if(listeDateOrderCroissantDate1.video){
-    
-                                
-    
-							articleItem = `
-    
-                                <div class="articlePortfolioitem articleDate"  > 
-                                
-                                    <div class="articlePortfolio__item">
-                            
-                                        <button class="articlePortfolio__item--img imgVideo${listeDateOrderCroissantDate1.id}"  >
-                                        
-                                        
-                                        
-                                            <video class="videoMiniature" src="./assets/photographersMedia/${listeDateOrderCroissantDate1.video}" > </video>
-                                            
-    
-                                        </button>
-                                        
-                                        <div class="articlePortfolio__item--description description">
-                                            <p class="description__titre" > ${listeDateOrderCroissantDate1.title}  </p>
-                                
-                                            <div class="description__numLike"> 
-        
-                                                   
-                                            <div class= "numberLikes ${listeDateOrderCroissantDate1.title.replace(/\s+/g, "")}  ${listeDateOrderCroissantDate1.id}"  id= ${listeDateOrderCroissantDate1.title.replace(/\s+/g, "")}  data-idMediaCurrent =${listeDateOrderCroissantDate1.id} > ${listeDateOrderCroissantDate1.likes}  </div> 
-                                                    
-                                            <button class="heartLikeMedia" data-idMediaCurrent =${listeDateOrderCroissantDate1.id} id= "${listeDateOrderCroissantDate1.title.replace(/\s+/g, "")}"> <i class="fa-solid fa-heart" ></i> </button>
-        
-                                            
-                                            
-                                            </div>
-                                            
-                                        </div>
-        
-                                    </div>
-                            
-                                </div> 
-                            
-                                `;
-        
-							date.innerHTML += articleItem;
-    
-						}else{
-    
-    
-    
-    
-							articleItem = `
-    
-                                <div class="articlePortfolioitem articleDate" > 
-                                
-                                    <div class="articlePortfolio__item">
-                            
-                                        <button class="articlePortfolio__item--img imgVideo${listeDateOrderCroissantDate1.id}" >
-                             
-    
-                                            <img class="child" src="./assets/photographersMedia/${listeDateOrderCroissantDate1.image}" alt= ${listeDateOrderCroissantDate1.title} />
-                                        
-                                        </button>
-                                        
-        
-                                        <div class="articlePortfolio__item--description description">
-                                            <p class="description__titre" > ${listeDateOrderCroissantDate1.title}  </p>
-                                
-                                            <div class="description__numLike"> 
-        
-                                                   
-                                            <div class= "numberLikes ${listeDateOrderCroissantDate1.title.replace(/\s+/g, "")}  ${listeDateOrderCroissantDate1.id}"  id= ${listeDateOrderCroissantDate1.title.replace(/\s+/g, "")}  data-idMediaCurrent =${listeDateOrderCroissantDate1.id} > ${listeDateOrderCroissantDate1.likes}  </div> 
-                                                    
-                                            <button class="heartLikeMedia" data-idMediaCurrent =${listeDateOrderCroissantDate1.id} id= "${listeDateOrderCroissantDate1.title.replace(/\s+/g, "")}" >  <i class="fa-solid fa-heart" ></i> </button>
-        
-                                            
-                                            
-                                            </div>
-                                            
-                                        </div>
-        
-                                    </div>
-                            
-                                </div> 
-                            
-                                `;
-                            
-        
-							date.innerHTML += articleItem;
-    
-    
-                                
-						}
-                           
-                     
+						
+						createArticle(listeDateOrderCroissantDate1,date );
+
+						/////////////////////////////////////////////////////
+
+						//éxécution de la fonction likeIncrementFunction();
+						//likeIncrementFunction();
+
+						/////////////////////////////////////////////////////
+
 					}
+					
 
 
 				}
@@ -1118,10 +989,10 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
 			} else if( selectValueLocalStorage === "Titre" && listeTitreOrderCroissant ) {   //selectValueLocalStorage === "Titre" &&
 
 
-				console.log("***** bienvenue dans le if  selectValueLocalStorage && listeTitreOrderCroissant1");
+				//console.log("***** bienvenue dans le if  selectValueLocalStorage && listeTitreOrderCroissant1");
 
-				console.log("**** listeTitreOrderCroissant");
-				console.log(listeTitreOrderCroissant);
+				//console.log("**** listeTitreOrderCroissant");
+				//console.log(listeTitreOrderCroissant);
                     
 				// Suppression de certains tableaux du localStorage
 				localStorage.removeItem("listeDateOrderCroissant"); 
@@ -1154,107 +1025,17 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
 
 						let listeTitreOrderCroissant1 = listeTitreOrderCroissant[i];
     
-						console.log("listeTitreOrderCroissant1");
-						console.log(listeTitreOrderCroissant1);
-    
-						//gestion de la miniature
-						if(listeTitreOrderCroissant1.video){
-    
-                               
-    
-    
-							articleItem = `
-    
-                                <div class="articlePortfolioitem articleTitre" > 
-                                
-                                    <div class="articlePortfolio__item">
-                            
-                                        <button class="articlePortfolio__item--img imgVideo${listeTitreOrderCroissant1.id}" >
-                                        
-                                        
-                                            <video class="videoMiniature" src="./assets/photographersMedia/${listeTitreOrderCroissant1.video}" >  </video>
-                                       
-    
-                                        </button>
-                                    
-        
-                                        <div class="articlePortfolio__item--description description">
-                                            <p class="description__titre" > ${listeTitreOrderCroissant1.title}  </p>
-                                
-                                            <div class="description__numLike"> 
-        
-        
-        
-                                                    
-                                                <div class= "numberLikes ${listeTitreOrderCroissant1.title.replace(/\s+/g, "")}  ${listeTitreOrderCroissant1.id} "  id= ${listeTitreOrderCroissant1.title.replace(/\s+/g, "")} data-idMediaCurrent =${listeTitreOrderCroissant1.id} > ${listeTitreOrderCroissant1.likes}  </div> 
-                                                    
-                                                <button class="heartLikeMedia"data-idMediaCurrent =${listeTitreOrderCroissant1.id} id= "${listeTitreOrderCroissant1.title.replace(/\s+/g, "")}" > <i class="fa-solid fa-heart" ></i> </button>
-        
-                                                
-                                                
-                                            </div>
-                                            
-                                        </div>
-        
-                                    </div>
-                            
-                                </div> 
-                            
-                                `;
-                            
-							//éxécution de la fonction d'affichage de la liste des médias initiale
-							//listeArticleNormalFunction()
-        
-							titre.innerHTML += articleItem;
-    
-    
-						}else{
-    
-                                
-    
-							articleItem = `
-    
-                                <div class="articlePortfolioitem articleTitre" > 
-                                
-                                    <div class="articlePortfolio__item">
-                            
-                                        <button class="articlePortfolio__item--img imgVideo${listeTitreOrderCroissant1.id}" > 
-                                        
-											<img class="child" src="./assets/photographersMedia/${listeTitreOrderCroissant1.image}" alt= ${listeTitreOrderCroissant1.title} />
+						//console.log("listeTitreOrderCroissant1");
+						//console.log(listeTitreOrderCroissant1);
+						
+						createArticle(listeTitreOrderCroissant1,titre );
+						
+						/////////////////////////////////////////////////////
 
-                                        </button>
-                                        
-                                       
-                                        <div class="articlePortfolio__item--description description">
-                                            <p class="description__titre" > ${listeTitreOrderCroissant1.title}  </p>
-                                
-                                            <div class="description__numLike"> 
-        
-        
-        
-                                                    
-                                                <div class= "numberLikes ${listeTitreOrderCroissant1.title.replace(/\s+/g, "")}  ${listeTitreOrderCroissant1.id} "  id= ${listeTitreOrderCroissant1.title.replace(/\s+/g, "")} data-idMediaCurrent =${listeTitreOrderCroissant1.id} > ${listeTitreOrderCroissant1.likes}  </div> 
-                                                    
-                                               <button class="heartLikeMedia" data-idMediaCurrent =${listeTitreOrderCroissant1.id} id= "${listeTitreOrderCroissant1.title.replace(/\s+/g, "")}" > <i class="fa-solid fa-heart"></i> </button>
-        
-                                                
-                                                
-                                            </div>
-                                            
-                                        </div>
-        
-                                    </div>
-                            
-                                </div> 
-                            
-                                `;
-                            
-        
-							titre.innerHTML += articleItem;
-    
-						}
-    
-                          
+						//éxécution de la fonction likeIncrementFunction();
+						//likeIncrementFunction();
+
+						/////////////////////////////////////////////////////
 					}
 
 
@@ -1265,17 +1046,20 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
                    
 			}  
 
-
+		
 		};
 
 		//éxécution de la fonction showNewArticleFunction
 		showNewArticleFunction();
 
+		
+		
 
-
+	
 	};
 
 	updatefilterPage(); 
+	
 
 	/*************** gestion des likes et du total des likes   *********************/
 
@@ -1283,197 +1067,215 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
 
 	//récupération de tous les coeurs
 	const listeMedia = document.getElementsByClassName("heartLikeMedia");
-        
-	for( let j=0; j< listeMedia.length; j++){
+    
+	const likeIncrementFunction=() =>{ 
 
-		let  currentElementHeart = listeMedia[j];
+		for( let j=0; j< listeMedia.length; j++){
 
-		// console.log("****currentElementHeart")
-		// console.log(currentElementHeart)
+			let  currentElementHeart = listeMedia[j];
 
-		// Obtation la valeur de l'attribut data-custom-data
-		let customDataValue = currentElementHeart.getAttribute("data-idMediaCurrent");
+			//console.log("****currentElementHeart");
+			//console.log(currentElementHeart);
 
-		// Gestionnaire d'événement pour "click" avec accès au dataset
-		currentElementHeart.addEventListener("click", function() {
+			// Obtation la valeur de l'attribut data-custom-data
+			let customDataValue = currentElementHeart.getAttribute("data-idMediaCurrent");
 
-			console.log("Clic sur un élément avec la classe heartLikeMedia ");
-        
-			let listeMediaValue = ProjetPhotographCurrent;
-			//conversion de en entier
-			let idMediaCurrent= parseInt(customDataValue);
+			// Gestionnaire d'événement pour "click" avec accès au dataset
+			currentElementHeart.addEventListener("click", function() {
 
-			// console.log("idMediaCurrent : " + idMediaCurrent );
+				//console.log("Clic sur un élément avec la classe heartLikeMedia ");
+			
+				let listeMediaValue = ProjetPhotographCurrent;
+				//conversion de en entier
+				let idMediaCurrent= parseInt(customDataValue);
 
-			//récupération de l'objet du média encours
-			const mediaCurrent = listeMediaValue.find( item => item.id === idMediaCurrent );
-            
-			console.log("*** mediaCurrent");
-			console.log(mediaCurrent);
+				// console.log("idMediaCurrent : " + idMediaCurrent );
 
-			//récupération de l'objet média en cours mais dans la liste de media d'origine
-			//car je veux le nombre de likes innitial pour faire la différence avec le nouveau
-			const mediaCurrentOrigin = listeMediaOriginLocalstorage.find( item => item.id === idMediaCurrent );
+				//récupération de l'objet du média encours
+				const mediaCurrent = listeMediaValue.find( item => item.id === idMediaCurrent );
+				
+				//console.log("*** mediaCurrent");
+				//console.log(mediaCurrent);
 
-			console.log("*** mediaCurrentOrigin");
-			console.log(mediaCurrentOrigin);
-            
+				//récupération de l'objet média en cours mais dans la liste de media d'origine
+				//car je veux le nombre de likes innitial pour faire la différence avec le nouveau
+				const mediaCurrentOrigin = listeMediaOriginLocalstorage.find( item => item.id === idMediaCurrent );
 
-			//mediaCurrent.likes += 1 
+				//console.log("*** mediaCurrentOrigin");
+				//console.log(mediaCurrentOrigin);
+				
 
-			console.log("*** mediaCurrent.likes : " + mediaCurrent.title + ": "+ mediaCurrent.likes  );
+				//mediaCurrent.likes += 1 
 
-        
-			/////////////////////////////////////////////////
-			//récupération d'un like spécifique
-            
-			//supression des espaces dans toutes la chaine avec cette expression régulière .replace(/\s+/g, '')
-			let titleMedia = mediaCurrent.title.replace(/\s+/g, "");
+				//console.log("*** mediaCurrent.likes : " + mediaCurrent.title + ": "+ mediaCurrent.likes  );
 
-			console.log("**** titleMedia");
-			console.log(titleMedia);
+			
+				/////////////////////////////////////////////////
+				//récupération d'un like spécifique
+				
+				//supression des espaces dans toutes la chaine avec cette expression régulière .replace(/\s+/g, '')
+				let titleMedia = mediaCurrent.title.replace(/\s+/g, "");
 
-			//récupération du  nombre de likes en question
-			let numberLikeCurrent = document.querySelector(`.${titleMedia}`);
-            
-			console.log("*** numberLikeCurrent ");
-			console.log(numberLikeCurrent.innerText );
+				//console.log("**** titleMedia");
+				//console.log(titleMedia);
 
-			// Récupération des données dans le localstorage
-			let titleLocastorage = localStorage.getItem(`${titleMedia}`);
+				//récupération du  nombre de likes en question
+				let numberLikeCurrent = document.querySelector(`.${titleMedia}`);
+				
+				//console.log("*** numberLikeCurrent ");
+				//console.log(numberLikeCurrent.innerText );
 
-			console.log("***** titleLocastorage");
-			console.log(titleLocastorage);
-            
-			//vérification si  ce title est déjà dans le localstorage
-			if(titleLocastorage  ){
+				// Récupération des données dans le localstorage
+				let titleLocastorage = localStorage.getItem(`${titleMedia}`);
 
-				console.log("************* le localstorage contient cette donnée");
-                
+				//console.log("***** titleLocastorage");
+				//console.log(titleLocastorage);
+				
+				//vérification si  ce title est déjà dans le localstorage
+				if(titleLocastorage  ){
 
-                
+					//console.log("************* le localstorage contient cette donnée");
+					
 
-				if(mediaCurrentOrigin.likes < mediaCurrent.likes){
+					
 
-					numberLikeCurrent.innerText = mediaCurrentOrigin.likes;
-                
+					if(mediaCurrentOrigin.likes < mediaCurrent.likes){
 
-					//mise à jour de likes dans l'objet mediaCurrent
-					mediaCurrent.likes = mediaCurrentOrigin.likes; 
+						numberLikeCurrent.innerText = mediaCurrentOrigin.likes;
+					
 
-					console.log("**** mediaCurrent.likes après la mise à jour de l'objet");
-					console.log(mediaCurrent);
+						//mise à jour de likes dans l'objet mediaCurrent
+						mediaCurrent.likes = mediaCurrentOrigin.likes; 
+
+						console.log("**** mediaCurrent.likes après la mise à jour de l'objet");
+						console.log(mediaCurrent);
 
 
-					console.log("**** mediaCurrentOrigin");
-					console.log(mediaCurrentOrigin);
+						//console.log("**** mediaCurrentOrigin");
+						//console.log(mediaCurrentOrigin);
 
-                
-					//conversion de l'objet en string avant de le stocker dans le local storage car ne prend que des string
-					// localStorage.setItem(`${mediaCurrent.id }`, JSON.stringify(mediaCurrent));
+					
+						//conversion de l'objet en string avant de le stocker dans le local storage car ne prend que des string
+						// localStorage.setItem(`${mediaCurrent.id }`, JSON.stringify(mediaCurrent));
 
-					console.log(  "***** mediaCurrentOrigin.likes" + " "+  mediaCurrentOrigin.likes );
-            
-					//mise à jour du localstorage
-					localStorage.setItem(`${titleMedia}`, `${mediaCurrentOrigin.likes}`);
+						//console.log(  "***** mediaCurrentOrigin.likes" + " "+  mediaCurrentOrigin.likes );
+				
+						//mise à jour du localstorage
+						localStorage.setItem(`${titleMedia}`, `${mediaCurrentOrigin.likes}`);
+
+						///////////////////////////////////////////////
+
+						
+
+						///////////////////////////////////////////////
+
+					}else{
+
+						numberLikeCurrent.innerText = mediaCurrentOrigin.likes + 1;
+					
+						
+
+						//mise à jour de likes dans l'objet mediaCurrent
+						mediaCurrent.likes = mediaCurrentOrigin.likes + 1;
+
+						//console.log("**** mediaCurrent.likes après la mise à jour de l'objet");
+						//console.log(mediaCurrent.likes);
+
+						//console.log("**** mediaCurrentOrigin");
+						//console.log(mediaCurrentOrigin.likes);
+
+					
+						//conversion de l'objet en string avant de le stocker dans le local storage car ne prend que des string
+						//localStorage.setItem(`${mediaCurrent.id }`, JSON.stringify(mediaCurrent));
+
+						//console.log(  "***** mediaCurrent.likes" + " "+  mediaCurrent.likes );
+				
+						//mise à jour du localstorage
+						localStorage.setItem(`${titleMedia}`, `${mediaCurrent.likes}`);
+						
+						///////////////////////////////////////////////
+
+					
+
+						///////////////////////////////////////////////
+					}
+					
+
+					
+					//console.log("************* valeur dans le local en fin sachant que donnée existait déjà" + " " +localStorage.getItem(`${titleMedia}`) );
+
+					
+					//éxécution de la fonction de mise a jour du like du dom
+					updateNumberlikesFunction(customDataValue, titleMedia, numberLikeCurrent );
+
+					//éxécution de la fonction totalLikePriceFunction de mis à jour du total de likes
+					totalLikePriceFunction();
 
 
 				}else{
 
-					numberLikeCurrent.innerText = mediaCurrentOrigin.likes + 1;
-                
-                    
+					//console.log("************* le localstorage est vide pour cette donnée");
+					//si ce title n'est pas dans localstorage
+					//sauvegarde de ce title dans le localstorage
+					
+					let likeValue = parseInt(numberLikeCurrent.innerText);
+					let likeIncrement = likeValue + 1;
 
-					//mise à jour de likes dans l'objet mediaCurrent
-					mediaCurrent.likes = mediaCurrentOrigin.likes + 1;
+					///////////////////////////
 
-					console.log("**** mediaCurrent.likes après la mise à jour de l'objet");
-					console.log(mediaCurrent.likes);
+					
+					//mise à jour de l'objet encours
+					mediaCurrent.likes = likeIncrement; //mise à jour de likes dans l'objet mediaCurrent
 
-					console.log("**** mediaCurrentOrigin");
-					console.log(mediaCurrentOrigin.likes);
+					//console.log("************* mediaCurrent.likes = likeValue");
+					//console.log(mediaCurrent);
 
-                
+				
 					//conversion de l'objet en string avant de le stocker dans le local storage car ne prend que des string
-					//localStorage.setItem(`${mediaCurrent.id }`, JSON.stringify(mediaCurrent));
+					// localStorage.setItem(`${mediaCurrent.id}`, JSON.stringify(mediaCurrent));
 
-					console.log(  "***** mediaCurrent.likes" + " "+  mediaCurrent.likes );
-            
+				
+					///////////////////////////
+
+					//console.log(  "***** likeIncrement" + " "+likeIncrement );
+				
 					//mise à jour du localstorage
-					localStorage.setItem(`${titleMedia}`, `${mediaCurrent.likes}`);
-                    
-                    
+					localStorage.setItem(`${titleMedia}`, `${likeIncrement}`);
+
+
+					//console.log("************* valeur dans le local en fin sachant que donnée n'existait pas " + " " +localStorage.getItem(`${titleMedia}`) );
+				
+					//éxécution de la fonction de mise a jour du like du dom
+					updateNumberlikesFunction(customDataValue, titleMedia,numberLikeCurrent );
+
+					//éxécution de la fonction totalLikePriceFunction de mis à jour du total de likes
+					totalLikePriceFunction();
+
+				
+
 				}
-                
-
-                
-				console.log("************* valeur dans le local en fin sachant que donnée existait déjà" + " " +localStorage.getItem(`${titleMedia}`) );
-
-                
-				//éxécution de la fonction de mise a jour du like du dom
-				updateNumberlikesFunction(customDataValue, titleMedia, numberLikeCurrent );
-
-				//éxécution de la fonction totalLikePriceFunction de mis à jour du total de likes
-				totalLikePriceFunction();
+				
+				
 
 
-			}else{
+				/////////////////////////////////////////////////
+			
+				let incrementation = 1;
+				totalLikePriceFunction(incrementation);
 
-				console.log("************* le localstorage est vide pour cette donnée");
-				//si ce title n'est pas dans localstorage
-				//sauvegarde de ce title dans le localstorage
-                
-				let likeValue = parseInt(numberLikeCurrent.innerText);
-				let likeIncrement = likeValue + 1;
-
-				///////////////////////////
-
-                
-				//mise à jour de l'objet encours
-				mediaCurrent.likes = likeIncrement; //mise à jour de likes dans l'objet mediaCurrent
-
-				console.log("************* mediaCurrent.likes = likeValue");
-				console.log(mediaCurrent);
-
-            
-				//conversion de l'objet en string avant de le stocker dans le local storage car ne prend que des string
-				// localStorage.setItem(`${mediaCurrent.id}`, JSON.stringify(mediaCurrent));
-
-            
-				///////////////////////////
-
-				console.log(  "***** likeIncrement" + " "+likeIncrement );
-            
-				//mise à jour du localstorage
-				localStorage.setItem(`${titleMedia}`, `${likeIncrement}`);
+				
+			
+			});
 
 
-				console.log("************* valeur dans le local en fin sachant que donnée n'existait pas " + " " +localStorage.getItem(`${titleMedia}`) );
-            
-				//éxécution de la fonction de mise a jour du like du dom
-				updateNumberlikesFunction(customDataValue, titleMedia,numberLikeCurrent );
+		}
+	};
 
-				//éxécution de la fonction totalLikePriceFunction de mis à jour du total de likes
-				totalLikePriceFunction();
+	//éxécution de la fonction likeIncrementFunction();
+	likeIncrementFunction();
 
-            
-
-			}
-            
-            
-
-
-			/////////////////////////////////////////////////
-        
-			let incrementation = 1;
-			totalLikePriceFunction(incrementation);
-
-            
-        
-		});
-
-
-	}
+	
+	
 
 	/////////////////////////////////////////::::
 
@@ -1482,9 +1284,9 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
 	//mise à jour du nombre de likes après la mise à jour du localstorage
 	const updateNumberlikesFunction = () =>{
 
-		console.log("bienvenue dans la fonction updateNumberlikesFunction");
+		//console.log("bienvenue dans la fonction updateNumberlikesFunction");
 
-       
+		const listeMedia = document.getElementsByClassName("heartLikeMedia");//
 
 		for( let k=0; k< listeMedia.length; k++){ 
 
@@ -1534,7 +1336,7 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
 
 						////////////////////
                          
-						console.log("$$$$ binvenue dans la condition localValueCurrent === titleValue  ****");
+						//console.log("$$$$ binvenue dans la condition localValueCurrent === titleValue  ****");
 
 						let listeMediaValue = ProjetPhotographCurrent;
 						//conversion de en entier
@@ -1549,7 +1351,7 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
                             
 						//mediaCurrent.likes += 1 
             
-						console.log("*** mediaCurrent.likes : " + mediaCurrent.title + ": "+ mediaCurrent.likes );
+						//console.log("*** mediaCurrent.likes : " + mediaCurrent.title + ": "+ mediaCurrent.likes );
             
                         
                        
@@ -1611,7 +1413,7 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
 	//const totalLikePriceFunction = (incrementation) => {
 	function totalLikePriceFunction(){
 
-		console.log("**** bienvenue dans la fonction  totalLikePriceFunction");
+		//console.log("**** bienvenue dans la fonction  totalLikePriceFunction");
 		//gestion du total des likes
 
 		//////////////////////////////
@@ -1792,7 +1594,7 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
 	//insertion de l'evennement pour ouvrir la modale
 	contact_button.addEventListener( "click", () =>{
 
-		console.log("bienvenue dans le formulaire");
+		//console.log("bienvenue dans le formulaire");
 
 		containerFormulaireContact1.style.display = "block";
 
@@ -1822,13 +1624,15 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
        
 		//e.preventDefault();
 
-		console.log("bienvenue dans l'évennement de la soumission du formulaire");
+		//console.log("bienvenue dans l'évennement de la soumission du formulaire");
 
 		// Afficheage des valeurs dans la console
+		
 		console.log("Preom : " + prenom.value);
 		console.log("Nom : " + nom.value);
 		console.log("Email : " + email.value);
 		console.log("Message : " + message.value);
+		
 
 
 		//vidage des champs du formulaire
@@ -1850,147 +1654,224 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
 	/***************************** gestion de la lightbox ******************************************** */
 	const mediaPhotographe = ProjetPhotographCurrent;
 
-	console.log(  "******* mediaPhotographe" );
-	console.log( mediaPhotographe);
+	//console.log(  "******* mediaPhotographe" );
+	//console.log( mediaPhotographe);
 
 	//récupération des images de media 
 	let imageMedia = mediaPhotographe.map(item => item.image || item.video);
+
+	/*
+	console.log("***imageMedia[0]");
+	console.log(imageMedia[0]);
+	*/
+
 	let titreMedia = mediaPhotographe.map(item => item.title );
     
     
 
 	//récupération de la taille du tableau des images de medias
 
-	console.log(imageMedia);
-	console.log(imageMedia[0]);
+	//console.log(imageMedia);
+	//console.log(imageMedia[0]);
 
-	console.log("titreMedia");
-	console.log(titreMedia);
+	//console.log("titreMedia");
+	//console.log(titreMedia);
+
+	//////////////////////////////////////////////////////////::::::
+
 
 	let currentIndex = 0;
 
-	const lightbox = `
-    
-        <div class="lightbox">
+	const createLightboxFunction = ( imageMedia2, titreMedia2 ) => {
 
-            
+		/*
+		console.log("***** imageMedia2");
+		console.log(imageMedia2);
+		
 
-            <div class="arrowContainerlightbox">
+		console.log("***** imageMedtitreMedia2ia2");
+		console.log(titreMedia2);
+		*/
 
-                <div class="lockLightbox">
-                  
-                </div>
+		const lightbox = `
+		
+			<div class="lightbox">
 
-                <div class="arrowrigthLeft arrowleft">
-                    <button class="prev-button"  >
-                        <i class="fa-solid fa-angle-left prev-button"></i>
-                    </button  >
-                </div>
-            
-            </div>
+				
 
-            <div class="containerMediaImg imageContainer" style="display: block;" >
+				<div class="arrowContainerlightbox">
 
-                <div class="image" >
+					<div class="lockLightbox">
+					
+					</div>
 
-					 <img class="child" src="./assets/photographersMedia/${imageMedia[0]}" alt="${titreMedia[currentIndex]}" /> 
-                </div>
-                <div class="titreLightbox">${titreMedia[currentIndex]}</div>
+					<div class="arrowrigthLeft arrowleft">
+						<button class="prev-button"  >
+							<i class="fa-solid fa-angle-left prev-button"></i>
+						</button  >
+					</div>
+				
+				</div>
 
-            </div>
-            
-                   
-            <div class="containerMediaImg videoContainer" style="display: none;">
-                <div class="videoContainer image">
-                    <video class="video" src="./assets/photographersMedia/${imageMedia[0]}" >
-                    </video>
-                </div>
-                <div class="titreLightbox">${titreMedia[currentIndex]}</div>
-            </div>
+				<div class="containerMediaImg imageContainer" style="display: block;" >
 
-            <div class="arrowContainerlightbox">
+					<div class="image" >
 
-                <button class="lockLightbox lockLightboxBtn" >
-                    <i class="fa-solid fa-x" ></i>
-                </button>
+						<img class="child" src="./assets/photographersMedia/${imageMedia[0]}" alt="${titreMedia[currentIndex]}" /> 
+					</div>
+					<div class="titreLightbox">${titreMedia[currentIndex]}</div>
 
-                <div class="arrowrigthLeft arrowrigth ">
+				</div>
+				
+					
+				<div class="containerMediaImg videoContainer" style="display: none;">
+					<div class="videoContainer image">
+						<video class="video" src="./assets/photographersMedia/${imageMedia[0]}" >
+						</video>
+					</div>
+					<div class="titreLightbox">${titreMedia[currentIndex]}</div>
+				</div>
 
-                    <button class=" next-button" >
-                        <i class="fa-solid fa-angle-right "></i>
-                    </button>
+				<div class="arrowContainerlightbox">
 
-                </div>
-            
-            </div>
+					<button class="lockLightbox lockLightboxBtn" >
+						<i class="fa-solid fa-x" ></i>
+					</button>
 
-        </div>
-       
-    
-    
-    `;
+					<div class="arrowrigthLeft arrowrigth ">
 
-	//récupération de la section de la modale containerLightbox
+						<button class=" next-button" >
+							<i class="fa-solid fa-angle-right "></i>
+						</button>
+
+					</div>
+				
+				</div>
+
+			</div>
+		
+		
+		
+		`;
+
+		//récupération de la section de la modale containerLightbox
+		const containerLightbox = document.querySelector(".containerLightbox");
+		containerLightbox.innerHTML = lightbox;
+
+
+		//récupération des élements
+		const imageContainer = document.querySelector(".imageContainer");
+		//const imagelightbox = document.querySelector(".image");
+		const videoContainer = document.querySelector(".videoContainer");
+		const videolightbox = document.querySelector(".video");
+		const titreLightbox= document.querySelector(".titreLightbox");
+		const prevButton = document.querySelector(".prev-button");
+		const nextButton = document.querySelector(".next-button");
+		const child = document.querySelector(".child");
+
+
+		//gestion de l'index de l'image
+		const showImage = (index) => {
+
+			if(imageMedia2){
+				if( imageMedia2[index].includes("jpg") ){
+
+					console.log("**** bienvenue dans les images");
+					
+					videoContainer.style.display = "none";
+					imageContainer.style.display = "block";
+					//imagelightbox.style.backgroundImage = `url(./assets/photographersMedia/${imageMedia[index]})`;
+					child.src = `./assets/photographersMedia/${imageMedia2[index]}`;
+				
+					titreLightbox.innerText = titreMedia2[index];
+
+				}else if( imageMedia2[index].includes("mp4") ){
+
+					console.log(" ***** bienvenue dans les vidéos");
+
+					videoContainer.style.display = "block";
+					imageContainer.style.display = "none";
+
+					videolightbox.src = `./assets/photographersMedia/${imageMedia2[index]}`;
+					videolightbox.controls = true;
+				}
+			}
+			
+
+		};
+
+		//gestion des images suivantes
+		const showNextImage = ()=> {
+
+			currentIndex = (currentIndex + 1) % imageMedia2.length; //modulo permet de récupérer la partie entière supérieure 1%2 = 1 ou 2/2 1
+			showImage(currentIndex);
+
+		};
+
+		const showPreviousImage = () =>{
+			currentIndex = (currentIndex - 1 + imageMedia2.length) % imageMedia2.length;
+			showImage(currentIndex);
+		};
+
+		prevButton.addEventListener("click", showPreviousImage);
+		nextButton.addEventListener("click", showNextImage);
+
+		showImage(currentIndex);
+
+
+
+		/////////
+		//gestion de la fermeture de la lightbox
+
+		//récupération du bouton de fermeture de la galerie
+		const lockGalerie = document.querySelector(".lockLightboxBtn");
+
+		lockGalerie.addEventListener("click", ()=> {
+
+			//console.log("*** bienvenue au lockLightbox.addEventListener");
+	
+			///////////////////////////////////
+			//modification de l'attribut aria-hidden de chaque section
+			for( let a=0; a < sections.length; a++){
+	
+				let elementCurrent = sections[a];
+	
+				//console.log("**** elementCurrent");
+				//console.log(elementCurrent);
+	
+				//modification de l'attribut aria-hidden en true pour le rendre accessible des lecteurs
+				elementCurrent.setAttribute("aria-hidden", "true");
+	
+				//modification de l'attribut aria-hidden en false pour le masquer des lecteurs
+				containerLightbox.setAttribute("aria-hidden", "false");
+	
+					
+			}
+				
+	
+			///////////////////////////////////
+				
+			containerLightbox.style.display = "none";
+			sectionMain.style.display = "block";
+			sectionProfile.style.display = "block";
+	
+	
+			//photographHeader.style.opacity = 1;
+			//sectionMain.style.opacity = 1;
+		});
+
+
+		/////////
+
+	};
+
+	createLightboxFunction();
+
 	const containerLightbox = document.querySelector(".containerLightbox");
-	containerLightbox.innerHTML = lightbox;
 
 
-	//récupération des élements
-	const imageContainer = document.querySelector(".imageContainer");
-	//const imagelightbox = document.querySelector(".image");
-	const videoContainer = document.querySelector(".videoContainer");
-	const videolightbox = document.querySelector(".video");
-	const titreLightbox= document.querySelector(".titreLightbox");
-	const prevButton = document.querySelector(".prev-button");
-	const nextButton = document.querySelector(".next-button");
-	const child = document.querySelector(".child");
 
-
-	//gestion de l'index de l'image
-	const showImage = (index) => {
-
-		if( imageMedia[index].includes("jpg") ){
-
-			console.log("**** bienvenue dans les images");
-            
-			videoContainer.style.display = "none";
-			imageContainer.style.display = "block";
-			//imagelightbox.style.backgroundImage = `url(./assets/photographersMedia/${imageMedia[index]})`;
-			child.src = `./assets/photographersMedia/${imageMedia[index]}`;
-          
-			titreLightbox.innerText = titreMedia[index];
-
-		}else if( imageMedia[index].includes("mp4") ){
-
-			console.log(" ***** bienvenue dans les vidéos");
-
-			videoContainer.style.display = "block";
-			imageContainer.style.display = "none";
-
-			videolightbox.src = `./assets/photographersMedia/${imageMedia[index]}`;
-			videolightbox.controls = true;
-		}
-
-	};
-
-	//gestion des images suivantes
-	const showNextImage = ()=> {
-
-		currentIndex = (currentIndex + 1) % imageMedia.length; //modulo permet de récupérer la partie entière supérieure 1%2 = 1 ou 2/2 1
-		showImage(currentIndex);
-
-	};
-
-	const showPreviousImage = () =>{
-		currentIndex = (currentIndex - 1 + imageMedia.length) % imageMedia.length;
-		showImage(currentIndex);
-	};
-
-	prevButton.addEventListener("click", showPreviousImage);
-	nextButton.addEventListener("click", showNextImage);
-
-	showImage(currentIndex);
-
+	///////////////////////////////////////////////////////////////////
 	
 	//récupération de toutes les images
 	let photographerImg = document.getElementsByClassName("articlePortfolio__item--img");
@@ -2003,20 +1884,66 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
 
 	//récupération des sections 
 	let sections = document.getElementsByClassName("ariaHiddenElement");
-	console.log("**** sections");
+	//console.log("**** sections");
 	//sections[0].setAttribute("aria-hidden", "false");
-	console.log(sections[0] );
+	//console.log(sections[0] );
 	
 
 	//gestion de l'ouverture de la galerie ou modale
 	for( let i =0; i<photographerImg.length;i++){
 
 		let imageencours = photographerImg[i];
-		//console.log(imageencours)
+		
 
 		imageencours.addEventListener("click", ()=>{
 
+			/*
 			console.log("*** bienvenue au  imageencours.addEventListener");
+			
+			console.log("***imageencours");
+			console.log(imageencours.value);
+			*/
+			
+			//récupération de l'objet sur lequel on a cliqué
+			const ObjectCurrentClick = mediaPhotographe.filter( item => item.id === parseInt(imageencours.value));
+			
+			/*
+			console.log("****mediaPhotographe");
+			console.log(mediaPhotographe);
+			console.log("***ObjectCurrentClick[0]");
+			console.log(ObjectCurrentClick[0]);
+			*/
+			
+
+			//retrait de l'élément sur lequel on a cliqué 
+			let listeNewMediaFirstElementUpdate = mediaPhotographe.filter( item => item.id != parseInt(imageencours.value));
+			
+			console.log("*** listeNewMediaFirstElementUpdate[0]");
+			console.log(listeNewMediaFirstElementUpdate);
+			
+			//rajout de l'élément sur lequel on a cliqué pour qu'il soit en première position
+			//dans le but de l'afficher en premier sur la lightbox
+			
+			listeNewMediaFirstElementUpdate.unshift(ObjectCurrentClick[0]); // Modifie la liste d'origine
+			let listeLightboxFilnal = listeNewMediaFirstElementUpdate;
+
+			//console.log("*** listeLightboxFilnal");
+			//console.log(listeLightboxFilnal);
+
+			//récupération des images de media 
+			let imageMedia2 = listeLightboxFilnal.map(item => item.image || item.video);
+
+			//console.log("***imageMedia[0]");
+			//console.log(imageMedia2[0]);
+
+			let titreMedia2 = listeLightboxFilnal.map(item => item.title );
+			
+
+			
+			//stockage de la value du button (id de l'img) dans le localstorage
+			localStorage.setItem("listeLightboxFilnal", JSON.stringify(listeLightboxFilnal));
+
+			createLightboxFunction(imageMedia2, titreMedia2); //new
 
 			///////////////////////////////////
 			//modification de l'attribut aria-hidden de chaque section
@@ -2024,8 +1951,8 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
 
 				let elementCurrent = sections[a];
 
-				console.log("**** elementCurrent");
-				console.log(elementCurrent);
+				//console.log("**** elementCurrent");
+				//console.log(elementCurrent);
 
 				//modification de l'attribut aria-hidden en false pour le cacher des lecteurs
 				elementCurrent.setAttribute("aria-hidden", "false");
@@ -2033,8 +1960,8 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
 				//modification de l'attribut aria-hidden en true pour le rendre accessible des lecteurs
 				containerLightbox.setAttribute("aria-hidden", "true");
 
-				console.log("**** containerLightbox");
-				console.log(containerLightbox);
+				//console.log("**** containerLightbox");
+				//console.log(containerLightbox);
 
 				
 			}
@@ -2055,43 +1982,10 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
 		});
 	}
     
-	//fermeture de la galerie ou modale
-    
-	lockGalerie.addEventListener("click", ()=> {
-
-		console.log("*** bienvenue au lockLightbox.addEventListener");
-
-		///////////////////////////////////
-		//modification de l'attribut aria-hidden de chaque section
-		for( let a=0; a < sections.length; a++){
-
-			let elementCurrent = sections[a];
-
-			console.log("**** elementCurrent");
-			console.log(elementCurrent);
-
-			//modification de l'attribut aria-hidden en true pour le rendre accessible des lecteurs
-			elementCurrent.setAttribute("aria-hidden", "true");
-
-			//modification de l'attribut aria-hidden en false pour le masquer des lecteurs
-			containerLightbox.setAttribute("aria-hidden", "false");
-
-				
-		}
-			
-
-		///////////////////////////////////
-			
-		containerLightbox.style.display = "none";
-		sectionMain.style.display = "block";
-		sectionProfile.style.display = "block";
-
-
-		//photographHeader.style.opacity = 1;
-		//sectionMain.style.opacity = 1;
-	});
-
+	
 }
+
+
 
 //fonction d'éxécusion 
 async function initonePhotographerDataTemplate() {
@@ -2111,9 +2005,3 @@ initonePhotographerDataTemplate();
 
 
 
-/*
-
-  style=" background-image: url('./assets/photographersMedia/${lisNumberLikeOrderCroissant1.image}');
-                                        background-repeat: no-repeat; background-position: center center; background-size: cover; " 
-
-*/
