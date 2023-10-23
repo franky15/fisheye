@@ -4,11 +4,13 @@
     "@babel/core": "^7.23.2",
     "@babel/node": "^7.22.19",
     "@babel/preset-env": "^7.23.2",
+    "eslint": "^8.52.0",
     "nodemon": "^3.0.1",
     "sass": "^1.66.1"
   },
   "dependencies": {
-    "node-sass": "^9.0.0"
+    "node-sass": "^9.0.0",
+    "prettier": "^3.0.3"
   },
   "name": "front-end-fisheye",
   "description": "## Démarrer le projet",
@@ -18,7 +20,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "compile": " sass scss/main.scss css/style.css",
     "watch": " sass scss/main.scss css/style.css -w",
-    "start": "nodemon --exec babel-node"
+    "start": "nodemon --exec babel-node",
+    "lint": "eslint ./"
   },
   "repository": {
     "type": "git",

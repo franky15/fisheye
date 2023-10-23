@@ -27,7 +27,7 @@
     </header>
     <main id="main"   >
       
-      <section class="sectionProfile ariaHiddenElement"   aria-hidden="true" >
+      <section class="sectionProfile ariaHiddenElement"   aria-hidden="true" aria-label="block du profile du photographe">
 
         <div class="photograph-header">
 
@@ -41,32 +41,27 @@
       
           </div>
 
-          <button class="contact_button" >Contactez-moi</button>
+          <button class="contact_button" aria-label="Ouverture du formulaire de contact du photographe" >Contactez-moi</button>
           <p class= "imgBlock"></p>
 
         </div>
         
-        <div class="containerFormulaireContact" style="display: none;">
+        <p class="containerFormulaireContact" style="display: none; ">
 
-        </div>
+        </p>
 
        
 
       </section>
 
-      <section class="containerLightbox" style="display: none;" aria-hidden="false" role="dialog"   >
+      <section class="containerLightbox" style="display: none;" aria-hidden="false" role="dialog"   > </section>
 
 
-      </section>
+      <span  class="sectionMain ariaHiddenElement"  aria-hidden="true" >
 
-
-     
-      
-      <section  class="sectionMain ariaHiddenElement"  aria-hidden="true" >
-
-          <div id="deuxiemeFormulaire" class="custom-select" role="filter" aria-labelledby="fitrage par ordre croissant">
+          <div id="deuxiemeFormulaire" class="custom-select" role="filter" aria-labelledby="liste déroulante pour filtrer les medias ">
              
-              <div class="sort-text">
+              <p class="sort-text">
                 
                 <div class="sort-text__item titreFilter1" style="display: block;">
                    <p> Trier par  </p>
@@ -76,10 +71,10 @@
                   <p> Trier par  </p>
                 </div>
  
-              </div>
+              </p>
               
 
-              <div id="sort-wrapper">
+              <div id="sort-wrapper" role="list">
 
                   <button  value="Popularite"  class="optionPopularite btnPopularite1" id="optionPopularite"  style="display: block;"> <span class="spanPopularite1" >Popularité</span> <span class="arrowDown"> <i class="fa-solid fa-angle-down"></i> </span> </button>
                 
@@ -95,6 +90,7 @@
                           
                       </li>
                       
+                     
                       <li class="optionBar dateElement"   role='option'>
                         <button  value="Date" class="btnDate">Date</button>  
                       </li>
@@ -110,63 +106,24 @@
               </div>
 
           </div>
+         
+        <p class="populariteParent"  >
+          <p class="populariteParent__article" style="display: flex; justify-content: space-between; flex-wrap: wrap; width: 90%; margin: auto;  " ></p>
+        </p>
 
-        <!--
+        <p class="priceLikeTotal"></p>  
 
-          <div class="formFilterContainer">
-
-            <div class="form formFilter">
-              
-            
-            </div>
-    
-          </div>
-        -->
-     
-        <div class="articleContainerParent"  style="display: block; ">
-          <div class="articleContainer" style="display: flex; justify-content: space-between; flex-wrap: wrap; width: 90%; margin: auto;  " ></div>
-        </div>
-
-        <div class="populariteParent"  style="display: none;">
-          <div class="populariteParent__article" style="display: flex; justify-content: space-between; flex-wrap: wrap; width: 90%; margin: auto;  " ></div>
-        </div>
-
-        <div class="titreParent"  style="display: none; ">
-          <div class="titreParent__article" style="display: flex; justify-content: space-between; flex-wrap: wrap; width: 90%; margin: auto;   " ></div>
-        </div>
-
-        <div class="dateParent"  style="display: none;">
-          <div class="dateParent__article" style="display: flex; justify-content: space-between; flex-wrap: wrap; width: 90%; margin: auto;  " ></div>
-        </div>
-      
-        <div class="priceLikeTotal"></div>  
-
-    </section>
+      </span>
 
     </main>
-    <div id="contact_modal">
+    <!--
+
+      <section id="contact_modal"> 
 			<div class="modal">
-         <!--
-				<header>
-          <h2>Contactez-moi</h2>
-          <img src="assets/icons/close.svg" onclick="closeModal()" />
-        </header>
-
-       
-          <form class="form">
-					<div class="form__sousBlock">
-						<label>Prénom</label>
-						<input  class="input"/>
-					</div>
-          <button class="contact_button">Envoyer</button>
-				</form>
-
-        -->
-       
-      
-				
+        
 			</div>
-		</div>
+		</section>
+    -->
    
 
    <script type="module" src="scripts/pages/onePhotographerPage.js" ></script> 

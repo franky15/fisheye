@@ -156,37 +156,10 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
 
 	/***************** gestion  du portfolio ********************** */
 
-   
-
-	// récupération de tous les containers des différents affichage des médias
-	const articleContainerParent = document.querySelector(".articleContainerParent");
-	//const articleElement  = document.querySelector(".articleContainer");
-
-	const populariteParent =  document.querySelector(".populariteParent");
 	const popularite  = document.querySelector(".populariteParent__article");
 
-	const titreParent  = document.querySelector(".titreParent");
-	const titre  = document.querySelector(".titreParent__article");
-
-
-	const dateParent  = document.querySelector(".dateParent");
-	const date  = document.querySelector(".dateParent__article");
-
-
-
-
-	//console.log(ProjetPhotographCurrent.length);
-
-	// console.log("***ProjetPhotographCurrent")
-	// console.log(ProjetPhotographCurrent)
 
 	let articleItem; 
-    
-	//creation des medias
-
-	//let ShowNormalOrderPopularite; 
-
-    
 	///////////////////////////////////////:
 
    
@@ -200,17 +173,6 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
 
 		//console.log("**** selectValue dans updatefilterPage");
 		//console.log(selectValue);
-
-        
-		// let selectValueLocalStorage
-		// Récupération des données  du filtre (selectValue) du localStorage
-		//selectValueLocalStorage = localStorage.getItem("selectValue");
-
-		//console.log("**** selectValueLocalStorage");
-		//console.log(selectValueLocalStorage);
-
-		//console.log("typeof selectValueLocalStorage : " + typeof selectValueLocalStorage );
-		// console.log(selectValueLocalStorage.selectValue)
         
       
         
@@ -222,9 +184,6 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
 
 			//console.log("**** bienvenue dans la fonction listeFilterUpdateFunction ");
 			// ProjetPhotographCurrent  selectValueLocalStorage
-
-			//console.log("******ProjetPhotographCurrent dans listeFilterUpdateFunction");
-			//console.log(ProjetPhotographCurrent);
 
 			// let listeMediaUpdate = []
 			let listeMediaUpdate; 
@@ -318,28 +277,6 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
 						//console.log(listeMediaUpdate);
 
 						listeDateOrderCroissantDate = listeMediaUpdate;
-
-						//conversion des dates en entiers
-                            
-
-						/*
-                            for(let d=0; d<listeMediaUpdate.length; d++){
-
-                                let mediaDateCurrent = listeMediaUpdate[d]
-
-                              //modification de la date dans l'objet en format date qui sera reconnu par javascript
-                               mediaDateCurrent.date = new Date( mediaDateCurrent.date )
-
-                               //insersion de l'objet modifié dans la liste listeDateOrderCroissantDate
-                               listeDateOrderCroissantDate.push( mediaDateCurrent.date = new Date( mediaDateCurrent.date )   )
-                                
-                                
-                            }
-
-                            console.log("*** listeDateOrderCroissantDate non ordonnée")
-                            console.log(listeDateOrderCroissantDate)
-                            
-                            */
 
 						//ordonnement de la liste de dates par ordre croissant
 						listeMediaUpdate.sort( (a, b) => {
@@ -745,20 +682,21 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
 
 
 			///////////////////////////////////////////////////:
-			//factory function
+			//creation des mediadias
 			
-			function createArticle( mediaData, filtre ){
+			function createArticle( mediaData ){
 
+				//console.log(mediaData);
 
 				if(mediaData.video){
 
 					articleItem = `
 
-						<div class="articlePortfolioitem articlePopularite"  > 
+						<article class="articlePortfolioitem articlePopularite"  > 
 						
 							<div class="articlePortfolio__item">
 					
-								<button  value=${mediaData.id} class="articlePortfolio__item--img imgVideo${mediaData.id}" > 
+								<button  value=${mediaData.id} class="articlePortfolio__item--img imgVideo${mediaData.id} btnMediaDisabled" > 
 								
 								 
 
@@ -777,7 +715,7 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
 										   
 									<div class= "numberLikes ${mediaData.title.replace(/\s+/g, "")}  ${mediaData.id}"  id= ${mediaData.title.replace(/\s+/g, "")}  data-idMediaCurrent =${mediaData.id} > ${mediaData.likes}  </div> 
 											
-									<button  value=${mediaData.id} class="heartLikeMedia" data-idMediaCurrent =${mediaData.id} id= "${mediaData.title.replace(/\s+/g, "")}">  <i class="fa-solid fa-heart" ></i> </button>
+									<button  value=${mediaData.id} class="heartLikeMedia btnMediaDisabled" data-idMediaCurrent =${mediaData.id} id= "${mediaData.title.replace(/\s+/g, "")}">  <i class="fa-solid fa-heart btnMediaDisabled" ></i> </button>
 
 									
 									
@@ -787,23 +725,25 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
 
 							</div>
 					
-						</div> 
+						</article> 
 					
 						`;
-					// popularite.innerHTML += articleItem;
-					filtre.innerHTML += articleItem;
 
+				
+					//filtre.innerHTML += articleItem;
+					popularite.innerHTML += articleItem;
+					
 
 				}else{
 
 
 					articleItem = `
 
-					<div class="articlePortfolioitem articlePopularite" > 
+					<article class="articlePortfolioitem articlePopularite" > 
 					
 						<div class="articlePortfolio__item">
 				
-							<button  value=${mediaData.id} class="articlePortfolio__item--img imgVideo${mediaData.id}">
+							<button  value=${mediaData.id} class="articlePortfolio__item--img imgVideo${mediaData.id} btnMediaDisabled">
 							
 							   
 
@@ -821,7 +761,7 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
 									   
 								<div class= "numberLikes ${mediaData.title.replace(/\s+/g, "")}  ${mediaData.id}"  id= ${mediaData.title.replace(/\s+/g, "")}  data-idMediaCurrent =${mediaData.id} > ${mediaData.likes}  </div> 
 										
-								<button  value=${mediaData.id} class="heartLikeMedia" data-idMediaCurrent =${mediaData.id} id= "${mediaData.title.replace(/\s+/g, "")}">  <i class="fa-solid fa-heart" ></i> </button>
+								<button  value=${mediaData.id} class="heartLikeMedia btnMediaDisabled" data-idMediaCurrent =${mediaData.id} id= "${mediaData.title.replace(/\s+/g, "")}">  <i class="fa-solid fa-heart btnMediaDisabled" ></i> </button>
 
 								
 								
@@ -831,12 +771,12 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
 
 						</div>
 				
-					</div> 
+					</article> 
 				
 					`;
-					// popularite.innerHTML += articleItem;
-					filtre.innerHTML += articleItem;
-					
+
+					//filtre.innerHTML += articleItem;
+					popularite.innerHTML += articleItem;
 
 				}
 
@@ -844,13 +784,23 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
 			} 
 
 
+			
+
+			// Fonction pour supprimer tous les éléments enfants de l'élément parent (popularite)
+			const supprimerEnfants = () => {
+
+				//supression du premier enfant jusqu'à ce qu'il y'en a plus
+				while (popularite.firstChild) {
+					popularite.removeChild(popularite.firstChild);
+				}
+			};
 
 
 
 			///////////////////////////////////////////////////////
             
 			//condition sur la donnée qui est dans le localstorage si c'est popularite
-			if(  selectValueLocalStorage === "Popularite" || !selectValueLocalStorage ) {   //selectValueLocalStorage 
+			if( !selectValueLocalStorage ) {   
 
 
 				//console.log("***** bienvenue dans le if  selectValueLocalStorage && listeTitreOrderCroissant");
@@ -863,68 +813,90 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
 				localStorage.removeItem("listeDateOrderCroissant"); 
 				// localStorage.removeItem('listeTitreOrderCroissant');
                     
-				//masquage des autres block des médias 
-				articleContainerParent.style.display = "none";
-				titreParent.style.display = "none";
-				dateParent.style.display = "none";
-                    
-				//démasquage du block des medias popularite
-                    
-				populariteParent.style.display = "block";
+				
+				supprimerEnfants();
 
-                    
-				///////////////
-                
-				////////////////////
+				//rangement par nombre de likes croissants
+				for(let i = 0; i < lisNumberLikeOrderCroissant.length; i++){
 
-				const articlePopularite = document.querySelector(".articlePopularite");
+					
+					
+					
 
-				if(articlePopularite) {
+					let lisNumberLikeOrderCroissant1 = lisNumberLikeOrderCroissant[i];
 
-					console.log("articlePopularite existe déjà ne rien faire");
-				} else {
+					// console.log("lisNumberLikeOrderCroissant1");
+					// console.log(lisNumberLikeOrderCroissant1);
 
+					createArticle(lisNumberLikeOrderCroissant1 );
 
-					//rangement par nombre de likes croissants
-					for(let i = 0; i < lisNumberLikeOrderCroissant.length; i++){
-
-                       
-                        
-                       
-
-						let lisNumberLikeOrderCroissant1 = lisNumberLikeOrderCroissant[i];
-
-						// console.log("lisNumberLikeOrderCroissant1")
-						// console.log(lisNumberLikeOrderCroissant1)
-
-						/******************* utilisation de la factory function ************************ */
-						
-						
-
-						createArticle(lisNumberLikeOrderCroissant1,popularite );
-
-						
-
-					}
-
+					//éxécution de la fonction likeIncrementFunction();
+					//likeIncrementFunction();
 
 				}
 
-                    
-                
 
-                   
+				
 
 				//////////////////////////////////////////////////
 
                     
 
 				//rangement par ordre de dates croissantes
-			} else if( selectValueLocalStorage === "Date" && listeDateOrderCroissantDate ) {   //selectValueLocalStorage === "Date" &&
+			} else if(  selectValueLocalStorage === "Popularite" && lisNumberLikeOrderCroissant ) {   //selectValueLocalStorage 
 
 
-				//console.log("***** bienvenue dans le if  selectValueLocalStorage && lisNumberLikeOrderCroissant");
+				//console.log("***** bienvenue dans le if  selectValueLocalStorage && listeTitreOrderCroissant");
 				//console.log(selectValueLocalStorage.selectValue)
+
+                
+				///////////////
+				// Suppression de certains tableaux du localStorage qu'on ne veut pas utiliser actuellement
+				localStorage.removeItem("listeTitreOrderCroissant");
+				localStorage.removeItem("listeDateOrderCroissant"); 
+				// localStorage.removeItem('listeTitreOrderCroissant');
+                    
+				
+				supprimerEnfants();
+
+				//rangement par nombre de likes croissants
+				for(let i = 0; i < lisNumberLikeOrderCroissant.length; i++){
+
+					
+					
+					
+
+					let lisNumberLikeOrderCroissant1 = lisNumberLikeOrderCroissant[i];
+
+					console.log("lisNumberLikeOrderCroissant1");
+					console.log(lisNumberLikeOrderCroissant1);
+
+					createArticle(lisNumberLikeOrderCroissant1 );
+
+					//éxécution de la fonction likeIncrementFunction();
+					likeIncrementFunction();
+
+					//éxécution openLightliboxFunction();
+					openLightliboxFunction();
+
+				}
+
+
+				
+
+				//////////////////////////////////////////////////
+
+                    
+
+				//rangement par ordre de dates croissantes
+			}
+			
+			
+			else if( selectValueLocalStorage === "Date" && listeDateOrderCroissantDate ) {   //selectValueLocalStorage === "Date" &&
+
+
+				console.log("***** bienvenue dans le if  selectValueLocalStorage && lisNumberLikeOrderCroissant");
+				console.log(selectValueLocalStorage.selectValue);
 
 				//console.log("****listeDateOrderCroissantDate");
 				//console.log(listeDateOrderCroissantDate);
@@ -936,60 +908,40 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
 				localStorage.removeItem("listeArticlesCroissanteLikes"); //listeArticlesOrderCroissant 
                    
 
-                    
-				//masquage des autres block des médias 
-				articleContainerParent.style.display = "none";
-				titreParent.style.display = "none";
-				populariteParent.style.display = "none";
-                    
-				//démasquage du block des medias popularite
-                    
-				dateParent.style.display = "block";
+				//$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 
-                    
+				
 
-				///////////////
-                
-				const articleDate = document.querySelector(".articleDate");
+				supprimerEnfants();
 
-				if(articleDate) {
+				for(let i = 0; i < listeDateOrderCroissantDate.length; i++){
 
-					console.log("articleDate existe déjà ne rien faire");
+					let listeDateOrderCroissantDate1 = listeDateOrderCroissantDate[i];
 
-				} else {
-
-
-					for(let i = 0; i < listeDateOrderCroissantDate.length; i++){
-
-						let listeDateOrderCroissantDate1 = listeDateOrderCroissantDate[i];
-    
-						//console.log("listeDateOrderCroissantDate")
-						// console.log(listeDateOrderCroissantDate1)
-						
-						createArticle(listeDateOrderCroissantDate1,date );
-
-						/////////////////////////////////////////////////////
-
-						//éxécution de la fonction likeIncrementFunction();
-						//likeIncrementFunction();
-
-						/////////////////////////////////////////////////////
-
-					}
+					// console.log("listeDateOrderCroissantDate");
+					// console.log(listeDateOrderCroissantDate1);
 					
+					createArticle(listeDateOrderCroissantDate1 );
+
+					//éxécution de la fonction likeIncrementFunction();
+					likeIncrementFunction();
+
+					//éxécution openLightliboxFunction();
+					openLightliboxFunction();
 
 
 				}
 
-                    
 
-                   
 
+				//$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
+               
 				//rangement par ordre de titre croissant
 			} else if( selectValueLocalStorage === "Titre" && listeTitreOrderCroissant ) {   //selectValueLocalStorage === "Titre" &&
 
 
-				//console.log("***** bienvenue dans le if  selectValueLocalStorage && listeTitreOrderCroissant1");
+				console.log("***** bienvenue dans le if  selectValueLocalStorage && listeTitreOrderCroissant1");
 
 				//console.log("**** listeTitreOrderCroissant");
 				//console.log(listeTitreOrderCroissant);
@@ -999,49 +951,32 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
 				localStorage.removeItem("lisNumberLikeOrderCroissant");
 				localStorage.removeItem("listeArticlesCroissanteLikes"); 
                    
-                  
-				///////////////
-                    
-				//masquage des autres block des médias 
-				articleContainerParent.style.display = "none";
-				populariteParent.style.display = "none";
-				dateParent.style.display = "none";
-                    
-				//démasquage du block des medias popularite
-                    
-				titreParent.style.display = "block";
-                    
-				///////////////
-                    
-				const articleTitre = document.querySelector(".articleTitre");
-
-				if(articleTitre) {
-
-					console.log("articleTitre existe déjà ne rien faire");
-				} else {
+				//$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 
 
-					for(let i = 0; i < listeTitreOrderCroissant.length; i++){
+				
 
-						let listeTitreOrderCroissant1 = listeTitreOrderCroissant[i];
-    
-						//console.log("listeTitreOrderCroissant1");
-						//console.log(listeTitreOrderCroissant1);
-						
-						createArticle(listeTitreOrderCroissant1,titre );
-						
-						/////////////////////////////////////////////////////
+				supprimerEnfants();
 
-						//éxécution de la fonction likeIncrementFunction();
-						//likeIncrementFunction();
+				for(let i = 0; i < listeTitreOrderCroissant.length; i++){
 
-						/////////////////////////////////////////////////////
-					}
+					let listeTitreOrderCroissant1 = listeTitreOrderCroissant[i];
+
+					// console.log("listeTitreOrderCroissant1");
+					// console.log(listeTitreOrderCroissant1);
+					
+					createArticle(listeTitreOrderCroissant1);
+
+					//éxécution de la fonction likeIncrementFunction();
+					likeIncrementFunction();
+
+					//éxécution openLightliboxFunction();
+					openLightliboxFunction();
 
 
 				}
 
-                    
+				//$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 
                    
 			}  
@@ -1053,9 +988,6 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
 		showNewArticleFunction();
 
 		
-		
-
-	
 	};
 
 	updatefilterPage(); 
@@ -1067,6 +999,8 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
 
 	//récupération de tous les coeurs
 	const listeMedia = document.getElementsByClassName("heartLikeMedia");
+
+	
     
 	const likeIncrementFunction=() =>{ 
 
@@ -1074,12 +1008,14 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
 
 			let  currentElementHeart = listeMedia[j];
 
-			//console.log("****currentElementHeart");
-			//console.log(currentElementHeart);
+			// console.log("****currentElementHeart");
+			// console.log(currentElementHeart);
 
 			// Obtation la valeur de l'attribut data-custom-data
 			let customDataValue = currentElementHeart.getAttribute("data-idMediaCurrent");
 
+			// console.log(customDataValue);
+			
 			// Gestionnaire d'événement pour "click" avec accès au dataset
 			currentElementHeart.addEventListener("click", function() {
 
@@ -1147,8 +1083,8 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
 						//mise à jour de likes dans l'objet mediaCurrent
 						mediaCurrent.likes = mediaCurrentOrigin.likes; 
 
-						console.log("**** mediaCurrent.likes après la mise à jour de l'objet");
-						console.log(mediaCurrent);
+						// console.log("**** mediaCurrent.likes après la mise à jour de l'objet");
+						// console.log(mediaCurrent);
 
 
 						//console.log("**** mediaCurrentOrigin");
@@ -1524,6 +1460,8 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
 
 	let photographHeader = document.querySelector(".photograph-header");
 	let containerFormulaireContact1 = document.querySelector(".containerFormulaireContact");
+
+
    
 	let sectionMain = document.querySelector(".sectionMain");
    
@@ -1531,42 +1469,42 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
 	const formulaireContact = `
 
     
-    <div id="formulaireContact"  role="information" aria-labelledby="coordonnees du photographe" >
+    <section id="formulaireContact"   role="form" aria-labelledby="coordonnees du photographe" aria-label="Formulaire de contact du photographe" >
     
         <div class="titreContact ">
             <p class="titreContact__itre"> contactez-moi ${nomForm} </p>
            
             <button class="titreContact__image">
-                <i class="fa-solid fa-x" ></i>
+                <i class="fa-solid fa-x iconLockModal" ></i>
             </button>
         </div> 
 
-        <div  class="conatainerItem" >
+        <p  class="conatainerItem" >
             <label for="prenom"  class="tailleContainer" >Prénom </label>
-            <input type="text" id="prenom" name="prenom" class="tailleContainer input1" placeholder="Henri Matis" >
-        </div>
+            <input type="text" id="prenom" name="prenom" class="tailleContainer input1 input" placeholder="Henri Matis" >
+        </p>
 
-        <div  class="conatainerItem">
+        <p  class="conatainerItem">
             <label for="nom" class="tailleContainer">Nom </label>
-            <input type="text" id="nom" name="nom" class="tailleContainer"  placeholder="Pierre" >
-        </div>
+            <input type="text" id="nom" name="nom" class="tailleContainer input"  placeholder="Pierre" >
+        </p>
 
-        <div  class="conatainerItem">
+        <p  class="conatainerItem">
             <label for="email" class="tailleContainer">Email </label>
-            <input type="email" id="email" name="email" class="tailleContainer"  placeholder="henripierre@yahoo.fr">
-        </div>
+            <input type="email" id="email" name="email" class="tailleContainer input"  placeholder="henripierre@yahoo.fr">
+        </p>
 
-        <div  class="conatainerItem">
+        <p  class="conatainerItem">
             <label for="message" class="tailleContainer message">Message </label>
-            <textarea id="message" name="message"   class="tailleContainer"  placeholder="Entrez votre message " ></textarea>
-        </div>
+            <textarea id="message" name="message"   class="tailleContainer input"  placeholder="Entrez votre message " ></textarea>
+        </p>
 
       
-        <input type="submit" value="Envoyer"  class="inputbtn" >
+        <input type="submit" value="Envoyer"  class="inputbtn input" >
      
        
 
-    </div>
+    </section>
     `;
 
 	// Ajout du formulaire au conteneur sélectionné.
@@ -1574,7 +1512,10 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
 	containerFormulaireContact1.innerHTML = formulaireContact;
 
 	//récupération du formulaire de contact
-	let formuContact = document.querySelector("#formulaireContact");
+	//let formuContact = document.querySelector("#formulaireContact");
+
+	//récupération de tous les containers des images 
+	const btnMediaDisabled = document.getElementsByClassName("btnMediaDisabled");
 
 	//récupération de l'image croix 
 	let imageCroix = document.querySelector(".titreContact__image");
@@ -1587,6 +1528,18 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
 		//gestion de l'opacité du reste de la page pour grise la page en arrière plant du formulaire
 		photographHeader.style.opacity = 1;
 		sectionMain.style.opacity = 1;
+
+		//insersion de la propriété disabled dans tous les likes et block des images pour revenir à l'état innitiale
+		for(let l=0; l<btnMediaDisabled.length; l++){
+
+
+			let btnMediaDisabledCurrent = btnMediaDisabled[l];
+			btnMediaDisabledCurrent.removeAttribute("disabled");
+			btnMediaDisabledCurrent.style.cursor = "pointer";
+			
+		}
+
+		
 
 	});
 
@@ -1602,12 +1555,58 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
 		photographHeader.style.opacity = 0.5;
 		sectionMain.style.opacity = 0.5;
 
+		
 		//gestion du focus et du retrait du focus 
 		// input1Contact.focus(); // permet le focus sur le premier champ  du formulaire
-		formuContact.focus();
+		//formuContact.focus();
 
+		imageCroix.focus();
+		
+			
+		sectionMain.addEventListener("focusin", () => {
+
+			containerFormulaireContact1.style.display = "none";
+			//gestion de l'opacité du reste de la page pour grise la page en arrière plant du formulaire
+			photographHeader.style.opacity = 1;
+			sectionMain.style.opacity = 1;
+
+			//insersion de la propriété disabled dans tous les likes et block des images pour revenir à l'état innitiale
+			for(let l=0; l<btnMediaDisabled.length; l++){
+
+
+				let btnMediaDisabledCurrent = btnMediaDisabled[l];
+				btnMediaDisabledCurrent.removeAttribute("disabled");
+				btnMediaDisabledCurrent.style.cursor = "pointer";
+				
+			}
+
+		
+
+		});
+
+		
+		
+
+
+		//insersion de la propriété disabled dans tous les likes et block des images
+		for(let l=0; l<btnMediaDisabled.length; l++){
+
+
+			let btnMediaDisabledCurrent = btnMediaDisabled[l];
+			btnMediaDisabledCurrent.setAttribute("disabled", "disabled");
+			btnMediaDisabledCurrent.style.cursor = "default";
+			
+
+		}
+		
+
+		
 	});
 
+
+	///////////////////////////////////////////////////////////
+
+	
 	let inputbtn = document.querySelector(".inputbtn");
 
 	//récupération du formulaire
@@ -1683,15 +1682,7 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
 	let currentIndex = 0;
 
 	const createLightboxFunction = ( imageMedia2, titreMedia2 ) => {
-
-		/*
-		console.log("***** imageMedia2");
-		console.log(imageMedia2);
 		
-
-		console.log("***** imageMedtitreMedia2ia2");
-		console.log(titreMedia2);
-		*/
 
 		const lightbox = `
 		
@@ -1717,9 +1708,9 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
 
 					<div class="image" >
 
-						<img class="child" src="./assets/photographersMedia/${imageMedia[0]}" alt="${titreMedia[currentIndex]}" /> 
+						<img class="child" src="./assets/photographersMedia/${imageMedia[0]}" alt="${titreMedia[0]}" /> 
 					</div>
-					<div class="titreLightbox">${titreMedia[currentIndex]}</div>
+					<div class="titreLightbox">${titreMedia[0]}</div>
 
 				</div>
 				
@@ -1729,7 +1720,7 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
 						<video class="video" src="./assets/photographersMedia/${imageMedia[0]}" >
 						</video>
 					</div>
-					<div class="titreLightbox">${titreMedia[currentIndex]}</div>
+					<div class="titreLightbox">${titreMedia[0]}</div>
 				</div>
 
 				<div class="arrowContainerlightbox">
@@ -1854,10 +1845,15 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
 			containerLightbox.style.display = "none";
 			sectionMain.style.display = "block";
 			sectionProfile.style.display = "block";
-	
-	
+			
+			//réinitialisation de l'index de la liste de la lightbox à 0 pour tout reprendre après la fermeture 
+			currentIndex=0;
+			
 			//photographHeader.style.opacity = 1;
 			//sectionMain.style.opacity = 1;
+
+			
+
 		});
 
 
@@ -1888,99 +1884,93 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
 	//sections[0].setAttribute("aria-hidden", "false");
 	//console.log(sections[0] );
 	
+	const openLightliboxFunction = () => {
 
-	//gestion de l'ouverture de la galerie ou modale
-	for( let i =0; i<photographerImg.length;i++){
+	
+		//gestion de l'ouverture de la galerie ou modale
+		for( let i =0; i<photographerImg.length;i++){
 
-		let imageencours = photographerImg[i];
+			let imageencours = photographerImg[i];
 		
 
-		imageencours.addEventListener("click", ()=>{
+			imageencours.addEventListener("click", ()=>{
 
-			/*
-			console.log("*** bienvenue au  imageencours.addEventListener");
 			
+				console.log("*** bienvenue au  imageencours.addEventListener");
+				/*
 			console.log("***imageencours");
 			console.log(imageencours.value);
 			*/
 			
-			//récupération de l'objet sur lequel on a cliqué
-			const ObjectCurrentClick = mediaPhotographe.filter( item => item.id === parseInt(imageencours.value));
 			
-			/*
+				//récupération de l'objet sur lequel on a cliqué
+				const ObjectCurrentClick = mediaPhotographe.filter( item => item.id === parseInt(imageencours.value));
+			
+				/*
 			console.log("****mediaPhotographe");
 			console.log(mediaPhotographe);
 			console.log("***ObjectCurrentClick[0]");
 			console.log(ObjectCurrentClick[0]);
 			*/
 			
-
-			//retrait de l'élément sur lequel on a cliqué 
-			let listeNewMediaFirstElementUpdate = mediaPhotographe.filter( item => item.id != parseInt(imageencours.value));
 			
+
+				//retrait de l'élément sur lequel on a cliqué 
+				let listeNewMediaFirstElementUpdate = mediaPhotographe.filter( item => item.id != parseInt(imageencours.value));
+				/*
 			console.log("*** listeNewMediaFirstElementUpdate[0]");
 			console.log(listeNewMediaFirstElementUpdate);
+			*/
 			
-			//rajout de l'élément sur lequel on a cliqué pour qu'il soit en première position
-			//dans le but de l'afficher en premier sur la lightbox
+				//rajout de l'élément sur lequel on a cliqué pour qu'il soit en première position
+				//dans le but de l'afficher en premier sur la lightbox
 			
-			listeNewMediaFirstElementUpdate.unshift(ObjectCurrentClick[0]); // Modifie la liste d'origine
-			let listeLightboxFilnal = listeNewMediaFirstElementUpdate;
+				listeNewMediaFirstElementUpdate.unshift(ObjectCurrentClick[0]); // Modifie la liste d'origine
+				let listeLightboxFilnal = listeNewMediaFirstElementUpdate;
 
-			//console.log("*** listeLightboxFilnal");
-			//console.log(listeLightboxFilnal);
+				/*
+			console.log("*** listeLightboxFilnal");
+			console.log(listeLightboxFilnal);
+			*/
 
-			//récupération des images de media 
-			let imageMedia2 = listeLightboxFilnal.map(item => item.image || item.video);
+				//récupération des images de media 
+				let imageMedia2 = listeLightboxFilnal.map(item => item.image || item.video);
 
-			//console.log("***imageMedia[0]");
-			//console.log(imageMedia2[0]);
+				/*
+			console.log("***imageMedia2");
+			console.log(imageMedia2);
+			*/
 
-			let titreMedia2 = listeLightboxFilnal.map(item => item.title );
+				let titreMedia2 = listeLightboxFilnal.map(item => item.title );
+				/*
+			console.log("***titreMedia2");
+			console.log(titreMedia2);
+			*/
+
 			
+				//stockage de la value du button (id de l'img) dans le localstorage
+				//localStorage.setItem("listeLightboxFilnal", JSON.stringify(listeLightboxFilnal));
 
-			
-			//stockage de la value du button (id de l'img) dans le localstorage
-			localStorage.setItem("listeLightboxFilnal", JSON.stringify(listeLightboxFilnal));
+				createLightboxFunction(imageMedia2, titreMedia2); //new
 
-			createLightboxFunction(imageMedia2, titreMedia2); //new
 
-			///////////////////////////////////
-			//modification de l'attribut aria-hidden de chaque section
-			for( let a=0; a < sections.length; a++){
+				//masquage du
+				containerLightbox.style.display = "block";
+				sectionMain.style.display = "none";
+				sectionProfile.style.display = "none";
+				lockGalerie.focus();
 
-				let elementCurrent = sections[a];
+				//gestion de l'opacité du reste de la page pour grise la page en arrière plant du formulaire
+				//photographHeader.style.opacity = 0;
+				//sectionMain.style.opacity = 0;
 
-				//console.log("**** elementCurrent");
-				//console.log(elementCurrent);
+			});
+		}
 
-				//modification de l'attribut aria-hidden en false pour le cacher des lecteurs
-				elementCurrent.setAttribute("aria-hidden", "false");
+	};
 
-				//modification de l'attribut aria-hidden en true pour le rendre accessible des lecteurs
-				containerLightbox.setAttribute("aria-hidden", "true");
-
-				//console.log("**** containerLightbox");
-				//console.log(containerLightbox);
-
-				
-			}
-			
-
-			///////////////////////////////////
-
-			//masquage du
-			containerLightbox.style.display = "block";
-			sectionMain.style.display = "none";
-			sectionProfile.style.display = "none";
-			lockGalerie.focus();
-
-			//gestion de l'opacité du reste de la page pour grise la page en arrière plant du formulaire
-			//photographHeader.style.opacity = 0;
-			//sectionMain.style.opacity = 0;
-
-		});
-	}
+	//éxécution de openLightliboxFunction();
+	openLightliboxFunction();
     
 	
 }
