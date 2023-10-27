@@ -86,7 +86,7 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
 
 	const imgBlock2 = `
      
-        <div class= "imgBlock2" alt="photographe" style="background-image: url('./assets/photographers/${portrait}');
+        <div class= "imgBlock2"  style="background-image: url('./assets/photographers/${portrait}');
          background-repeat: no-repeat;  background-position:  center center;
           background-size: cover; width: 200px; height: 200px;  border-radius: 50%; "  > 
         
@@ -211,7 +211,7 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
 					}
 
 
-					//si on a pas cliqué sur le coeur 
+					
 				}else{
 
 					/******* gestion de la liste du nombre de likes et de son ordement croissant  *******/
@@ -464,7 +464,7 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
    
 									<div class= "numberLikes ${mediaData.title.replace(/\s+/g, "")}  ${mediaData.id}"  id= ${mediaData.title.replace(/\s+/g, "")}  data-idMediaCurrent =${mediaData.id} > ${mediaData.likes}  </div> 
 											
-										<button  value=${mediaData.id} class="heartLikeMedia btnMediaDisabled" data-idMediaCurrent =${mediaData.id} id= "${mediaData.title.replace(/\s+/g, "")}">  <i class="fa-solid fa-heart btnMediaDisabled" ></i> </button>
+										<button  value=${mediaData.id} class="heartLikeMedia btnMediaDisabled ${mediaData.title.replace(/\s+/g, "")}" data-idMediaCurrent =${mediaData.id} >  <i class="fa-solid fa-heart" ></i> </button>
 
 									</div>
 									
@@ -490,7 +490,7 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
 				
 							<button  value=${mediaData.id} class="articlePortfolio__item--img imgVideo${mediaData.id} btnMediaDisabled">
 							
-								<img class="child" src="./assets/photographersMedia/${mediaData.image}" alt= ${mediaData.title} />
+								<img class="child" src="./assets/photographersMedia/${mediaData.image}" alt= "${mediaData.title}" />
 							
 							</button>
 							
@@ -499,9 +499,9 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
 					
 								<div class="description__numLike"> 
 	   
-								<div class= "numberLikes ${mediaData.title.replace(/\s+/g, "")}  ${mediaData.id}"  id= ${mediaData.title.replace(/\s+/g, "")}  data-idMediaCurrent =${mediaData.id} > ${mediaData.likes}  </div> 
+								<div class= "numberLikes ${mediaData.title.replace(/\s+/g, "")}  ${mediaData.id}"   data-idMediaCurrent =${mediaData.id} > ${mediaData.likes}  </div> 
 										
-									<button  value=${mediaData.id} class="heartLikeMedia btnMediaDisabled" data-idMediaCurrent =${mediaData.id} id= "${mediaData.title.replace(/\s+/g, "")}">  <i class="fa-solid fa-heart btnMediaDisabled" ></i> </button>
+									<button  value=${mediaData.id} class="heartLikeMedia btnMediaDisabled ${mediaData.title.replace(/\s+/g, "")} " data-idMediaCurrent =${mediaData.id} >  <i class="fa-solid fa-heart " ></i> </button>
 
 								</div>
 								
@@ -741,20 +741,42 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
 
 	likeIncrementFunction();
 
+	//////////////////////////////////////
+	/*
+	let listHeartLikeMedia = document.getElementsByClassName("heartLikeMedia");
+	// console.log("****listHeartLikeMedia");
+	// console.log(listHeartLikeMedia);
+	//console.log(listHeartLikeMedia.getAttribute("class"));
+
+	for(let l=0; l<listHeartLikeMedia.length; l++){
+
+		let coeurCurrent = listHeartLikeMedia[l].getAttribute("class").split(" ")[2];
+		//console.log(coeurCurrent.getAttribute("class").split(" ")[2]);
+		console.log(coeurCurrent);
+
+	}*/
+
+	//////////////////////////////////////
 	//mise à jour du nombre de likes après la mise à jour du localstorage
 	const updateNumberlikesFunction = () =>{
 
 		const listeMedia = document.getElementsByClassName("heartLikeMedia");//
 
+		
 		for( let k=0; k< listeMedia.length; k++){ 
 
-			let  currentElementHeart = listeMedia[k];
+			let  currentElementHeart = listeMedia[k]; 
+
 
 			// Obtation la valeur de l'attribut data-custom-data qui est un id
 			let customDataValue = currentElementHeart.getAttribute("data-idMediaCurrent");
 
 			// Obtation la valeur de l'attribut data-custom-data qui est un id
-			let titleValue = currentElementHeart.getAttribute("id");
+			//let titleValue = currentElementHeart.getAttribute("id");//id
+
+			//récupération des valeurs de chaque class ici le title
+			let  titleValue = currentElementHeart.getAttribute("class").split(" ")[2]; 
+			//console.log(titleValue);
 
 			// Récupération de toutes les clés stockées dans le localStorage
 			//s'il contient quelque chose
@@ -869,7 +891,7 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
 	const formulaireContact = `
 
     
-    <section id="formulaireContact"   role="form" aria-labelledby="coordonnees du photographe" aria-label="Formulaire de contact du photographe" >
+    <section id="formulaireContact"  aria-label="coordonnees du photographe" aria-label="Formulaire de contact du photographe" >
     
         <div class="titreContact ">
             <p class="titreContact__itre"> contactez-moi ${nomForm} </p>
@@ -1014,6 +1036,16 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
 		photographHeader.style.opacity = 1;
 		sectionMain.style.opacity = 1;
 
+		//insersion de la propriété disabled dans tous les likes et block des images pour revenir à l'état innitiale
+		for(let l=0; l<btnMediaDisabled.length; l++){
+
+
+			let btnMediaDisabledCurrent = btnMediaDisabled[l];
+			btnMediaDisabledCurrent.removeAttribute("disabled");
+			btnMediaDisabledCurrent.style.cursor = "pointer";
+			
+		}
+
 	});
 
 
@@ -1028,7 +1060,7 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
 	//récupération de la taille du tableau des images de medias
 	let currentIndex = 0;
 
-	const createLightboxFunction = ( imageMedia2, titreMedia2 ) => {
+	const createLightboxFunction = ( imageMedia2, titreMedia2, listeLightboxFilnal ) => {
 		
 
 		const lightbox = `
@@ -1111,8 +1143,10 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
 		//gestion de l'index de l'image
 		const showImage = (index) => {
 
+			console.log(index);
+
 			if(imageMedia2){
-				if( imageMedia2[index].includes("jpg") ){
+				if( imageMedia2[index].includes("jpg") ){  //listeLightboxFilnal imageMedia2[index]
 
 					console.log("**** bienvenue dans les images");
 					
@@ -1120,8 +1154,8 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
 					imageContainer.style.display = "block";
 					//imagelightbox.style.backgroundImage = `url(./assets/photographersMedia/${imageMedia[index]})`;
 					child.src = `./assets/photographersMedia/${imageMedia2[index]}`;
-				
-					titreLightbox.innerText = titreMedia2[index];
+					child.alt = `${titreMedia2[index]}`;
+					titreLightbox.innerText = titreMedia2[index]; // titreMedia2 
 
 				}else if( imageMedia2[index].includes("mp4") ){
 
@@ -1213,18 +1247,52 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
 
 			imageencours.addEventListener("click", ()=>{
 
-			
+				/////////////////////////////:::::::::
+				/*const listeDateJSON = localStorage.getItem("listeDateOrderCroissant");
+				const listeTitreJSON = localStorage.getItem("listeTitreOrderCroissant");
+				const listePopulariteJSON = localStorage.getItem("listeArticlesCroissanteLikes");
+				*/
+				let listeFilterValue;
+				let listeOrder=["listeDateOrderCroissant","listeTitreOrderCroissant", "listeArticlesCroissanteLikes" ];
+				
+				for(let i=0; i<listeOrder.length; i++){
+
+					let myListCurrent = listeOrder[i];
+					
+					//récupération et conversion en json de la liste ordonnée du localstorage
+					// const listeJSON = JSON.parse( localStorage.getItem( {myListCurrent} ) );
+					const listeJSON =  localStorage.getItem( `${myListCurrent}` );
+					//console.log(JSON.parse(listeJSON));
+					// Récupération de toutes les clés stockées dans le localStorage
+					//s'il contient quelque chose
+					
+					if( JSON.parse(listeJSON) ){
+
+						console.log("**** bienvenue dans la condition");
+						listeFilterValue = JSON.parse(listeJSON);
+
+						
+					}
+
+					// console.log(listeFilterValue);
+				}
+				console.log(listeFilterValue);
+
+				
+				///////////////////////////////////////////
+
+
 				console.log("*** bienvenue au  imageencours.addEventListener");
 				
 				//récupération de l'objet sur lequel on a cliqué
 				const ObjectCurrentClick = mediaPhotographe.filter( item => item.id === parseInt(imageencours.value));
 			
 				//retrait de l'élément sur lequel on a cliqué 
-				let listeNewMediaFirstElementUpdate = mediaPhotographe.filter( item => item.id != parseInt(imageencours.value));
+				// let listeNewMediaFirstElementUpdate = mediaPhotographe.filter( item => item.id != parseInt(imageencours.value));
+				let listeNewMediaFirstElementUpdate = listeFilterValue.filter( item => item.id != parseInt(imageencours.value));
 			
 				//rajout de l'élément sur lequel on a cliqué pour qu'il soit en première position
 				//dans le but de l'afficher en premier sur la lightbox
-			
 				listeNewMediaFirstElementUpdate.unshift(ObjectCurrentClick[0]); // Modifie la liste d'origine
 				let listeLightboxFilnal = listeNewMediaFirstElementUpdate;
 
@@ -1233,7 +1301,7 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
 
 				let titreMedia2 = listeLightboxFilnal.map(item => item.title );
 				
-				createLightboxFunction(imageMedia2, titreMedia2); //new
+				createLightboxFunction(imageMedia2, titreMedia2, listeLightboxFilnal); //new
 
 				containerLightbox.style.display = "block";
 				sectionMain.style.display = "none";
