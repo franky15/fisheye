@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:opsz@9..40&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:opsz@9..40&display=swap");
 main {
   box-sizing: border-box;
   position: relative;
@@ -590,6 +592,10 @@ main {
   height: 100%;
   display: flex;
   align-items: center;
+}
+
+body {
+  font-family: "DM Sans", sans-serif;
 }
 
 header {
