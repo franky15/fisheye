@@ -56,7 +56,7 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
 	let photographCurrent = photographers.find( item => item.id === parseInt(idPhotographer) );
 
 	// eslint-disable-next-line no-unused-vars
-	const {  name, portrait, city, country, tagline, price } = photographCurrent;
+	const {  name, portrait,  country, tagline,  } = photographCurrent;
 
 	//console.log(  "city : "+ city  +  "  * country : " + country  +  " * tagline : "+ tagline  + "  * price : "+ price  );
 
@@ -326,8 +326,6 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
 
 				filterTitre2.style.display = "none";
 				listeUlContainer.style.display = "none";
-
-
 
 				// Récupération de la valeur sélectionnée
 				selectValue = btnPopularite2.value;
@@ -658,6 +656,7 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
 			currentElementHeart.addEventListener("click", function() {
 
 				let listeMediaValue = ProjetPhotographCurrent;
+
 				//conversion de en entier
 				let idMediaCurrent= parseInt(customDataValue);
 
@@ -1060,7 +1059,7 @@ async function onePhotographerDataTemplate(photographers, photographersMedia){
 	//récupération de la taille du tableau des images de medias
 	let currentIndex = 0;
 
-	const createLightboxFunction = ( imageMedia2, titreMedia2, listeLightboxFilnal ) => {
+	const createLightboxFunction = ( imageMedia2, titreMedia2 ) => {
 		
 
 		const lightbox = `
